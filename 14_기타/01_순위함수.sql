@@ -1,0 +1,23 @@
+/* 순위함수
+RANK()  : 중복 순위 개수만큼 다음 순위 값을 증가 시킴(1,2,2,4,5)
+DENSE_RANK() : 중복 순위가 존재해도 순차적으로 다음 순위 값을 표시함(1,2,2,3,4)
+ROW_NUMBER() : 일련번호 표시(1,2,3,4,5)
+***************************************/
+SELECT EMPLOYEE_ID, FIRST_NAME, SALARY
+     , RANK() OVER (ORDER BY SALARY DESC) AS RANK
+     , DENSE_RANK() OVER (ORDER BY SALARY DESC) AS DENSE_RANK
+     , ROW_NUMBER() OVER (ORDER BY SALARY DESC) AS ROW_NUMBER
+  FROM EMPLOYEES
+;
+----------------
+-- PARTITION BY : 그룹을 만들고 순위 결정
+SELECT DEPARTMENT_ID, EMPLOYEE_ID, FIRST_NAME, SALARY
+     , RANK() OVER (PARTITION BY DEPARTMENT_ID ORDER BY SALARY DESC) RANK_DEPT_SAL
+FROM EMPLOYEES;
+
+
+
+
+
+
+
