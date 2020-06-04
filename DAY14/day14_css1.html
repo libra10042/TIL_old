@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS1</title>
+</head>
+<body>
+<h1>CSS</h1>
+<h2>인라인방식</h2>
+<!--태그안에 style ='속성1:값1;속성2:값2...'-->
+<!--h2{제목2}+h3{제목3}-->
+<!-- 글자색상을 red / 배경색상 yellow -->
+<h2 style ="color:red;background-color:yellow">제목2</h2>
+<!-- 글자크기 100px, 글자색상 #666666-->
+<h3 style="font-size:100px;color:#666666">제목3</h3>
+<!-- css 색상 속성
+글자색상
+color : 영문색상명/16진수색상명
+
+배경색상
+background-color: 영문색상명/16진수색상명
+background : 영문색상명/16진수색상명
+
+16진수색상값?
+#000000(검정색) ~ #FFFFFF(흰색)
+#FF0000 (red)
+#00FF00 (green)
+#0000FF (blue)
+
+글자크기는?
+font-size:숫자단위(em/px/pt)
+9pt 11px
+-->
+<p style = "line-height:180px;font-size:10pt;color:green">줄거리 마이애미 강력반의 베테랑 형사 ‘마이크’[윌 스미스]는 여전히 범죄자를 소탕하는 데 열성적이지만,
+ 그의 파트너 ‘마커스’[마틴 로렌스]는 이제 일선에서 물러나 가족과 함께 시간을 보내고 싶어한다.<br>
+ 마커스의 은퇴를 만류하던 마이크가 정체를 알 수 없는 거대 조직의 위협을 받으며 일생일대의 위험에 빠지게 된다.<br>
+ 가족만큼 중요한 마이크를 위해 마커스가 합류하고, 우리의 ‘나쁜 녀석들’은 신식 무기와 기술을 장착한 루키팀 AMMO와
+ 함께 힘을 합쳐 일생일대 마지막 미션을 수행하게 되는데…<br>
+</p>
+<!--
+줄간격/행간
+line-height : 숫자단위(%/px)
+line-height : 180%
+
+글꼴
+font-family:글꼴명;
+font-family:글꼴명1 글꼴명2;  .... 글꼴명1이 없으면 글꼴명2를 사용하여라.
+
+"맑은 고딕" / 돋움 / 궁서 / 굴림
+arial...
+
+정렬
+text=align:center/right/left/justify(균등정렬)
+
+자간 글자와 글자사이간격
+letter-spacing : 숫자단위(px)
+
+단어와 단어사이 간격
+word-spacing : 숫자단위(px)
+
+
+word-spacing :
+-->
+<p style = "font-family :'궁서';arial">줄거리 마이애미 강력반의 베테랑 형사 ‘마이크’[윌 스미스]는 여전히 범죄자를 소탕하는 데 열성적이지만,
+ 그의 파트너 ‘마커스’[마틴 로렌스]는 이제 일선에서 물러나 가족과 함께 시간을 보내고 싶어한다.<br>
+ 마커스의 은퇴를 만류하던 마이크가 정체를 알 수 없는 거대 조직의 위협을 받으며 일생일대의 위험에 빠지게 된다.<br>
+ 가족만큼 중요한 마이크를 위해 마커스가 합류하고, 우리의 ‘나쁜 녀석들’은 신식 무기와 기술을 장착한 루키팀 AMMO와
+ 함께 힘을 합쳐 일생일대 마지막 미션을 수행하게 되는데…<br>
+</p>
+
+<!-- 목록문단 전체 가운데 정렬: 줄간격200 -->
+<ul style="text-align:center;line-height:200%">
+    <li>목록1</li>
+    <li>목록2</li>
+    <li>목록3</li>
+    <li>목록4</li>
+</ul>
+
+<!-- 자간 / 단어간격 / 생사-->
+<!-- 색상명 참조-->
+<h4 style ="letter-spacing:10px;
+            world-spacing:30px;
+            color:yellowgreen">Python MySQL FLACK</h4>
+
+
+
+</body>
+</html>

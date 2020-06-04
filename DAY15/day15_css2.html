@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    /* 선택자 내부에서 첫번째 글자와 첫번째 행
+    선택자 : first-line {속성:값...}
+    선택자 : first-letter {속성:값..}
+    */
+    .pBox1:first-letter { font-size:2em; color:red }
+    .pBox2:first-line { letter-spacing:10px;
+                            color:red }
+    .pBox3 { line-height:150%; color:blue }
+
+    /*
+        선택자의 요소가 같아야 한다.
+        선택자 :first-of-type {속성:값...}
+        선택자 :last-of-type  {속성:값...}
+        선택자 :nth-of-type(숫자)  {속성:값...}
+    */
+
+    /*
+        부모 요소 기준
+        선택자 :first-of-type {속성:값...}
+        선택자 :nth-child(속성)  {속성:값...}
+    */
+
+    #box1 h2 {font-size:4em; color:red}
+
+    #box1 p {font-weight:bold}
+
+
+    /*
+    자기자신 기준
+    선택자:first-of-type { 선택자:속성 }
+    선택자:nth-of-type(숫자) {선택자:속성}
+    */
+    #box3 { background:yellow }
+    #box3 p:first-of-type { background:red }
+    #box3 div:first-of
+
+
+    /*
+    #box1 h2 {}
+    #box1 p {}
+    #box1 ul li {}
+    */
+
+    </style>
+</head>
+<body>
+
+<!--h1{css}+(p.pBox$)*3-->
+<h1>css</h1>
+<p class="pBox1">
+    민주당이 주도하는 하원이 지난달 18일 탄핵소추안을 가결한 지 28일 만이다. <br />
+    탄핵심판은 2주 안에 종결될 것으로 보인다고 백악관은 내다봤다. <br />
+    매코널 원내대표는 "탄핵심판은 화요일(21일) 본격적으로 시작된다"고 말했다. <br />
+</p>
+<p class="pBox2">
+    표결 결과는 찬성 228표, 반대 193표였다. 이는 거의 정당 노선에 따른 표결이 이뤄진 것으로 AP는 분석했다.
+
+</p>
+<p class="pBox3">
+    하원에서 탄핵소추안의 내용은 큰 소리로 낭독됐으며, 이후 탄핵 소추위원 등이 파란색 서류철에 담긴 탄핵소추안을 상원에 직접 전달했다.
+</p>
+
+
+<hr>
+<!--div#box$>((h2{Heading2}+(p{p$}*3)+ul>li{목록$}*5))-->
+<div id="box1">
+    <h2>Heading2, box1</h2>
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+</div>
+<div id="box2">
+    <h2>Heading2, box2</h2>
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+</div>
+
+
+<!--div#box3>(p{p$}*3)*(div{div$}*5)-->
+<div id="box3">
+    <p>p1
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <div>div5</div>
+    </p>
+    <p>p2
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <div>div5</div>
+    </p>
+    <p>p3
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <div>div5</div>
+    </p>
+</div>
+
+
+
+</body>
+</html>

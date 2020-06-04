@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS, JS 문서 연결-->
+</head>
+<body>
+<!--  제목/ Heading 태그 : 진하게 표시. 글자크기 표시
+    h1~h6 : 숫자가 작을수록 글자 크기가 커진다.
+
+-->
+<h1>제목1</h1>
+<h1>제목2</h1>
+<h1>제목3</h1>
+
+
+<!-- Emmet 방식으로 코딩
+태그명 입력후 [Tab]
+-->
+<h1>Heading1</h1>
+<h2></h2>
+
+<!-- 연속으로 태그 삽입 h1+h2+h3 [Tab] -->
+<h1></h1>
+<h2></h2>
+<h3></h3>
+
+<!--태그안에 내용 같이 삽입
+태그명{내용} [Tab]
+h1{큰제목}+h2{두번째제목}+h3{세번째제목}-->
+<h1>큰제목</h1>
+<h2>두번째제목</h2>
+<h3>세번째제목</h3>
+
+
+<!-- hr: 가로 수평선 삽입-->
+<hr>
+<hr />
+
+<!-- p문단 : paragraph
+<p> 내용물
+-->
+<!--p{문단1입니다.}+p{문단2입니다.}[Tab]-->
+<!--p{문단1입니다.}*숫자 [Tab]-->
+<!--$ 는 자동증가 숫자-->
+<!--p{문단$입니다.}*숫자 [Tab]-->
+
+<p>문단입니다.</p>
+<p>문단2입니다.</p>
+<!-- p{문단1입니다}*3-->
+<!--p{문단$입니다.}*3-->
+<p>문단1입니다.</p>
+<p>문단2입니다.</p>
+<p>문단3입니다.</p>
+<hr>
+
+<!--목록문단 태그
+순서 있는 목록 문단 : 목록 앞에 자동으로 숫자가 표시 1~
+ol : ordered list
+li : list
+ol>li
+-->
+<ol>
+    <li>사과</li>
+    <li>포도</li>
+    <li>수박</li>
+
+</ol>
+<!-- ol>li{리스트$}*4 -->
+<ol>
+    <li>리스트1</li>
+    <li>리스트2</li>
+    <li>리스트3</li>
+    <li>리스트4</li>
+</ol>
+
+<!--ol>li{감자}+li{옥수수}+li{고구마} : >는 아래이고 +는 동급이다. -->
+<ol>
+    <li>감자</li>
+    <li>옥수수</li>
+    <li>고구마</li>
+</ol>
+
+<!-- 목록문단 태크
+    순서가없는 목록 문단 : 블렛목록문단. 리스트앞에 디스크 표시
+    앞에 들여쓰기 생성.
+    ul : unordered list
+    li : list
+    ul>li
+-->
+
+<ul>
+    <li>겨울왕국</li>
+    <li>백두산</li>
+    <li>엔드게임</li>
+</ul>
+<!-- ul>li{리스트$}*4 [Tab]-->
+<ul>
+    <li>리스트1</li>
+    <li>리스트2</li>
+    <li>리스트3</li>
+    <li>리스트4</li>
+</ul>
+
+<!-- ul>li{감자}+li{고구마}+li{양파}-->
+<ul>
+    <li>감자</li>
+    <li>고구마</li>
+    <li>양파</li>
+</ul>
+
+<!-- 정의문단
+    dl>dt+dd
+    dl : definition list
+    dt : definition title
+    dd : definition data
+    dd 태그 문단이 들여쓰기 된다.
+-->
+
+<dl>
+    <dt>제목</dt>
+    <dd>내용</dd>
+</dl>
+
+<!-- dl>(dt{제목$}+dd{내용$})*3-->
+<dl>
+    <dt>제목1</dt>
+    <dd>내용1</dd>
+    <dt>제목2</dt>
+    <dd>내용2</dd>
+    <dt>제목3</dt>
+    <dd>내용3</dd>
+</dl>
+
+<!--dl>dt{교과목}+dd*3-->
+<dl>
+    <dt>교과목</dt>
+    <dd>Python</dd>
+    <dd>MySQL</dd>
+    <dd>Web</dd>
+</dl>
+<!--
+br : 문단안에서 줄바꿈 용도로 사용.
+break line
+<br> 또는 </br>
+-->
+
+<p>
+    행1입니다.<br />
+    행2입니다.<br /><br />
+    행3입니다
+</p>
+<!--
+blockquote
+인용문에서 사용
+들여쓰기되어 앞뒤에 여백 생성.
+-->
+<h2>인사말</h2>
+<blockquote>
+    오늘 좋은 하루
+</blockquote>
+
+<!--blockquote>blockquote{감기조심하세요}-->
+<blockquote>
+    <blockquote>감기조심하세요</blockquote>
+</blockquote>
+
+<hr>
+<!--
+    태그 줄바꿈 기준
+    - 인라인요소 : 같은 행에 표시. i/em/ img/ a....
+    - 블록요소 : p/blockquote/div/h1~h6/ol li/ul li
+
+-->
+<!--
+em / i
+=> 기울임꼴. 인라인 표소
+
+strong/ b
+=> 진하게. 인라인 요소
+-->
+<p>
+    아름다운 <strong>밤</strong>입니다.<br>
+    추운 <em>밤</em>입니다.<br>
+    더운 <b>밤</b>입니다. <br>
+</p>
+<!-- 이탤릭+진하게 -->
+더운 <strong><em>밤</em></strong> 입니다.
+<hr>
+<!--
+    웹에 삽입할 수 있는 이미지 포맷 => 웹용이미지
+    대표적인것들.. png/jpg/ gif
+-->
+<!--
+img
+image
+<img src=이미지경로 alt="대체텍스트">
+<img src=이미지경로 alt="대체텍스트">
+srr = source
+alt = alternate text : 이미지 대신 나오는 글자.
+width/ height = 이미지 크기
+border = 이미지 테두리
+인라인 요소.
+인라인 요소
+-->
+<img src="images\watch.png" alt="ah">
+<img src="images\mountain.jpg" alt="mo">
+<hr>
+<!--
+a : anchor
+파일(html, 이미지, 웹상주소)과 연결가능.
+인라인요소
+
+target = _blank : 다른 탭에 하이퍼링크 연결문서표시
+-->
+<h3>방송국 사이트</h3>
+<!-- ul>(li>a)*3-->
+<ul>
+<!-- 다른탭에 표시 -->
+    <li><a href="http://naver.com" target="_blank">네이버</a></li>
+    <li><a href="http://movie.naver.com">영화</a></li>
+    <li><a href="http://google.co.kr">구글</a></li>
+</ul>
+<!--
+관련 속성들...
+width / hegiht : 가로 세로 크기
+cellpadding : 셀 안쪽여백
+cellspacing : 셀과 셀 사이 여백
+align : 가로 정렬 center/right/left
+valign : 셀의 세로 정렬 top/ middle/botton
+bordercolor : 배경 색상.
+bgcolor : 배경 색상.
+-->
+<!--2행 2열-->
+<table border ="1">
+    <tr>
+        <td>1-1</td>
+        <td>1-2</td>
+    </tr>
+    <tr>
+        <td>2-1</td>
+        <td>2-2</td>
+    </tr>
+</table>
+
+</body>
+</html>
+
+<!--2행 2열-->
+<!--table[border=1]>(tr>td{내용}*2)*2-->
+<table border="1">
+    <tr>
+        <td>내용</td>
+        <td>내용</td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td>내용</td>
+    </tr>
+</table>
+<!--3행3열 가로크기 300 테두리 셀패딩 5 셀간격 5-->
+<table border="1" width="300" cellpadding="5" cellspacing="5">
+    <tr>
+        <td>내용</td>
+        <td>내용</td>
+        <td>내용</td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td>내용</td>
+        <td>내용</td>
+    </tr>
+    <tr>
+        <td>내용</td>
+        <td>내용</td>
+        <td>내용</td>
+    </tr>
+</table>
+
+
+<!-- 셀합치기
+colspan : 가로합치기
+rowspan : 세로합치기
+주의사항 : 셀을 합치고 나머지는 삭제하거나 주석처리한다.
+-->
+<!-- 3행3열 만들기-->
+<!-- table[border=1]>(tr>td{셀$}*3)*3-->
+
+<table border="1">
+    <tr>
+        <td colspan="3">셀1+셀2+셀3</td>
+<!--        <td>셀2</td>-->
+<!--        <td>셀3</td>-->
+    </tr>
+    <tr>
+        <td>셀1</td>
+        <td rowspan="2">셀2</td>
+        <td>셀3</td>
+    </tr>
+    <tr>
+        <td>셀1</td>
+<!--        <td>셀2</td>-->
+        <td>셀3</td>
+    </tr>
+</table>
+
+
+<hr>
+<h3>퀴즈 - 테이블 pdf 44번 슬라이드 참조</h3>
+<!--table[border=1 cellspacing=0 cellpadding=10 width=500]>(tr>td*4)*4-->
+<table border="1" cellspacing="0" cellpadding="10" width="500">
+    <tr>
+        <td></td>
+        <td></td>
+        <td colspan="2"></td>
+<!--        <td></td>-->
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+<!--        <td></td>-->
+        <td></td>
+        <td rowspan ="3"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td rowspan ="2"></td>
+<!--        <td></td>-->
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+<!--        <td></td>-->
+<!--        <td></td>-->
+    </tr>
+</table>
+
+<hr>
+<table border="1" cellspacing="0" cellpadding="10" width="500">
+    <tr>
+        <td rowspan ="4"></td>
+        <td></td>
+        <td colspan = "2"></td>
+<!--        <td></td>-->
+    </tr>
+    <tr>
+<!--        <td></td>-->
+        <td colspan = "2"></td>
+<!--        <td></td>-->
+        <td></td>
+    </tr>
+    <tr>
+<!--        <td></td>-->
+        <td rowspan = "2"></td>
+        <td colspan = "2"></td>
+<!--        <td></td>-->
+    </tr>
+    <tr>
+<!--        <td></td>-->
+<!--        <td></td>-->
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
