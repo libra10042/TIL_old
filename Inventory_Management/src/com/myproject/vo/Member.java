@@ -1,60 +1,92 @@
 package com.myproject.vo;
 
-
-//회원 등록 페이지 
 public class Member {
-	private String no; //회원 일련번호
-	private String name; //회원 이름
-	private String id; //회원 아이디
-	private String pw; //회원 패스워드
+	private String userId;
+	private String userPw;
+	private String name;
+	private String address;
+	private String phone;
+	
+	
 	public Member() {
+
 	}
-	public Member(String no, String name, String id, String pw) {
+
+	
+
+	public Member(String userId, String userPw, String name, String address, String phone) {
 		super();
-		this.no = no;
+		this.userId = userId;
+		this.userPw = userPw;
 		this.name = name;
-		this.id = id;
-		this.pw = pw;
+		this.address = address;
+		this.phone = phone;
 	}
-	
-	
-	
-	
-	public Member(String id, String pw) {
+
+
+
+	public Member(String userId, String userPw) {
 		super();
-		this.id = id;
-		this.pw = pw;
+		this.userId = userId;
+		this.userPw = userPw;
 	}
-	public String getNo() {
-		return no;
+
+
+	public String getUserId() {
+		return userId;
 	}
-	public void setNo(String no) {
-		this.no = no;
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
+
+
+	public String getUserPw() {
+		return userPw;
+	}
+
+
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
+	}
+
+
 	public String getName() {
 		return name;
 	}
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getId() {
-		return id;
+
+
+	public String getAddrees() {
+		return address;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+
+	public void setAddrees(String addrees) {
+		this.address = addrees;
 	}
-	public String getPw() {
-		return pw;
+
+
+	public String getPhone() {
+		return phone;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
+
+
 	@Override
 	public String toString() {
-		return "Member [no=" + no + ", name=" + name + ", id=" + id + ", pw=" + pw + "]";
+		return "Member [userId=" + userId + ", userPw=" + userPw + ", name=" + name + ", addrees=" + address
+				+ ", phone=" + phone + "]";
 	}
-	
-	
 	
 	
 	

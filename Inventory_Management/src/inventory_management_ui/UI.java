@@ -1,9 +1,13 @@
 package inventory_management_ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import inventory_management_controller.Service;
 import inventory_management_vo.Admin;
+import inventory_management_vo.Daily_necessities;
+import inventory_management_vo.Product;
 
 public class UI {
 	private Scanner sc = new Scanner(System.in);
@@ -11,6 +15,7 @@ public class UI {
 	private Service sv = new Service();
 	private boolean flag=true;
 	private int choice;
+	private List<> p_list = ArrayList<>();
 	
 	private String admin_id, admin_pw, admin_name, admin_email;
 	
@@ -32,13 +37,15 @@ public class UI {
 	}
 	
 	
-	public void buyMenu() {
-		System.out.println("1.회원구매\t2.비회원구매");
+	public void buyMenu(Product p) {
+		System.out.println("1.음료\t2.라면\t3.유제품\t4.생활용품");
 		choice = sc.nextInt(); 
 		
 		switch(choice) {
 		case 1: 
-			showProduct(); 
+			if(p instanceof Daily_necessities) {
+				
+			}
 			
 			break;
 			
@@ -47,30 +54,13 @@ public class UI {
 			
 			break;
 		}
-			
+		
 	}
 	
-	//구매할 제품 확인. 
+	//판매중인 제품 보여주기. 
 	public void showProduct() {
-		System.out.println("1.음료\t2.라면\t3.유제품\t4.생활용품");
-		choice = sc.nextInt(); 
-		switch(choice) {
-		case 1: 
-			
-			break;
-			
-		case 2:
-			
-			break;
-			
-		case 3:
-			
-			break;
-			
-		case 4: 
-			
-			break;
-		}
+		
+		Product instanceof Daily_necessities;
 	}
 	
 	

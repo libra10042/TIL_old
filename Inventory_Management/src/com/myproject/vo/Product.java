@@ -1,60 +1,52 @@
 package com.myproject.vo;
 
-public class Product {
-	private String id;  //판매자 아이디 
-	private String product; //상품이름
-	private String price; //상품 가격
-	private String cnt; //수량 
+//상품정보
+public class Product
+{
+	private String code; //상품코드
+	private String pname; //상품이름
+	private int price; //상품가격
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(String id, String product, String price, String cnt) {
+	public Product(String code, String pname, int price) {
 		super();
-		this.id = id;
-		this.product = product;
+		this.code = code;
+		this.pname = pname;
 		this.price = price;
-		this.cnt = cnt;
 	}
 
-	public String getId() {
-		return id;
+	public String getCode() {
+		return code;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getProduct() {
-		return product;
+	public String getPname() {
+		return pname;
 	}
 
-	public void setProduct(String product) {
-		this.product = product;
+	public void setPname(String pname) {
+		this.pname = pname;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
-	}
-
-	public String getCnt() {
-		return cnt;
-	}
-
-	public void setCnt(String cnt) {
-		this.cnt = cnt;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", product=" + product + ", price=" + price + ", cnt=" + cnt + "]";
+		return "ProductVO [code=" + code + ", pname=" + pname + ", price=" + price + "]";
 	}
 	
-	
+
 	
 }

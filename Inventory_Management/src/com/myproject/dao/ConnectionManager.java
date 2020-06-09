@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionManager {
 	private static final String driver = "oracle.jdbc.driver.OracleDriver";
 	private static final String db = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String id = "c##Inventory";
+	private static final String id = "c##inventory";
 	private static final String pw = "0000";
 	
 	//积己磊. 按眉 积己 陛瘤.
