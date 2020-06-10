@@ -1,53 +1,29 @@
 package com.myproject.vo;
 
 public class Admin {
-	private String adminName;  //관리자 이름
-	private String adminId; //아이디
-	private String adminPw; //패스워드
-	private String adminPhone; //핸드폰번호
-	private String adminAddress; //주소
-	private String no; //회원 정보 참조 
+	private String adminId;
+	private String adminPw;
+	private String name;
+	private String addrees;
+	private String phone; 
 	
 	public Admin() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public Admin(String adminName, String adminId, String adminPw, String adminPhone, String adminAddress, String no) {
+	public Admin(String adminId, String adminPw, String name, String addrees, String phone) {
 		super();
-		this.adminName = adminName;
 		this.adminId = adminId;
 		this.adminPw = adminPw;
-		this.adminPhone = adminPhone;
-		this.adminAddress = adminAddress;
-		this.no = no;
+		this.name = name;
+		this.addrees = addrees;
+		this.phone = phone;
 	}
-
-
-	public Admin(String adminName, String adminId, String adminPw, String adminPhone, String adminAddress) {
-		super();
-		this.adminName = adminName;
-		this.adminId = adminId;
-		this.adminPw = adminPw;
-		this.adminPhone = adminPhone;
-		this.adminAddress = adminAddress;
-	}
-	
-	
-	
 
 	public Admin(String adminId, String adminPw) {
 		super();
 		this.adminId = adminId;
 		this.adminPw = adminPw;
-	}
-
-	public String getAdminName() {
-		return adminName;
-	}
-
-	public void setAdminName(String adminName) {
-		this.adminName = adminName;
 	}
 
 	public String getAdminId() {
@@ -66,46 +42,37 @@ public class Admin {
 		this.adminPw = adminPw;
 	}
 
-	public String getAdminPhone() {
-		return adminPhone;
+	public String getName() {
+		return name;
 	}
 
-	public void setAdminPhone(String adminPhone) {
-		this.adminPhone = adminPhone;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getAdminAddress() {
-		return adminAddress;
+	public String getAddrees() {
+		return addrees;
 	}
 
-	public void setAdminAddress(String adminAddress) {
-		this.adminAddress = adminAddress;
+	public void setAddrees(String addrees) {
+		this.addrees = addrees;
 	}
 
-	
-	
-	
-	public String getNo() {
-		return no;
+	public String getPhone() {
+		return phone;
 	}
 
-
-	public void setNo(String no) {
-		this.no = no;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-
 
 	@Override
 	public String toString() {
-		return "Admin [adminName=" + adminName + ", adminId=" + adminId + ", adminPw=" + adminPw + ", adminPhone="
-				+ adminPhone + ", adminAddress=" + adminAddress + "]";
+		return "Admin [adminId=" + adminId + ", adminPw=" + adminPw + ", name=" + name + ", addrees=" + addrees
+				+ ", phone=" + phone + "]";
 	}
-
 	
 	
 	
 	
-	
-	
-
 }

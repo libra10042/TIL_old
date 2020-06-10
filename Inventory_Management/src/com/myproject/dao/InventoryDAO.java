@@ -6,8 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
-import com.myproject.vo.Member;
+import com.myproject.vo.Admin;
 import com.myproject.vo.Product;
 import com.myproject.vo.Sales;
 import com.myproject.vo.SalesList;
@@ -22,15 +23,15 @@ public class InventoryDAO {
 	//-----------------------회원 등록 & 회원 로그인 페이지--------------------------
 	
 	// 회원 로그인
-	public boolean login(Member vo) {
+	public boolean login(Admin vo) {
 		boolean result = false;
 
 		try {
 			con = ConnectionManager.getConnection();
-			String sql = "select * from member where userId=? and userPw =?";
+			String sql = "select * from Admin where adminId=? and adminPw =?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, vo.getUserId());
-			pstmt.setString(2, vo.getUserPw());
+			pstmt.setString(1, vo.getAdminId());
+			pstmt.setString(2, vo.getAdminPw());
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -56,17 +57,17 @@ public class InventoryDAO {
 	
 
 	// 회원 가입
-	public boolean insertMember(Member vo) {
+	public boolean insertMember(Admin vo) {
 		boolean flag = false;
 		try {
 			con = ConnectionManager.getConnection();
-			String sql = "insert into member values(?,?,?,?,?)";
+			String sql = "insert into Admin values(?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			
 			
 			
-			pstmt.setString(1, vo.getUserId());
-			pstmt.setString(2, vo.getUserPw());
+			pstmt.setString(1, vo.getAdminId());
+			pstmt.setString(2, vo.getAdminPw());
 			pstmt.setString(3, vo.getName());
 			pstmt.setString(4, vo.getAddrees());
 			pstmt.setString(5, vo.getPhone());
@@ -283,7 +284,7 @@ public class InventoryDAO {
 
 	}
 
-	// 상품별 판매현황
+	// 상품별 판매 예상 매출 정보
 	public ArrayList<SalesList> sales() {
 		ArrayList<SalesList> slist = new ArrayList<SalesList>();
 		ArrayList<Product> plist = new ArrayList<Product>();
@@ -330,4 +331,9 @@ public class InventoryDAO {
 		}
 		return slist;
 	}
+	
+	
+	
+	
+	
 }

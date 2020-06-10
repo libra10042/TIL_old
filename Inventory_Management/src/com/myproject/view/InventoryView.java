@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import com.myproject.dao.InventoryDAO;
-import com.myproject.vo.Member;
+import com.myproject.vo.Admin;
 import com.myproject.vo.Product;
 import com.myproject.vo.Sales;
 import com.myproject.vo.SalesList;
@@ -16,7 +16,7 @@ public class InventoryView {
 	private Scanner scLine = new Scanner(System.in);
 	private boolean flag = true;
 	private int choice;
-	private String userId, userPw, name, address, phone;
+	private String adminId, adminPw, name, address, phone;
 	private String code, pname;
 	private int price, num, quantity;
 	private String inputdate;
@@ -31,7 +31,7 @@ public class InventoryView {
 				switch (answer) {
 				case "1":
 					if (login()) {
-						System.out.println(userId + "님 어서오세요");
+						System.out.println(adminId + "관리자님 어서오세요");
 						sellView();
 					}
 					break;
@@ -44,6 +44,12 @@ public class InventoryView {
 					}
 					break;
 
+				case "3":
+					introduce();
+					
+					break;
+					
+					
 				case "0":
 					System.out.println("프로그램을 종료합니다.");
 					System.exit(0);
@@ -58,7 +64,7 @@ public class InventoryView {
 	}
 
 	public void sellView() {
-		while (true) {
+		while(true) {
 			try {
 				sellMenu();
 				String answer = scLine.nextLine();
@@ -110,7 +116,7 @@ public class InventoryView {
 				String pname = scLine.next();
 				System.out.print("단가 : ");
 				int price = sc.nextInt();
-				
+				scLine.nextLine(); 
 				if (price < 0) {
 					System.out.println("0이하의 숫자는 입력하실 수 없습니다.");
 					break;
@@ -166,6 +172,7 @@ public class InventoryView {
 				String code = scLine.next();
 				System.out.print("판매수량 : ");
 				int quantity = scLine.nextInt();
+				scLine.nextLine(); 
 				if (quantity < 1) {
 					System.out.println("1이상의 숫자를 입력해주세요");
 					break;
@@ -280,11 +287,11 @@ public class InventoryView {
 			try {
 				slist = iven.sales();
 				if (slist.size() < 1) {
-					System.out.println("** 판매된 상품이 없습니다 **");
+					System.out.println("** 등록된 상품이 없습니다 **");
 					break;
 				}
 				System.out.println("[ 상품별 판매 현황 ] ");
-				System.out.printf("%-15s%-15s%-20s%-10s\n", "상품코드", "상품명", "수량", "예상수익");
+				System.out.printf("%-15s%-15s%-20s%-10s\n", "상품코드", "상품명", "수량", "판매예상수익");
 				System.out.println("====================================");
 
 				for (SalesList s : slist) {
@@ -302,36 +309,35 @@ public class InventoryView {
 
 	// --------------------------------홈--------------------------------
 	public void home() {
-		while (true) {
-			try {
+		try {
 
-				System.out.println("┌─────────────┐");
-				System.out.println("│[건희네 수산시장] │");
-				System.out.println("│1. 로그인             │");
-				System.out.println("│2. 회원가입          │");
-				System.out.println("│0. 종료                │");
-				System.out.println("└─────────────┘");
-				System.out.print(">>");
-				break;
-			} catch (Exception e) {
-				sc.nextLine();
-				break;
-			}
+			System.out.println("┌─────────────┐");
+			System.out.println("│[건희네 수산시장] │");
+			System.out.println("│1. 관리자             │");
+			System.out.println("│2. 회원가입          │");
+			System.out.println("│3. 소개                │");
+			System.out.println("│0. 종료                │");
+			System.out.println("└─────────────┘");
+			System.out.print(">>");
+
+		} catch (Exception e) {
+			sc.nextLine();
+
 		}
+
 	}
 
 	public boolean login() {
 		boolean flag = true;
 		System.out.println("로그인 해주세요.");
 		System.out.print("ID : ");
-		userId = scLine.nextLine();
+		adminId = scLine.nextLine();
 		System.out.print("PW : ");
-		userPw = scLine.nextLine();
+		adminPw = scLine.nextLine();
 
-		Member m = new Member(userId, userPw);
+		Admin m = new Admin(adminId, adminPw);
 
 		if (iven.login(m)) {
-			System.out.println(userId + "님 환영합니다.");
 			return flag;
 		} else {
 			System.out.println(">> 로그인에 실패하셨습니다.");
@@ -345,9 +351,9 @@ public class InventoryView {
 		boolean flag = false;
 		System.out.println("[[ 회원 등록 페이지 ]]");
 		System.out.print("회원 아이디 :");
-		userId = scLine.nextLine();
+		adminId = scLine.nextLine();
 		System.out.print("회원 비밀번호 : ");
-		userPw = scLine.nextLine();
+		adminPw = scLine.nextLine();
 		System.out.print("회원 이름 : ");
 		name = scLine.nextLine();
 		System.out.print("회원 주소 : ");
@@ -355,7 +361,7 @@ public class InventoryView {
 		System.out.print("회원 전화번호 : ");
 		phone = scLine.nextLine();
 
-		Member m = new Member(userId, userPw, name, address, phone);
+		Admin m = new Admin(adminId, adminPw, name, address, phone);
 
 		if (iven.insertMember(m)) {
 			flag = true;
@@ -366,27 +372,38 @@ public class InventoryView {
 
 	// ------------------------------판매자 메뉴----------------------------
 	public void sellMenu() {
-		while (true) {
-			try {
-				System.out.println("");
-				System.out.println("┌───────────────────┐");
-				System.out.println("│[   판매관리      ]      │");
-				System.out.println("│1. 상품 등록                       │");
-				System.out.println("│2. 상품 전체 보기                │");
-				System.out.println("│3. 판매정보 등록                 │");
-				System.out.println("│4. 판매정보 전체보기           │");
-				System.out.println("│5. 판매정보 수정                 │");
-				System.out.println("│6. 판매정보 삭제                 │");
-				System.out.println("│7. 판매상품 예상 매출정보    │");
-				System.out.println("│0. 종료                              │ ");
-				System.out.println("└───────────────────┘");
-				System.out.print("선택 >");
-				break;
-			} catch (Exception e) {
-				sc.nextLine();
-				break;
-			}
+
+		try {
+			System.out.println("");
+			System.out.println("┌───────────────────┐");
+			System.out.println("│[   재고관리      ]      │");
+			System.out.println("│1. 상품 등록                       │");
+			System.out.println("│2. 상품 전체 보기                │");
+			System.out.println("│3. 거래처납품                     │");
+			System.out.println("│4. 납품내역 전체보기           │");
+			System.out.println("│5. 납품 수량변경                 │");
+			System.out.println("│6. 납품 취소                       │");
+			System.out.println("│7. 납품 총 수익                   │");
+			System.out.println("│0. 종료                              │");
+			System.out.println("└───────────────────┘");
+			System.out.print("선택 >");
+
+		} catch (Exception e) {
+			sc.nextLine();
+
 		}
+
 	}
+	
+	
+	// ------------------------------ 소개 페이지 ----------------------------
+	public void introduce() {
+		System.out.println("[[수산 시장 소개 ]]");
+		System.out.println("저희 건희네 수장시장은 당일 잡힌 생선만 납품합니다.");
+		
+		
+		
+	}
+	
 
 }

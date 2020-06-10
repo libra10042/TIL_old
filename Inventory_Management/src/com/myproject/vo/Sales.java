@@ -1,4 +1,4 @@
-package com.myproject.vo;
+package com.myproject.vo; 
 
 
 public class Sales 
@@ -11,6 +11,14 @@ public class Sales
 	public Sales() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+	public Sales(String inputdate) {
+		super();
+		this.inputdate = inputdate;
+	}
+
 
 	public Sales(int num, String inputdate, String code, int quantity) {
 		super();
