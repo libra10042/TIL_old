@@ -1,11 +1,21 @@
 package com.myproject.view;
 
+import java.util.Date;
 import java.util.Scanner;
+
+import com.myproject.dao.HospitalDao;
+import com.myproject.vo.Clients;
 
 public class HospitalView {
 	private Scanner sc = new Scanner(System.in);
 	private Scanner scLine = new Scanner(System.in);
 	private int choice; 
+	private String clname, clpn, clphone, doname, password, info_doctor, partname; 
+	private String sympton;
+	private int renumber, clnumber, donumber, partnumber;
+	private Date schedule;
+	private HospitalDao hd = new HospitalDao(); 
+	
 	
 	private boolean flag = true;
 	
@@ -64,6 +74,7 @@ public class HospitalView {
 	//1-1. Áø·á¿¹¾à   
 	public void visitView() {
 		System.out.println("¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤");
+		System.out.println("¦¢ [Á¢¼öÃ³ÀÔ´Ï´Ù]¦¢");
 		System.out.println("¦¢1.Ã³À½¹æ¹®        ¦¢");
 		System.out.println("¦¢2.±âÁ¸¹æ¹®        ¦¢");
 		System.out.println("¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥");
@@ -71,9 +82,10 @@ public class HospitalView {
 		choice = sc.nextInt(); 
 		switch(choice) {
 		case 1:
-			System.out.println("Áø·á ¿¹¾àÀ» À§ÇÑ ÇÊ¼öÁ¤º¸¸¦ ÀÔ·ÂÇÕ´Ï´Ù.");
-			// °í°´¸í, °í°´¹øÈ£, ÁÖ¹Îµî·Ï¹øÈ£, ÀüÈ­¹øÈ£, Áõ»ó ÀÔ·Â ¸ğµÎ ´Ù ÀÔ·Â Çßµû¸é Áõ»óÀÔ·Â Ã¢ Ãâ·Â
-			//if()ÂüÀÌ¸é Áõ»ó¿¡ ÇØ´çÇÏ´Â ¹øÈ£ ­ˆ·Â. 
+			// °í°´¸í, °í°´¹øÈ£, ÁÖ¹Îµî·Ï¹øÈ£, ÀüÈ­¹øÈ£, Áõ»ó ÀÔ·Â ¸ğµÎ ´Ù ÀÔ·Â Çß´Ù¸é Áõ»óÀÔ·Â Ã¢ Ãâ·Â
+			insertClients(); 
+			
+			
 			
 			
 			break;
@@ -86,6 +98,37 @@ public class HospitalView {
 			break;
 		}
 	}
+	// 1. Ã³À½¹æ¹® °í°´ µî·Ï. 
+	public boolean insertClients() {
+		flag = false; 
+		System.out.println("Áø·á ¿¹¾àÀ» À§ÇÑ ÇÊ¼öÁ¤º¸¸¦ ÀÔ·ÂÇÕ´Ï´Ù.");
+		System.out.print("°í°´ ÀÌ¸§ ÀÔ·Â : ");
+		clname = scLine.nextLine(); 
+		System.out.print("°í°´ ÁÖ¹Î¹øÈ£ ÀÔ·Â : ");
+		clpn = scLine.nextLine(); 
+		System.out.print("°í°´ ÀüÈ­¹øÈ£ ÀÔ·Â : ");
+		clphone = scLine.nextLine(); 
+		
+		Clients s = new Clients(clname, clpn, clphone);
+		
+		if(hd.insertClients(s)) {
+			flag = true;
+			System.out.println(">>°í°´ µî·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+			System.out.print("Áõ»óÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+			sympton = scLine.nextLine(); 
+			
+			
+		}else {
+			System.out.println("**Error °í°´µî·Ï ¿À·ùÀÔ´Ï´Ù.");
+			return flag; 
+			
+		}
+		return flag; 
+		
+	}
+	
+	
+	
 	
 	//1-2. Áø·á ¼±ÅÃ
 	public void careCheck() {

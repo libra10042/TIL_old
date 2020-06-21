@@ -6,10 +6,91 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class HospitalDao {
+import com.myproject.vo.Clients;
+
+public class HospitalDao implements HospitalInterface{
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	
+	// con, pstmt, rs °´Ã¼ ´Ý±â 
+	public void closeConnection() {
+		try {
+			if(rs!=null) rs.close();
+			if(pstmt!=null) pstmt.close();
+			if(con!=null) con.close(); 
+		}catch(SQLException e) {
+			
+		}
+	}
+	
+	
+	@Override
+	public boolean insertClients(Clients c) {
+		boolean flag = false; 
+		try {
+			con = ConnectionManager.getConnection();
+			String sql = "insert into Clients values(clients_seq.nextval, ?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1,  c.getClname());
+			pstmt.setString(2, c.getClpn());
+			pstmt.setString(3, c.getClphone());
+			int inserted = pstmt.executeUpdate();
+			
+			if(inserted ==1) {
+				flag = true;
+			}
+			
+		}catch(Exception e) {
+			
+		}finally {
+			closeConnection();
+		}
+		return flag; 
+		
+		
+	}
+	@Override
+	public void updateClients() {
+		
+	}
+	@Override
+	public void searchClientNumber(String clname, String clpn) {
+		
+	}
+	@Override
+	public void newClient() {
+		
+	}
+	@Override
+	public void existsClient() {
+		
+	}
+	@Override
+	public void reservation() {
+		
+	}
+	@Override
+	public void searchClientReservation() {
+		
+	}
+	@Override
+	public void cancealReservation() {
+		
+	}
+	@Override
+	public void reservationRecord() {
+		
+	}
+	@Override
+	public void doctorReservationRecord() {
+		
+	}
+	@Override
+	public void introduceDoctorInfo() {
+		
+	}
 
 	
 	
