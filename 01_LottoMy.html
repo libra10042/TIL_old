@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<title>로또번호생성</title>
+<style>
+    /* 공마다 공통 적용할 스타일 */
+    .ball {
+        width: 100px; height: 100px;
+        border: 1px solid black;
+        display: inline-block;
+        border-radius: 50%; /* 동그랗게 처리 */
+        /* 글자 크기조정, 중앙정렬 */
+        font-size: 3em;
+        text-align: center;
+        line-height: 100px;
+    }
+    .ball0 { background-color: red; }
+    .ball1 { background-color: magenta; }
+    .ball2 { background-color: yellow; }
+    .ball3 { background-color: green; }
+    .ball4 { background-color: blue; }
+    .ball5 { background-color: blueviolet; }
+
+
+    .ball2 {
+        width: 100px; height: 100px;
+        border: 1px solid black;
+        display: inline-block;
+        border-radius: 50%; /* 동그랗게 처리 */
+        /* 글자 크기조정, 중앙정렬 */
+        font-size: 3em;
+        text-align: center;
+        line-height: 100px;
+    }
+    .ball0 { background-color: red; }
+    .ball1 { background-color: magenta; }
+    .ball2 { background-color: yellow; }
+    .ball3 { background-color: green; }
+    .ball4 { background-color: blue; }
+    .ball5 { background-color: blueviolet; }
+
+</style>    
+<script>
+    /* (실습)로또번호 만들고, 화면 출력
+    1. 로또번호 저장할 배열을 만들고
+    2. 1~45 숫자중 중복되지 않는 숫자 생성해서 배열에 저장
+        2-1. 1~45 숫자중 랜덤하게 숫자를 만들고
+        2-2. 중복된 값이 있으면 다시 생성해서 6개의 번호 배열저장
+    3. 화면출력 HTML div 태그에 ball, ball+숫자 클래스명 사용
+    **************************/
+    document.write("<h3>JavaScript 사용 로또번호 만들기</h3>");
+    //1. 로또번호 저장할 배열을 만들고
+    var lottoArray = new Array(); 
+    var flag = true; 
+    //2. 1~45 숫자중 중복되지 않는 숫자 생성해서 배열에 저장(6개)
+    //    2-1. 1~45 숫자중 랜덤하게 숫자를 만들고
+    //    2-2. 중복된 값이 있으면 다시 생성해서 6개의 번호 배열저장
+
+    function lotto(){
+        for(let i=0; i<=5; i++){
+            lottoArray[i] = (Math.floor(Math.random() * 45))+1;
+            document.getElementById("ball2 ball0").innerHTML = lottoArray[i];
+            
+        }
+    }
+   
+    function check(){
+        lotto(); 
+        for(let i=0; i<=5; i++){
+            for(let j=i+1; j<=5; j++){
+                if(lottoArray[i]== lottoArray[j]){
+                    flag = false;                
+                }               
+            }
+        }
+        return flag;  
+    }
+
+
+    while(flag){
+        try{
+            if(check()){
+                document.write("로또번호 정상 생성. " +"<br>"); 
+            }else{
+                document.wirte("로또번호 중복 발생")
+                flag = false; 
+            }
+            flag = false;
+        }catch(e){
+        }
+    }
+    
+   
+
+    // if(check()){
+    //     document.getElementById("ball2 ball0").innerHTML = lottoArray[0];
+    //     document.getElementById("ball2 ball1").innerHTML = lottoArray[1];
+    //     document.getElementById("ball2 ball2").innerHTML = lottoArray[2];
+    //     document.getElementById("ball2 ball3").innerHTML = lottoArray[3];
+    //     document.getElementById("ball2 ball4").innerHTML = lottoArray[4];
+    //     document.getElementById("ball2 ball5").innerHTML = lottoArray[5];
+    // }
+
+    //3. 화면출력 HTML div 태그에 ball, ball+숫자 클래스명 사용
+    
+    
+    
+    //document.write('<div class="ball ball0">5</div>');
+    //document.write('<div class="ball ball1">3</div>');
+    document.write("<hr>");
+</script>
+</head>
+<body>
+	<h2>로또번호 만들기(문제)</h2>
+    <p>1~45 까지의 숫자 중 6개를 추출해서 로또 만들기</p>
+   
+    <hr>
+    <h2>위의 로또번호 처럼</h2>
+    <div class="ball ball0">5</div>
+    <div class="ball ball1">3</div>
+    <div class="ball ball2">27</div>
+    <div class="ball ball3">7</div>
+    <div class="ball ball4">43</div>
+    <div class="ball ball5">28</div>
+
+    <hr>
+    <div class="ball2 ball0"></div>
+    <div class="ball2 ball1"></div>
+    <div class="ball2 ball2"></div>
+    <div class="ball2 ball3"></div>
+    <div class="ball2 ball4"></div>
+    <div class="ball2 ball5"></div>
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+    
+
+
+
+
+
+</body>
+</html>
