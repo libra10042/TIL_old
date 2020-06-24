@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>DOM 인접관계 선택자</title>
+<style>
+    #div1 {
+        border: 1px solid black;
+        width: 500px; height: 300px;
+    }
+    #div1 div {
+        border: 3px solid blue;
+    }
+</style>   
+<script>
+    /* 인접 관계 선택자
+    parentNode : 부모노드 선택
+    childNodes : 모든 자식 노드들 선택(배열형태)
+    children : 자식요소들(배열)
+    firstChild : 첫번째 자식노드
+    previousSibling : 이전 형제 노드(태그, 태그 이외 노드 포함)
+    nextSibling : 다음 형제 노드(태그, 태그 이외 노드 포함)
+    previousElementSibling : 이전 형제 요소(태그만)
+    nextElementSibling : 다음 형제 요소(태그만)
+    ***************************/
+window.onload = function(){
+    //태그내에 빈칸, 리턴, 탭 등이 있는 경우
+    //모두 child Node로 인식(크롬)-브라우저마다 처리방식 다름
+    var child1 = document.getElementById("div1").firstElementChild;
+    console.log("child1 : " + child1);
+    child1.style.color = "blue";
+    child1.innerHTML = "내용1 - 변경";
+    
+    //p태그 중 2번째 태그
+    var p2 = document.getElementsByTagName("p")[1];
+    p2.style.backgroundColor = "green";
+    
+    //p2(내용2) 기준으로 동일레벨에서 다음(next) 태그요소
+    p2.nextElementSibling.style.backgroundColor = "yellow";
+    
+    //p2(내용2) 기준으로 동일레벨에서 이전(previous) 태그요소
+    p2.previousElementSibling.style.backgroundColor = "orange";
+    
+    //================================
+    var div = document.getElementById("div1");
+    //속성값 조회 : getAttribute("속성명")
+    console.log('div.getAttribute("id"): ' + div.getAttribute("id"));
+    console.log('div.getAttribute("title"): ' + div.getAttribute("title"));
+    
+    //속성값 변경(추가) : setAttribute("속성명", "속성값)
+    div.setAttribute("title", "변경된 title");
+    
+    //===================================
+    console.log("div.children.length : " + div.children.length);
+    for (let i=0; i<div.children.length; i++) {
+        div.children[i].style.border = "3px solid red";
+    }
+    console.log("div.innerHTML : " + div.innerHTML);
+    
+    div.style.border = "3px dotted orange";
+    div.style.border = "5px dashed blue";
+    
+    //div.innerHTML = "<h3>내용없음</h3>";
+}
+    
+</script>
+    
+</head>
+<body>
+	<h2>DOM 인접 관계 선택자</h2>
+    <div id="div1" title="내용묶음div">
+        <p>내용1</p>
+        <p>내용2</p>
+        <p>내용3</p>
+        <p>내용4</p>
+        <div>
+            <p>div-p 내용5</p>
+        </div>
+    </div>
+    
+<script>
+    
+</script>
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
