@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>nth-child</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        $("ul").css("background-color", "aqua");
+        $("ul>li").css("border", "1px solid black")
+                .css("margin", "3px 0");
+        
+        //$("ul>li:first").css("background-color", "yellow");
+        //$("ul>li:last").css("background-color", "orange");
+        //---------
+        // :even, :odd - 0번 인덱스 부터 시작
+        //$("ul>li:even").css("background-color", "yellow");
+        //$("ul>li:odd").css("background-color", "orange");
+        
+        // :nth-child : 자녀중에 몇번째(1부터 시작)
+        //$("ul>li:nth-child(1)").css("background-color", "blue");
+        //$("ul>li:first-child").css("background-color", "blue");
+        //$("ul>li:last-child").css("background-color", "gray");
+        //---------------
+        //$("ul>li:nth-child(2n)").css("background-color", "blue");//짝수번째
+        //$("ul>li:nth-child(2n+1)").css("background-color", "yellow");//홀수번째
+        //$("ul>li:nth-child(3n)").css("background-color", "yellow");
+        $("ul>li:nth-child(3n+1)").css("background-color", "yellow");
+    });
+</script>
+</head>
+<body>
+    <h1>제이쿼리 선택자</h1>
+	<ul>
+        <li>menu 1</li>
+        <li>menu 2</li>
+        <li>menu 3
+            <ol>
+                <li>sub 1</li>
+                <li>sub 2</li>
+            </ol>
+        </li>
+        <li>menu 4</li>
+        <li>menu 5</li>
+    </ul>
+    <hr>
+    
+    <ul>
+        <li>menu2 - 1</li>
+        <li>menu2 - 2</li>
+        <li>menu2 - 3</li>
+    </ul>
+    
+
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

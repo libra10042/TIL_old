@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style>
+    .bg-aqua { background-color: aqua; }
+    .bg-yellow { background-color: yellow; }
+    
+    .red { color: red; }
+    .green { color: green; }
+    .blue { color: blue; }
+    
+    .horizontal {
+        float: left;
+        list-style: none;
+        margin: 10px;
+    }
+    .clear { clear: both; }
+    
+    .sizeUp { font-size: 1.5em; }
+    .bold { font-weight: bold; }
+</style>
+<script>
+    //jQuery 사용으로 문서(document)가 준비된 후
+    $(function(){
+        //요소(elelment) 선택자(요소명) : 해당태그 선택
+        //li 태그 찾고, 배경색을 노란색으로 변경
+        //$("li").css("background-color", "aqua");
+        //$("li").css("background-color", "yellow");
+        
+        //클래스명 추가 : addClass()
+        $("li").addClass("bg-yellow");    
+        
+        //클래스 선택(.) : 해당 클래스명 가진 요소 선택
+        $(".js").addClass("red");
+        
+        //아이디 선택(#) : 해당 아이디명 가진 요소 선택
+        $("#jsp").addClass("green");
+        //-----------------------------
+        
+        //자식, 자손 태그 컨트롤
+        //자식(자녀) 선택(>) : 하위 자녀 요소 선택
+        $("ul>li").addClass("horizontal");
+        $("hr").addClass("clear");
+        
+        //자손 선택자(빈칸) : 부모태그 + 빈칸 + 찾을태그
+        $("div p").addClass("sizeUp");
+        $("div>p").addClass("bold");
+        
+        //자녀(child) 찾을 때 앞에 위치한 태그에 따라 다르게 동작
+        $("div>div>p").addClass("blue");
+    });
+</script>
+
+</head>
+<body>
+	<ul>
+        <li>Java</li>
+        <li>HTML5 &amp; CSS3</li>
+        <li class="js">JavaScript &amp; jQuery</li>
+        <li id="jsp">Servlet &amp; JSP</li>
+    </ul>
+    <hr>
+    <ol>
+        <li>Java</li>
+        <li>HTML5 &amp; CSS3</li>
+        <li class="js">JavaScript &amp; jQuery</li>
+        <li>Servlet &amp; JSP</li>
+    </ol>
+    <hr>
+    <div>
+        <p>div &gt; p태그</p>
+        <div>
+            <span>
+                <p>div-div-span-p태그</p>
+            </span>
+            <span>div-div-span태그</span>
+        </div>
+        <div>
+            <p>div-div-p태그</p>
+        </div>
+        <p>div-p태그</p>
+    </div>
+    
+
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

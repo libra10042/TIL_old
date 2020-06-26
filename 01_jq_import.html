@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+    <!-- jQuery import 방식1 -->
+    <!--<script src="js/jquery-3.5.1.min.js"></script>-->
+    <!-- jQuery import 방식2(CDN 방식) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    //JavaScript DOM 객체 다루기
+    window.onload = function(){
+        document.getElementById("id1").style.color = "blue";
+    };
+    //제이쿼리(jQuery) 사용방식 3가지
+    //방식1 : jQuery(document).ready(function(){});
+    //       $(document).ready(function(){});
+    jQuery(document).ready(function(){
+        jQuery("#id1").css("background-color", "yellow");
+    });
+    $(document).ready(function(){
+        $("#id1").css("border", "3px solid red");
+    });
+    //방식2 : $().ready(function(){});
+    $().ready(function(){
+        $("#id1").css("background-color", "orange");
+    });
+    //방식3 : $(function(){});
+    $(function(){
+        $("#id1").css("background-color", "green");
+    });
+</script>
+
+</head>
+<body>
+	<h1 id="id1">제이쿼리(jQuery) - id1</h1>
+    
+<script>
+    $("#id1").css("width", "500px");
+</script>
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
