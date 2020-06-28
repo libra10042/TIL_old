@@ -1,7 +1,7 @@
 package com.myproject.vo;
 
 public class Clients {
-	private int clunumber; //°í°´¹øÈ£ 
+	private int clnumber; //°í°´¹øÈ£ 
 	private String clname; //°í°´ÀÌ¸§
 	private String clpn; //°í°´ ÁÖ¹Î¹øÈ£
 	private String clphone; //°í°´ÀüÈ­¹øÈ£
@@ -10,17 +10,31 @@ public class Clients {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Clients(int clunumber, String clname, String clpn, String clphone) {
+	public Clients(int clnumber, String clname, String clpn, String clphone) {
 		super();
-		this.clunumber = clunumber;
+		this.clnumber = clnumber;
 		this.clname = clname;
 		this.clpn = clpn;
 		this.clphone = clphone;
 	}
 	
 	
-	
-	
+
+	public Clients(String clphone) {
+		super();
+		this.clphone = clphone;
+	}
+
+	public Clients(String clname, String clpn) {
+		super();
+		this.clname = clname;
+		this.clpn = clpn;
+	}
+
+	public Clients(int clnumber) {
+		super();
+		this.clnumber = clnumber;
+	}
 
 	public Clients(String clname, String clpn, String clphone) {
 		super();
@@ -29,12 +43,12 @@ public class Clients {
 		this.clphone = clphone;
 	}
 
-	public int getClunumber() {
-		return clunumber;
+	public int getClnumber() {
+		return clnumber;
 	}
 
-	public void setClunumber(int clunumber) {
-		this.clunumber = clunumber;
+	public void setClnumber(int clnumber) {
+		this.clnumber = clnumber;
 	}
 
 	public String getClname() {

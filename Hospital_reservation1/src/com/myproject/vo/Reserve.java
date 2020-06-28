@@ -6,7 +6,7 @@ public class Reserve {
 	private int renumber; //에약번호
 	private int clnumber; //고객번호
 	private int donumber; //의사번호
-	private String sympton; //증사
+	private String sympton; //증상
 	private Date schedule; //예약날짜
 	
 	public Reserve() {
