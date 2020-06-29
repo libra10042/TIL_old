@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery: 탐색 선택자</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 10px;
+        }
+        section {
+            width: 30%;
+            float: left;
+        }
+        #divHtml {
+            height: 100%;
+        }
+        button {
+            margin-right: 5px;
+            height: 2em;
+            margin: 5px 10px;
+        }
+        button>b {
+            background-color: yellow;
+            color: darkblue;
+            font-size: 1.5em;
+        }
+        ul, ol {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        ul>h3, ol>h3 {
+            display: inline-block;
+        }
+        li { 
+            margin: 5px 10px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        };
+    </style>
+    <script>
+        var $divHtml, $all;
+        var $btnFirst, $btnFirst2, $btnLast, $btnLast2;
+        var $btnOdd, $btnEven, $btnNth_child, $btnNth_childN;
+        var $btnNth_last_of_type, $btnOnly_child;
+        var $btnEq, $btnEq2, $btnGt, $btnLt;
+        var $btnSlice, $btnSliceFromTo, $btnSliceFromMinus;
+        
+        var $first, $first2, $last, $last2;
+        var $odd, $even, $nth_child, $nth_childN;
+        var $nth_last_of_type, $only_child;
+        var $eq, $eq2, $gt, $lt;
+        var $slice, $sliceFromTo, $sliceFromMinus;
+        $btnFirst = $("#btnFirst");
+        
+        $(function() {
+            $divHtml = $("#divHtml");
+            $all = $("*");
+            
+            //위치 탐색 선택자(button)
+            $btnFirst = $("#btnFirst");
+            $btnFirst2 = $("#btnFirst2");
+            $btnLast = $("#btnLast");
+            $btnLast2 = $("#btnLast2");
+            $btnOdd = $("#btnOdd");
+            $btnEven = $("#btnEven");
+            $btnNth_child = $("#btnNth_child");
+            $btnNth_childN = $("#btnNth_childN");
+            $btnNth_last_of_type = $("#btnNth_last_of_type");
+            $btnOnly_child = $("#btnOnly_child");
+            $btnEq = $("#btnEq");
+            $btnEq2 = $("#btnEq2");
+            $btnGt = $("#btnGt");
+            $btnLt = $("#btnLt");
+            
+            $btnSlice = $("#btnSlice");
+            $btnSliceFromTo = $("#btnSliceFromTo");
+            $btnSliceFromMinus = $("#btnSliceFromMinus");
+            
+            //탐색된 객체
+            $first = $("li:first");
+            $first2 = $("li").first();
+            
+            $last = $("li:last");
+            $last2 = $("li").last();
+            
+            $odd = $("li:odd");
+            $even = $("li:even");
+            
+            $nth_child = $("p:nth-child(5)");
+            $nth_childN = $("p:nth-child(3n)"); //3 배수 번째
+            
+            $nth_last_of_type = $("li:nth-last-of-type(2)");
+            $only_child = $("li:only-child"); 
+            
+            $eq = $("li:eq(1)");
+            $eq2 = $("li").eq(1);
+            $gt = $("li:gt(1)");
+            $lt = $("li:lt(1)");
+            
+            $slice = $("li").slice(2);
+            $sliceFromTo = $("li").slice(2,4);
+            $sliceFromMinus = $("li").slice(-3);
+            
+        });
+        
+        //적용효과 초기화
+        $(document).on("click", "#btnClear", function() {
+            $all.not("hr").not("button").not("button b").each(function() {
+                $(this).css("background-color", "white");
+                $(this).css("border", "none");
+            });
+            
+        });
+        
+        //////////////////////////////////////////////////////////////
+        // 위치 선택 탐색자 적용 효과
+        /////////////////////////////////////////////////////////////
+        // 첫번째 요소 탐색: first
+        $(document).on("click", "#btnFirst", function() {
+            $first.css("background-color", "Yellow");
+        });
+        
+        // 첫번째 요소 탐색2: first
+        $(document).on("click", "#btnFirst2", function() {
+            $first2.css("border", "2px solid red");
+        });
+        
+        // 마지막 요소 탐색: last
+        $(document).on("click", "#btnLast", function() {
+            $last.css("background-color", "orange");
+        });
+        
+        // 첫번째 요소 탐색2: first
+        $(document).on("click", "#btnLast2", function() {
+            $last2.css("border", "2px solid blue");
+        });
+        
+        // 홀수인덱스 탐색: odd
+        $(document).on("click", "#btnOdd", function() {
+            $odd.css("border", "2px solid gray");
+        });
+        
+        // 짝수인덱스 탐색: even
+        $(document).on("click", "#btnEven", function() {
+            $even.css("border", "2px dashed orange");
+        });
+        
+        // n번째 요소 선택: nth-child(n)
+        $(document).on("click", "#btnNth_child", function() {
+            $nth_child.css("border", "2px solid gray");
+        });
+        
+        // n배수 인덱스 선택: nth-child(3n)
+        $(document).on("click", "#btnNth_childN", function() {
+            $nth_childN.css("border", "2px dashed blue");
+        });
+        
+        //마지막 위치로 부터 n번째: nth-last-of-type
+        $(document).on("click", "#btnNth_last_of_type", function() {
+            $nth_last_of_type.css("background-color", "magenta");
+        });
+        
+        // 요소가 1개 뿐인 요소: only_child
+        $(document).on("click", "#btnOnly_child", function() {
+            $only_child.css("background-color", "green");
+        });
+        
+        // 인덱스 위치 요소 선택(:eq)
+        $(document).on("click", "#btnEq", function() {
+            $eq.css("background-color", "orange");
+        });
+        
+        // 인덱스 위치 요소 선택(.eq)
+        $(document).on("click", "#btnEq2", function() {
+            $eq2.css("border", "2px solid blue");
+        });
+        
+        // 인덱스 위치보다 큰 위치 요소 선택(:gt)
+        $(document).on("click", "#btnGt", function() {
+            $gt.css("background-color", "LightSeaGreen");
+        });
+        
+        // 인덱스 위치보다 작은 위치 요소 선택(:lt)
+        $(document).on("click", "#btnLt", function() {
+            $lt.css("background-color", "LightGreen");
+        });
+        
+        // 인덱스 위치부터 요소 선택(slice)
+        $(document).on("click", "#btnSlice", function() {
+            $slice.css("background-color", "OrangeRed");
+        });
+        
+        // 인덱스 위치부터 요소 선택(slice: 부터, 까지)
+        $(document).on("click", "#btnSliceFromTo", function() {
+            $sliceFromTo.css("background-color", "aqua");
+        });
+        
+        // 인덱스 위치부터 요소 선택(slice(음수))
+        $(document).on("click", "#btnSliceFromMinus", function() {
+            $sliceFromMinus.css("background-color", "GreenYellow ");
+        });
+        
+    </script>
+</head>
+
+<body title="body">
+<header>
+    <h2>jQuery 위치 탐색 선택자 정리(h2)</h2>
+</header>
+<section>
+    <div id="divHtml" title="div">
+        <ul id="idUl" title="body&gt;div&gt;ul">
+            <h3>UL: 순서없는 목록(h3)</h3>
+            <li id="li1">목록1(li, <b>id="li1"</b>)</li>
+            <li class="li2">목록2(li, <b>class="li2</b>)</li>
+            <li>목록3(li)</li>
+            <li>목록4(li)</li>
+            <li>목록5(li)</li>
+        </ul>
+        <ol id="idOl" title="body&gt;div&gt;ol">
+            <h3>OL 순서목록(h3)</h3>
+            <li>순서목록1(li)</li>
+            <li class="li2">순서목록2(li, <b>class="li2</b>)</li>
+            <li>순서목록3(li)</li>
+            <li>순서목록4(li)</li>
+            <li>순서목록5(li)</li>
+        </ol>
+        <ul>
+            <li>유일한 목록(li)</li>
+        </ul>
+        <p>.fist_P</p>
+        <p>.</p>
+        <p id="p3">.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p>
+        <p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.last_P</p>
+    </div>
+</section>
+<aside>
+    <div>
+        <h3>초기화</h3>
+        <button id="btnClear">적용 효과 초기화</button>
+    </div>
+    <hr>
+    <div>
+        <h3>위치 탐색 선택자</h3>
+        <button id="btnFirst">첫번째 요소 선택(first): <b>$("li:first")</b></button>
+        <button id="btnFirst2">첫번째 요소 선택2(first): <b>$("li").first()</b></button>
+		<br>
+        <button id="btnLast">마지막 요소 선택(last): <b>$("li:last")</b></button>
+        <button id="btnLast2">마지막 요소 선택2(last): <b>$("li").last()</b></button>
+        <hr>
+        <button id="btnOdd">홀수번째 인덱스 선택: <b>$("li:odd")</b></button>
+        <button id="btnEven">짝수번째 인덱스 선택: <b>$("li:even")</b></button>
+		<br>
+        
+        <button id="btnNth_child">n번째 요소 선택: <b>$("p:nth-child(5)")</b></button>
+        <button id="btnNth_childN">n배수 인덱스 선택: <b>$("p:nth-child(3n)")</b></button>
+        
+        <button id="btnNth_last_of_type">마지막에서 n번째 요소: <b>$("li:nth-last-of-type(2)")</b></button>
+        <button id="btnOnly_child">요소가 하나만 있는 요소: <b>$("li:only-child")</b></button>
+        <hr>
+        <button id="btnEq">인덱스와 동일한 요소(:eq): <b>$("li:eq(1)")</b></button>
+        <button id="btnEq2">인덱스와 동일한 요소(.eq): <b>$("li").eq(1)</b></button>
+        <button id="btnGt">인덱스보다 큰 위치 요소(:gt): <b>$("li:gt(1)")</b></button>
+        <button id="btnLt">인덱스보다 작은 위치 요소(:lt): <b>$("li:lt(1)")</b></button>
+        
+        <button id="btnSlice">인덱스 위치 요소 부터: <b>$("li").slice(2)</b></button>
+        <button id="btnSliceFromTo">인덱스 위치 요소 부터: <b>$("li").slice(2, 4)</b></button>
+        <button id="btnSliceFromMinus">인덱스 위치 요소 부터: <b>$("li").slice(-3)</b></button>
+    </div>
+    
+</aside>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>선택자(실습)</title>
+    <!-- jQuery import 방식2 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    //DOM 객체를 찾아서 스타일 적용하는 형태로 DOM 다루기
+    //[문]h1 태그를 찾아 border 설정 : 실선, 빨강
+    
+
+    //--- ol 자녀(child)태그 li중에서 --------------
+    //$("ol>li")
+    //[문]contains: menu3 문자열이 있는 태그 찾아 border설정: 실선, 빨강
+    
+    
+    //[문]has: strong 태그 있는 것을 찾아 border설정: 실선, 녹색
+    
+
+    //[문]has: em 태그가 있는 것을 찾아 border설정: 실선, 노랑
+    
+
+    //[문]has: li 태그가 있는 것을 찾아 border설정: 2px, dashed, 파랑
+    
+
+    //[문]find: ol 자녀태그 li 중에 em 태그를 찾아 border설정: 2px, 점선, 녹색
+    
+
+    //[문]eq: 두번째 있는 태그의 배경색 설정: 노란색
+    
+
+    //[문]not: 두번째가 아닌 태그의 배경색 설정: 하늘색            
+    
+    
+    //[문]contents(): 모든 컨텐츠의 글자크기: 부모요소의 2배 크기
+    // contents() : 자녀노드들 리턴(텍스트,주석,요소)
+    
+    
+    //[문]filter(): 컨텐츠 중에 strong 태그 배경색 설정: 회색
+    
+
+    //[문]has: strong 태그 배경색: 녹색
+    
+
+    //[문]filter(): cl1 클래스 border설정: 3px, 점선, 빨강
+    
+
+    //[문]find: a 태그의 border설정: 5px, 점선, 노랑
+    
+
+    //[문]contains: a태그 텍스트에 menu3가 있는 태그의 부모의 자식요소들의 border설정: 5px,실선,녹색
+    
+
+    //[문]last, children: li태그중 마지막태그의 자녀들중에 마지막 요소의 border설정: 5px,실선,노랑            
+    
+
+    //[문]last, children: 마지막li 태그의 자녀 태그들중에 자녀를 폰트 크기를 부모태그의 3배로 키우기
+    //[-문]font-style을 italic(기울임) 적용하고, 부모요소의 border설정: 5px,solid,gray
+    
+
+    //====================================================
+    //======= ul 자식태그 li 에서 =====================
+    //[문] li2 클래스인 것을 찾아 
+    //  - border설정: 1px,실선,파랑
+    //  - 글자색 설정: 빨강
+    
+
+    //[문] not: 두번째 li가 아닌 것 글자색 설정: 녹색
+});
+</script>
+</head>
+<body>
+	<h1>목차</h1>
+    <ol>
+        <li>menu1</li>
+        <li class="li2">menu2-<em>특선메뉴(주방장 추천)</em></li>
+        <li class="cl1"><a href="#">menu3</a></li>
+        <li><strong>menu4</strong>
+            <ul>
+                <li>menu4-1</li>
+                <li>
+                    <a id="menu4-2">menu4-2</a>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <hr>
+    
+    <ul>
+        <li>번호1</li>
+        <li class="li2">번호2</li>
+        <li>번호3</li>
+    </ul>
+    
+    
+    
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

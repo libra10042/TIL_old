@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>text, html 메소드</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        //p태그 전체 다루기 - each() 메소드 사용
+        $("p").each(function(idx, element){
+            //console.log(">>idx: "+ idx + ", element: " + element);
+            //console.log(">>idx: "+ idx + ", this: " + $(this).text());
+            console.log(">>idx: "+ idx + ", this: " + $(this).html());
+        });
+    });
+</script>
+</head>
+<body>
+	<p>이것은 문단이다(p태그)</p>
+    <p><strong>첫번째</strong>p태그</p>
+    <p>두번째</p>
+    <p>세번째</p>
+    <p>네번째</p>
+    <p>다섯번째</p>
+    <button id="btn1">text(), html() 읽기</button>
+    <button id="btn2">text(), html() 쓰기</button>
+
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
