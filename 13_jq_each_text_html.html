@@ -9,14 +9,42 @@
         //p태그 전체 다루기 - each() 메소드 사용
         $("p").each(function(idx, element){
             //console.log(">>idx: "+ idx + ", element: " + element);
-            //console.log(">>idx: "+ idx + ", this: " + $(this).text());
-            console.log(">>idx: "+ idx + ", this: " + $(this).html());
+            console.log(">>idx: "+ idx + ", this: " + $(this).text());
+            //console.log(">>idx: "+ idx + ", this: " + $(this).html());
+        
+            //id 속성 설정
+            $(this).prop("id", "para-" + idx);
+        });
+        $("#para-0").css("background-color", "yellow");
+        
+        //text(), html() 메소드 사용 : 데이터 읽기
+        $("#btn1").click(function(){
+            var text = $("#para-0").text();
+            console.log("id가 para-0 인 태그의 text : " + text);
+            
+            var html = $("#para-0").html();
+            console.log("id가 para-0 인 태그의 html : " + html);
+        });
+        
+        //text(), html() 메소드 사용 : 데이터 쓰기
+        $("#btn2").click(function(){
+            $("#para-1").text("text() : 안녕하세요"); //text 값 설정
+            $("#para-2").html("html() : 안녕하세요"); //html 값 설정
+            
+            $("#para-3").text("<b>text() : 안녕하세요</b>");
+            $("#para-4").html("<b>html() : 안녕하세요</b>");
         });
     });
 </script>
+<style>
+/*
+    #para-0 { background-color: yellow; }
+    #para-1 { background-color: green; }
+*/
+</style>
 </head>
 <body>
-	<p>이것은 문단이다(p태그)</p>
+	<h2>text(), html() 메소드 알아보기</h2>
     <p><strong>첫번째</strong>p태그</p>
     <p>두번째</p>
     <p>세번째</p>
