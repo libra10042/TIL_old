@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript 실행 순서</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    var order = 1;
+    console.log(order++ + " : script 시작 첫번째 실행문::" + $("#test").text() + "::");
+    
+    //$(document).ready(function(){});
+    //$().ready(function(){});
+    $(function(){
+        console.log(order++ + " : jQuery ready 시작::" + $("#test").text() + "::");
+        
+        $("#btn").click(function(){
+            console.log(order++ + " : btn click이벤트 시작::" + $("#test").text() + "::");
+            call();
+            console.log(order++ + " : btn click이벤트 끝::" + $("#test").text() + "::");
+        });
+        
+        console.log(order++ + " : jQuery ready 끝::" + $("#test").text() + "::");
+    });
+    function call() {
+        console.log(order++ + " : function call() 내부::" + $("#test").text() + "::");
+    }
+    call();
+    console.log(order++ + " : head 끝나기 전::" + $("#test").text() + "::");
+</script>
+</head>
+<body>
+<script>
+    console.log(order++ + " : body 시작 위치::" + $("#test").text() + "::");
+</script>
+	<h2>JavaScript 실행순서 확인</h2>
+    <button id="btn">함수호출</button>
+    <button onclick="call()">call function 호출</button>
+    <p id="test">p태그 문장</p>
+
+<script>
+    console.log(order++ + " : body 끝 위치::" + $("#test").text() + "::");
+</script>    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
