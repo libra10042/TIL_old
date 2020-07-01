@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>이미지전환(1개)</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style>
+    div {
+        width: 320px;
+        margin: 0 auto;
+        position: relative;
+    }
+    div > a {
+        /* 위치 설정 */
+        position: absolute;
+        top: 150px; left: 20px;
+        
+        /* 모양, 색상 */
+        background-color: yellow;
+        width: 50px; height: 40px;
+        border-radius: 25%;
+        
+        /* 텍스트 설정 */
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px; /* 세로방향 중앙정렬 */
+    }
+    #next { left: 250px; }
+</style>
+<script>
+    //prev, next 버튼이 클릭되었을 때 처리
+    //prev : 이전 이미지 표시, next : 다음 이미지 표시
+    //배열에 저장된 이미지 파일명 사용해서 이미지 표시
+    //배열 인덱스 0: bimg01.jpg, 1: bimg02.jpg, ....
+    //배열에 데이터 입력
+    var imgName = new Array();
+    //imgName = ["bimg03.jpg", "bimg01.jpg", "bimg07.jpg"];
+    
+    for (let i=0; i<10; i++) {
+        let imgNum = i + 1;
+        if (imgNum < 10) {
+            imgName[i] = "bimg0" + imgNum + ".jpg";
+        } else {
+            imgName[i] = "bimg" + imgNum + ".jpg";
+        }
+    }
+
+    console.log(imgName);
+    $(document).ready(function(){
+        $("img").prop("src", "images/" + imgName[0]);
+        
+        var idx = 0; //배열의 인덱스 번호
+        
+        //next : 다음 이미지 보기
+        $("#next").click(function(){
+            idx++;
+            if (idx >= imgName.length) {
+                idx = 0; //처음 이미지 사용
+            }
+            console.log("idx : " + idx);
+            
+            $("img").prop("src", "images/" + imgName[idx]);
+        });
+        
+        //prev : 이전 이미지 보기
+        $("#prev").click(function(){
+            idx--;
+            if (idx < 0) {
+                idx = imgName.length - 1; //배열 마지막 데이터 사용
+            }
+            console.log("prev idx : " + idx);
+            
+            $("img").prop("src", "images/" + imgName[idx]);
+        });
+    });
+</script>
+</head>
+<body>
+	<div>
+        <img src="images/bimg01.jpg" alt="상품이미지">
+        <a id="prev" href="#">prev</a>
+        <a id="next" href="#">next</a>
+    </div>
+    
+
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

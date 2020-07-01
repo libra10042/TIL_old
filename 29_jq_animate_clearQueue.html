@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        //h1 태그 우측으로 이동 300px 만큼, 3초동안
+        $("#run").click(function(){
+            $("h1").animate({"margin-left": "300px"}, 3000)
+                .animate({"margin-left": "0px"}, 3000);
+        });
+        // 한 번 stop 처리
+        $("#stop").click(function(){
+            $("h1").stop(); //현재 진행중인 동작 취소(멈춤)
+        });
+        
+        // 두 번 연속 stop 처리
+        $("#stopstop").click(function(){
+            $("h1").stop().stop(); 
+        });지
+        
+        // 진행중인 동작 중지처리하고, 큐에 저장된 예정동작 취소
+        $("#clearQueueStop").click(function(){
+            //현재 진행중인 작업(동작) 중지(취소) : stop()
+            //예정된 작업(큐에 있는 작업) 취소 : clearQueue()
+            //예정작업 취소 + 현재 진행중 동작 중지
+            $("h1").clearQueue().stop(); 
+        });
+    });
+</script>
+</head>
+<body>
+    <button id="run">run</button>
+    <button id="stop">stop</button>
+    <button id="stopstop">stopstop</button>
+    <button id="clearQueueStop">clearQueue and Stop</button>
+    <hr>
+	<h1>abcde</h1>
+    
+
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

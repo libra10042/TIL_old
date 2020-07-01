@@ -74,6 +74,7 @@
 */        
         //-------------------
         //on() : 여러개 이벤트 한 번에 설정 가능
+/*
         $("#img1").on({
             "mouseenter" : function(){
                 $(this).prop("src", "images/car2.jpg");
@@ -82,6 +83,15 @@
                 $(this).prop("src", "images/car1.jpg");
             }
         });
+*/        
+        $("#img1").hover(
+            function(){
+                $(this).prop("src", "images/car2.jpg");
+            },
+            function(){
+                $(this).prop("src", "images/car1.jpg");
+            }
+        );
         
     });
 </script>

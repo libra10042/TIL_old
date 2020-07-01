@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style>
+    * { margin: 0; padding: 0; }
+    #simgs {
+        width: 528px; 
+        height: 176px;
+        /* border: 1px solid black; */
+        
+        overflow: hidden;  
+        position: relative;
+        left: 50px;
+    }
+    #simgs > ul { list-style: none; }
+    #simgs > ul > li { float: left; }
+    #simgs > a {
+        clear: both;
+        position: absolute;
+        width: 50px; height: 50px;
+        border-radius: 50%;
+        background-color: yellow;
+        
+        top: 70px;
+        text-align: center;
+        line-height: 50px;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+    #prev { left: 0px; }
+    #next { right: 0;}
+</style>
+<script>
+    //append(), prepend() 메소드 사용해서 이미지 전환
+    $(function(){
+        //(실습) 버튼 한 번 클릭시 이미지 3개씩 이동처리
+        //next 버튼 : 맨 앞의 이미지를 맨 뒤로 보내기 3번 반복
+        $("#next").click(function(){
+            for (let i=0; i<3; i++) {
+                var $first = $("#imgUl>li").eq(0);
+                console.log("첫번째 li : " + $first.html());
+                $("#imgUl").append($first);
+            }
+        });
+        
+        //(실습) prev버튼 : 맨뒤의 이미지를 맨 앞으로 보내기 3번 반복
+        $("#prev").click(function(){
+            for (let i=0; i<3; i++) {
+                $("#imgUl").prepend($("#imgUl>li").last());
+            }
+        });
+    });
+</script>
+</head>
+<body>
+	<div id="simgs">
+        <ul id="imgUl">
+            <li><img src="images/simg01.jpg"></li>
+            <li><img src="images/simg02.jpg"></li>
+            <li><img src="images/simg04.jpg"></li>
+            <li><img src="images/simg05.jpg"></li>
+            <li><img src="images/simg06.jpg"></li>
+            <li><img src="images/simg07.jpg"></li>
+            <li><img src="images/simg08.jpg"></li>
+            <li><img src="images/simg09.jpg"></li>
+            <li><img src="images/simg10.jpg"></li>
+        </ul>
+        <a id="prev">&lt;&lt;</a>
+        <a id="next">&gt;&gt;</a>
+    </div>
+    
+
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
