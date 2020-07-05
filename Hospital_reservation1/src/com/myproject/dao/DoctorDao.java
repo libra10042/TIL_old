@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.myproject.vo.Doctor;
-import com.myproject.vo.DoctorInfo;
+import com.myproject.vo.Doctor_Schedule;
+import com.myproject.vo.Part;
 import com.myproject.vo.Reserve;
 
 public class DoctorDao  {
@@ -25,6 +26,45 @@ public class DoctorDao  {
 			
 		}
 	}
+	
+	public boolean selectDoctor(Part vo) {
+		boolean flag = false; 
+		try {
+			con = ConnectionManager.getConnection();
+			StringBuilder sb = new StringBuilder(); 
+			sb.append("SELECT D.DONUMBER, P.PARTNAME, D.DONAME, D.INFO_DOCTOR \n");
+			sb.append("FROM DOCTOR D, PART P \n");
+			sb.append("WHERE D.PARTNUMBER = P.PARTNUMBER  AND D.PARTNUMBER = ?");
+			
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setInt(1, vo.getPartnumber());
+			
+			rs = pstmt.executeQuery(); 
+			
+			if(rs.next()) {
+				System.out.println("[담당의 정보]");
+				System.out.println("--------------------");
+				do {
+					flag = true; 
+					System.out.println("번호 : " + rs.getInt("DONUMBER") +", 부서명 : " + rs.getString("PARTNAME") + ", 의사이름 :" + rs.getString("DONAME"));
+				}while(rs.next()); 
+					
+			}else {
+				System.out.println("*** 다시 선택해주세요.");
+			}
+			System.out.println("--------------------");
+		}catch(Exception e) {
+		
+		}finally{
+			closeConnection();
+		}
+		return flag; 
+	}
+
+	
+	
+	
+	
 	
 	public void doctorReservationRecord(Reserve vo) {
 		try {

@@ -20,6 +20,11 @@ public class Doctor {
 		this.info_doctor = info_doctor;
 	}
 
+	public Doctor(int partnumber) {
+		super();
+		this.partnumber = partnumber;
+	}
+
 	public int getDonumber() {
 		return donumber;
 	}

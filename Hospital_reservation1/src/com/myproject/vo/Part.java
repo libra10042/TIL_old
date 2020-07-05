@@ -8,6 +8,17 @@ public class Part {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	
+	public Part(int partnumber) {
+		super();
+		this.partnumber = partnumber;
+	}
+
+
+
+
 	public Part(int partnumber, String partname) {
 		super();
 		this.partnumber = partnumber;

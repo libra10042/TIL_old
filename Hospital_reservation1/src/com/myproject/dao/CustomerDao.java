@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.myproject.vo.Clients;
 import com.myproject.vo.Doctor;
-import com.myproject.vo.DoctorInfo;
+import com.myproject.vo.Doctor_Schedule;
 
 public class CustomerDao{
 	Connection con = null;

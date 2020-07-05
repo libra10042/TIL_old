@@ -88,3 +88,31 @@ Insert into CLIENTS (CLNAME,CLNUMBER,CLPN,CLPHONE) values ('김채나',85,'000727-4
 Insert into CLIENTS (CLNAME,CLNUMBER,CLPN,CLPHONE) values ('강석환',52,'900216','01032431359');
 
 
+
+
+-- 의사 정보 삽입
+-- 1.내과   2.외과   3.소아과   4.정형외과   5.안과
+insert into doctor values(10001, 1, '이충진', '1111', '서울대 졸업/세브란스병원 10년경력');
+insert into doctor values(10002, 2, '김건희', '1111', '경희대 졸업/본병원15년차');
+insert into doctor values(10003, 3, '심재용', '1111', '연세대 졸업/세브란스병원 5년경력');
+insert into doctor values(10004, 4, '김춘옥', '1111', '한양대 졸업/한양대병원 15년 경력');
+insert into doctor values(10005, 5, '신다혜', '1111', '고려대 졸업/본병원 1년차');
+insert into doctor values(10006, 1, '김영식', '1111', '건국대 졸업/건대병원 5년경력');
+insert into doctor values(10007, 2, '박혜순', '1111', '서울대 졸업/본병원 10년차');
+insert into doctor values(10008, 3, '성우성', '1111', '연세대 졸업/본병원 30년차');
+insert into doctor values(10009, 4, '손기영', '1111', '한양대 졸업/본병원 10년차');
+insert into doctor values(10010, 5, '조홍준', '1111', '건국대 졸업/건대병원 5년경력');
+
+desc part;
+insert into part values(1, '내과');
+insert into part values(2, '외과');
+insert into part values(3, '소아과');
+insert into part values(4, '정형외과');
+insert into part values(5, '안과');
+commit;
+
+
+desc part; 
+
+
+
