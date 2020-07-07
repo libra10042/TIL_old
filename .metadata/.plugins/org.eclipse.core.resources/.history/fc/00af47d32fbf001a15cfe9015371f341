@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>선언부(decalaration) 메소드</title>
+</head>
+<body>
+	<h2>덧셈</h2>
+	<h3>100 + 200 = 300</h3>
+	<%
+	int a = 100;
+	int b = 200;
+	int sum = a + b;
+	%>
+	<h3>100 + 200 = <%=sum %></h3>
+	<hr>
+<%!
+	//선언부에 메소드 정의
+	int tot = 0; //필드 변수 선언
+	private int sum(int a, int b) { //메소드 선언
+		return a + b;
+	}
+%>	
+	<h2>선언부의 메소드 사용</h2>
+	<h3>sum(a, b) : 100 + 200 = <%=sum(a, b) %></h3>
+	<%
+	tot = sum(a, b);
+	%>
+	<h3>tot출력 : 100 + 200 = <%=tot %></h3>
+</body>
+</html>
+
+
+
+
+
+
+
+

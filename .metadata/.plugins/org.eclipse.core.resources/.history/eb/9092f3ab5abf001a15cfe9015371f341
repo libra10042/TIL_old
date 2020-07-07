@@ -1,0 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//요청한 웹사이트로 이동처리
+	String site = request.getParameter("site");
+%>

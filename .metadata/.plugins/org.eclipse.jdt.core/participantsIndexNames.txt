@@ -1,4 +1,6 @@
 INDEX VERSION 1.130
+C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1561200091.index
+\03_scope\src
 C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1722786588.index
 \01_Servlet\src
 C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1616920058.index
