@@ -1,10 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	// 장바구니(세션에 있는 list)에 데이터 꺼내기
-	ArrayList<String> list = (ArrayList<String>) session.getAttribute("product_list"); 
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +15,34 @@
 	없으면 : <p>계산할 품목이 없습니다</>
 	있으면 : ul, li 태그로 목록을 화면 출력
 --%>
+<%
+	// 장바구니(세션에 있는 list)에 데이터 꺼내기
+	ArrayList<String> list = (ArrayList<String>) session.getAttribute("product_list");
+	if (list == null) {
+		out.print("<p>계산할 품목이 없습니다</>");
+	} else {
+		out.println("<ul>");
+		for (int i = 0; i < list.size(); i++) {
+			out.println("<li>" + list.get(i) + "</li>");
+		}
+		out.println("</ul>");
+%>
+		<hr><hr>
+		<ol>
+<%
+		for (String product : list) { %>
+			<li><%=product %></li>
+<%
+		} %>
+		</ol>
+<%		
+	} //else end
+%>
 	<hr>
 	<p><a href="ex03_logout.jsp">로그아웃</a></p>
+	
+	<br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br>
 </body>
 </html>
 
