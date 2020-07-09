@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%-- 전달받은 품목을 장바구에 담기 --%>
+<%
+	//1. 전달받은 데이터 확인
+	String product = request.getParameter("product");
+	
+	//2. 장바구니에 담기 : ArrayList 에 저장
+	//3. 쇼핑페이지로 이동(페이지 전환)
+	
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

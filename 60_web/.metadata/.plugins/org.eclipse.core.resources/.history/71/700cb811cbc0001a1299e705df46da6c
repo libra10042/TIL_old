@@ -1,0 +1,65 @@
+<%@page import="java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%--(실습) 전달받은 데이터를 이용해서 DB에 입력처리 
+	정상입력 : list.jsp 페이지로 이동
+	예외발생 : 현재 페이지 보여주기 
+--%>
+<%
+	//JDBC 프로그램을 위한 변수 선언
+	final String DRIVER = "oracle.jdbc.OracleDriver"; 
+	final String URL = "jdbc:oracle:thin:@localhost:1521:xe"; 
+	final String USER = "mystudy"; 
+	final String PASSWORD = "mystudypw"; 
+	
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;	
+
+	//1. 파라미터 값 추출
+	int sabun = Integer.parseInt(request.getParameter("sabun"));
+	String name = request.getParameter("name");
+	int pay = Integer.parseInt(request.getParameter("pay"));
+	
+	//2. JDBC를 이용한 DB 입력 처리
+	try {
+		
+	} catch(Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//3. 페이지 이동처리(list.jsp)
+	
+
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사원 등록 실패</title>
+</head>
+<body>
+	<h1>사원 등록 실패</h1>
+	<p>입력처리를 하지 못했습니다.<br>
+	[ 입력페이지로 이동] 클릭해서 다시 작업하세요.
+	</p>
+	<a href="addForm.jsp">입력페이지로 이동</a>
+	<a href="list.jsp">전체목록 보기</a>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

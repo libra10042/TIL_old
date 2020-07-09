@@ -1,0 +1,6 @@
+package com.mystudy;
+
+public class InfoVO {
+	private String name;
+	private String age;
+}

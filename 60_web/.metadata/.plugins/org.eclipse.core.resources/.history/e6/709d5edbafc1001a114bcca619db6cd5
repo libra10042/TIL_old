@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>액션태그 - include</title>
+</head>
+<body>
+<%--
+	JSP액션 : JSP 페이지의 흐름 제어
+	사용형태 : <jsp:액션명령></액션명령>
+ --%>
+</body>
+</html>
+
+
+
+
+
+
+
+

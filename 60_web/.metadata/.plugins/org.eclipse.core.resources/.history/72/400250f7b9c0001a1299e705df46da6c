@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%-- 전달받은 데이터를 이용해서 DB에 입력처리 
+	정상입력 : list.jsp 페이지로 이동
+	예외발생 : 현재 페이지 보여주기 
+--%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사원 등록 실패</title>
+</head>
+<body>
+	<h1>사원 등록 실패</h1>
+	<p>입력처리를 하지 못했습니다.<br>
+	[ 입력페이지로 이동] 클릭해서 다시 작업하세요.
+	</p>
+	<a href="addForm.jsp">입력페이지로 이동</a>
+	<a href="list.jsp">전체목록 보기</a>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

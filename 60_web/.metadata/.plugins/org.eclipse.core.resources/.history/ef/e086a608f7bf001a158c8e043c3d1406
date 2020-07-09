@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% 
+	//request, session의 속성에 데이터 저장하고 되돌아가기
+	String name = request.getParameter("name");
+	String age = request.getParameter("age");
+	System.out.println(">> param name: " + name + ", age: " + age);
+	
+	//session scope 에 저장
+	session.setAttribute("attr_name", name);
+	session.setAttribute("attr_age", age);
+	//session scope 에 저장된 값 조회
+	String attr_name = (String) session.getAttribute("attr_name");
+	String attr_age = (String) session.getAttribute("attr_age");
+	System.out.println(">>session attr_name : " + attr_name);
+	System.out.println(">>session attr_age : " + attr_age);
+	
+	//-----------------------------------
+	//request scope 에 저장
+	request.setAttribute("req_name", name);
+	request.setAttribute("req_age", age);
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>ex01_sessionSet.jsp</h1>
+	
+</body>
+</html>
+
+
+
+

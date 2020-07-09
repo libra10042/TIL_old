@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<form>
+	<table border>
+	<thead>
+		<tr><th colspan="2">회원정보</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>아이디</th>
+			<td><input type="text" name="id"></td>
+		</tr>
+		<tr>
+			<th>패스워드</th>
+			<td><input type="password" name="pwd"></td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td><input type="text" name="name"></td>
+		</tr>
+		<tr>
+			<th>나이</th>
+			<td><input type="number" name="age" value="0"></td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td><input type="text" name="address"></td>
+		</tr>
+	</tbody>
+	</table>
+</form>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+INDEX VERSION 1.130
+C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1616920058.index
+\02_JSP\src
+C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1277975783.index
+\04_JDBC\src
+C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3582007394.index
+\06_actiontag\src
+C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1722786588.index
+\01_Servlet\src
+C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2877453092.index
+\05_include\src
+C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1760739913.index
+\05_include\src
+C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1545866555.index
+\05_include\src
+C:\MyStudy\60_web\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1561200091.index
+\03_scope\src

@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%--(실습) 전달받은 데이터를 사용해서 DB 데이터 수정 처리 
+	수정할데이터 : 성명, 날짜(sysdate), 금액
+	정상처리후 : list.jsp 이동
+	예외발생시 : 현재페이지 보여주기(상세보기, 목록보기)
+--%>    
+<%
+	//전달받은 파라미터 값 확인(추출)
+	int sabun = Integer.parseInt(request.getParameter("sabun"));
+	String name = request.getParameter("name");
+	int pay = 0;
+	try {
+		pay = Integer.parseInt(request.getParameter("pay"));
+	} catch(NumberFormatException e) {
+%>
+	<script>
+		alert("금액에 숫자가 아닌 문자가 입력되었습니다.\n확인 후 다시 입력하세요");
+	</script>
+<%
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사원정보 수정 실패</title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+

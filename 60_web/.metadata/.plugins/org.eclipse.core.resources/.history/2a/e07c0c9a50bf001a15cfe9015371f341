@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//(실습)주문한 내역에 따라 계산하고 결과를 표시
+	//1. 파라미터 값 추출
+	//2. 계산처리(단가는 변수 또는 상수 처리)
+	//3. 계산결과 화면 출력
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>주문결과</title>
+</head>
+<body>
+	<h2>주문 계산 결과</h2>
+	<%--
+	커피종류 : 아메리카노
+	단가 : 3000원
+	수량 : 3
+	총금액 : 9000원
+	--------------------
+	입금액 : 10000원
+	잔액 : 1000원
+	--%>
+</body>
+</html>
+
+
+
+
+
+
+
