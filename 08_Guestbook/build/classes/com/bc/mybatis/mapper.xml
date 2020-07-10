@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="guestbook">
+	<!-- select 태그 3개 속성 id, resultType, parameterType
+	id : 사용할 명칭(필수항목), 현재 Mapper에서 유일한 이름사용
+	resultType : 조회 결과 값을 저장하기 위한 데이터 타입
+		(데이터 하나에 대한 타입 지정)
+	parameterType : 전달받은 파라미터 데이터 타입 지정(선택적)
+	-->
+	<select id="all" resultType="com.bc.mybatis.GuestbookVO">
+		SELECT *
+		FROM GUESTBOOK
+		ORDER BY IDX
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
