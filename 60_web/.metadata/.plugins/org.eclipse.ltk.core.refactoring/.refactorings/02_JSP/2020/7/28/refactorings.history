@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;02_JSP/WebContent/ex09_redirect_forward.jsp&apos; to &apos;ex09_redirect_forward_설명.jsp&apos;" description="Rename resource &apos;ex09_redirect_forward.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/ex09_redirect_forward.jsp" name="ex09_redirect_forward_설명.jsp" stamp="1594019518975" updateReferences="true"/>
-</session>

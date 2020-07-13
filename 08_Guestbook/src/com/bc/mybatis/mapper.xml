@@ -14,6 +14,34 @@
 		FROM GUESTBOOK
 		ORDER BY IDX
 	</select>
+	
+	<select id="one" parameterType="string" resultType="guestbookVO">
+		SELECT IDX, NAME, SUBJECT, CONTENT, EMAIL, PWD, REGDATE
+		FROM GUESTBOOK
+		WHERE IDX = #{idx}
+	</select>
+	
+	<insert id="insert" parameterType="com.bc.mybatis.GuestbookVO">
+		INSERT INTO GUESTBOOK
+               (IDX, NAME, SUBJECT, CONTENT, EMAIL, 
+               PWD, REGDATE)
+        VALUES (GUESTBOOK_SEQ.NEXTVAL, #{name}, #{subject}, #{content}, #{email}, 
+               #{pwd}, SYSDATE)
+	</insert>
+	
+	<update id="update" parameterType="guestbookVO">
+		UPDATE GUESTBOOK
+		SET NAME = #{name},
+		    SUBJECT = #{subject},
+		    EMAIL = #{email},
+		    CONTENT = #{content},
+		    REGDATE = SYSDATE
+		WHERE IDX = #{idx}
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM GUESTBOOK WHERE IDX = #{idx}
+	</delete>
 </mapper>
 
 

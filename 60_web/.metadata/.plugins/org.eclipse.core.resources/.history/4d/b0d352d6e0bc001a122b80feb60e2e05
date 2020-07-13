@@ -1,9 +1,0 @@
-package com.mystudy.servlet;
-
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-
-@WebServlet("/sungjuk")
-public class Ex05 extends HttpServlet {
-
-}

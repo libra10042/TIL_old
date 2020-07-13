@@ -7,7 +7,7 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.bc.mybatis.GuestbookVO" alias="guestbookVO"/>
+		<typeAlias type="com.bc.mybatis.ShopVO" alias="shopVO"/>
 	</typeAliases>
   <environments default="development">
     <environment id="development">
