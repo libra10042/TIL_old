@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div id="wrap">
+	<hr>
+	<div id="header">
+		<span class="title">SHOPPING CENTER</span>
+	</div>
+	<hr>
+	<div id="nav">
+		<a href="product_list.jsp?category=com001">컴퓨터</a> |
+		<a href="product_list.jsp?category=ele002">가전제품</a> |
+		<a href="product_list.jsp?category=sp003">스포츠</a>
+	</div>
+</div>

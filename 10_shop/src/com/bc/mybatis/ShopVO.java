@@ -1,6 +1,7 @@
 package com.bc.mybatis;
 
 public class ShopVO {
+	//DB에 있는 데이터
 	private String num, category, p_num, p_name, p_company;
 	private String p_image_s, p_image_l, p_content, p_date;
 	private int p_price, p_saleprice;
@@ -8,6 +9,12 @@ public class ShopVO {
 	//수량, 수량별 금액(판매가 * 수량)
 	private int quant; //장바구니에 담긴 수량
 	private int totalprice; //수량별 금액(판매가 * 수량)
+	
+	//할인율 조회 메소드
+	public int getPercent() {
+		double percent = (p_price - p_saleprice) * 100 / p_price;
+		return (int) percent;
+	}
 	
 	public int getQuant() {
 		return quant;

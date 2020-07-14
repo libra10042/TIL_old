@@ -12,6 +12,16 @@
         FROM SHOP_T
         WHERE CATEGORY = #{category}
 	</select>
+	
+	<!-- resultType 값으로 configuration 에 정의한 별칭 사용 -->
+	<select id="one" parameterType="string"
+			resultType="shopVO">
+		SELECT num, category, p_num, p_name, p_company
+     		 , p_price, p_saleprice, p_image_s, p_image_l
+             , p_content, p_date
+        FROM SHOP_T
+        WHERE P_NUM = #{pNum}
+	</select>
 </mapper>
 
 
