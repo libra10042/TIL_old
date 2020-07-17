@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BBS">
+
+	<!-- 전체 게시글 개수 조회 -->
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*) FROM BBS_T
+	</select>
+	
+	<!-- 페이지에 표시할 게시글 조회 
+		parameterType="Map" : begin, end 값 전달 용도
+		key-value 형태의 Map 사용 바인드변수명이 key가 됨-->
+	<select id="list" resultType="com.bc.mybatis.BBSVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM R_NUM, BBS.*
+		          FROM (SELECT *
+		                  FROM BBS_T
+		                 ORDER BY B_IDX DESC
+		               ) BBS
+		        )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

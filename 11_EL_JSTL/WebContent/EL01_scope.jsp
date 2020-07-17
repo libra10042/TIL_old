@@ -14,7 +14,7 @@
 		scope 객체 : pageContext, request, session, application
 		해당 scope 상에 setAttribute 설정된 변수(속성) 값만 사용 가능
 	3. 같은 이름이 다른 scope 상에 존재하는 경우 접근 우선순위가 적용됨
-		pageContext > request > session > application
+		pageContext -> request -> session -> application
 		(단, scope 지정 없으면 page ---> application 순으로 찾고,
 		scope 지정하면 해당 scope에서만 찾음)
  --%>
