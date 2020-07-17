@@ -23,6 +23,23 @@
 		        )
 		 WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>
+	
+	<!-- 게시글 하나 조회 -->
+	<select id="one" resultType="BBSVO" parameterType="String">
+		SELECT B_IDX, SUBJECT, WRITER, CONTENT, FILE_NAME,
+		       ORI_NAME, PWD, WRITE_DATE, IP, HIT
+		FROM BBS_T
+		WHERE B_IDX = #{b_idx}
+	</select>
+	
+	<!-- ======= 게시글 관련 SQL ========== -->
+	<!-- 게시글에 딸린 댓글 조회 -->
+	<select id="commList" parameterType="String"
+			resultType="com.bc.mybatis.CommVO">
+		SELECT *
+		FROM COMMENT_T
+		WHERE B_IDX = #{b_idx}
+	</select>
 </mapper>
 
 

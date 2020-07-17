@@ -85,5 +85,10 @@ public class BBSVO {
 				+ ", file_name=" + file_name + ", ori_name=" + ori_name + ", pwd=" + pwd + ", write_date=" + write_date
 				+ ", ip=" + ip + ", hit=" + hit + "]";
 	}
+	
+//	@Override
+//	public String toString() {
+//		return "BBSVO [b_idx=" + b_idx + ", subject=" + subject + "] ";
+//	}
 
 }
