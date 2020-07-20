@@ -31,6 +31,22 @@ public class DAO {
 		return vo;
 	}
 	
+	//게시글 입력처리
+	public static int insert(BBSVO bvo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.insert("BBS.insert", bvo);
+		ss.close();
+		return result;
+	}
+	
+	//게시글 수정(조회수 1 증가 처리)
+	public static int updateHit(int b_idx) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("hit", b_idx);
+		ss.close();
+		return result;
+	}
+	
 	//============== 댓글 관련 =====================
 	public static List<CommVO> getCommList(String b_idx) {
 		SqlSession ss = DBService.getFactory().openSession();
@@ -38,6 +54,22 @@ public class DAO {
 		ss.close();
 		return list;
 	}	
+	
+	//댓글 입력처리
+	public static int insertComment(CommVO cvo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.insert("BBS.c_insert", cvo);
+		ss.close();
+		return result;
+	}
+	
+	//댓글삭제
+	public static int deleteComment(String c_idx) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.insert("BBS.c_delete", c_idx);
+		ss.close();
+		return result;
+	}
 }
 
 

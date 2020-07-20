@@ -15,8 +15,10 @@
 	// 파라미터 값 추출
 	String b_idx = request.getParameter("b_idx");
 	String cPage = request.getParameter("cPage");
-
+	System.out.println("> b_idx : -" + b_idx + "-");
+	
 	//1. 게시글 조회수 1증가 처리(실습)
+	DAO.updateHit(Integer.parseInt(b_idx));
 	
 	//2. 게시글(b_idx) 데이터 조회
 	BBSVO bvo = DAO.selectOne(b_idx);
@@ -24,6 +26,7 @@
 	
 	//3. 게시글(b_idx)에 딸린 댓글이 있으면 가져오기
 	List<CommVO> list = DAO.getCommList(b_idx);
+	System.out.println("> list : " + list);
 	
 	// EL, JSTL 사용을 위한 scope상에 속성 등록하고 화면 표시
 	session.setAttribute("bvo", bvo);
@@ -35,6 +38,31 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 상세</title>
+<style>
+	#bbs table {
+		width: 580px;
+		margin-left: 10px;
+		border-collapse: collapse;
+		font-size: 14px;
+	}
+	#bbs table caption {
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	#bbs table th {
+		text-align: center;
+		border: 1px solid black;
+		padding: 4px 10px;
+		width: 30%;
+		background-color: lightsteelblue;
+	}
+	#bbs table td {
+		text-align: left;
+		border: 1px solid black;
+		padding: 4px 10px;
+	}
+</style>
 <script>
 	function modify_go() {
 		document.frm.action = "modify.jsp";
@@ -85,8 +113,8 @@
 		<tfoot>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="수정" onclick="modify_go()">
-					<input type="button" value="삭제" onclick="delete_go()">
+					<input type="button" value="수정(작성실습)" onclick="modify_go()">
+					<input type="button" value="삭제(작성실습)" onclick="delete_go()">
 					<input type="button" value="목록" onclick="list_go()">
 					<input type="hidden" name="cPage" value="${cPage }">
 				</td>
@@ -94,6 +122,7 @@
 		</tfoot>
 	</table>
 </form>
+<hr>
 
 <%-- 게시글에 대한 댓글 작성 영역 --%>
 <form action="ans_write_ok.jsp" method="post">
@@ -105,7 +134,26 @@
 	<input type="hidden" name="b_idx" value="${bvo.b_idx }">
 </form>
 
+<hr>
+댓글들
+<hr>
 <%-- 게시글에 작성된 댓글 표시영역 --%>
+<c:forEach var="commVO" items="${c_list }">
+<div class="comment">
+	<form action="ans_del.jsp" method="post">
+		<p>이름 : ${commVO.writer }&nbsp;&nbsp; 날짜 : ${commVO.write_date } </p>
+		<p>내용 : ${commVO.content }</p>
+		<input type="submit" value="댓글삭제">
+		<input type="hidden" name="c_idx" value="${commVO.c_idx }">
+		<input type="hidden" name="pwd" value="${commVO.pwd }">
+		<%-- 삭제처리후 게시글 상세페이지로 이동시 --%>
+		<input type="hidden" name="b_idx" value="${commVO.b_idx }">
+	</form>
+</div>
+<hr>
+</c:forEach>
+
+
 
 </div>
 
