@@ -41,6 +41,24 @@
 		       #{ori_name}, #{pwd}, SYSDATE, #{ip}, 0)
 	</insert>
 	
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="BBSVO">
+		UPDATE BBS_T
+		   SET SUBJECT = #{subject}, 
+		       WRITER = #{writer}, 
+		       CONTENT = #{content}, 
+		       FILE_NAME = #{file_name},
+		       ORI_NAME = #{ori_name}, 
+		       WRITE_DATE = SYSDATE, 
+		       IP = #{ip}
+		WHERE B_IDX = #{b_idx}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delete" parameterType="String">
+		DELETE FROM BBS_T WHERE B_IDX = #{b_idx}
+	</delete>
+	
 	<!-- 조회수 1 증가 처리 -->
 	<update id="hit" parameterType="int">
 		UPDATE BBS_T SET HIT = HIT + 1 WHERE B_IDX = #{b_idx}

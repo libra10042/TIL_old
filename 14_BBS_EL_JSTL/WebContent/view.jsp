@@ -29,8 +29,8 @@
 	System.out.println("> list : " + list);
 	
 	// EL, JSTL 사용을 위한 scope상에 속성 등록하고 화면 표시
-	session.setAttribute("bvo", bvo);
 	pageContext.setAttribute("c_list", list);
+	session.setAttribute("bvo", bvo);
 	session.setAttribute("cPage", cPage);
 %>
 <!DOCTYPE html>

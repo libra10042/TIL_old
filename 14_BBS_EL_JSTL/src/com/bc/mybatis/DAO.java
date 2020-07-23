@@ -39,7 +39,23 @@ public class DAO {
 		return result;
 	}
 	
-	//게시글 수정(조회수 1 증가 처리)
+	//게시글 수정
+	public static int update(BBSVO bvo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("BBS.update", bvo);
+		ss.close();
+		return result;
+	}
+	
+	//게시글 삭제
+	public static int delete(String b_idx) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.delete("BBS.delete", b_idx);
+		ss.close();
+		return result;
+	}
+	
+	//조회수 1 증가 처리(게시글수정)
 	public static int updateHit(int b_idx) {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		int result = ss.update("hit", b_idx);
