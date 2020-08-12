@@ -14,7 +14,7 @@ public class TVUser {
 		System.out.println("--- 스프링 컨테이너 구동후 ----");
 		//2. 스프링 컨테이너 사용 : 생성된 객체 요청(Lookup)
 		System.out.println("--- tv 요청 사용 --");
-		TV tv = (TV) factory.getBean("tv1Samsung");
+		TV tv = (TV) factory.getBean("tv1");
 		tv.powerOn();
 		tv.volumeUp();
 		tv.volumeDown();

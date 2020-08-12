@@ -14,7 +14,7 @@
 	- destroy-method : 객체 소멸시 처리할 작업을 설정하기 위한 메소드
 	-->
 	
-	<bean id="tv1Samsung" class="polymorphism01.SamsungTV"/>
+	<bean id="tv1" class="polymorphism01.LgTV"/>
 </beans>
 
 

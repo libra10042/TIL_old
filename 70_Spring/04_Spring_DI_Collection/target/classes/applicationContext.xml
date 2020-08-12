@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="collectionBean" class="di_collection.CollectionBean">
+		<!-- List 타입에 대한 설정(의존주입 DI) -->
+		<property name="addressList">
+			<list>
+				<value>서울시 강남구 역삼동</value>
+				<value>서울시 강남구 서초동</value>
+				<value>서울시 강남구 서초동</value>
+				<value>10</value>
+			</list>
+		</property>
+		
+		<!-- Set 타입에 대한 설정(중복값 허용 안함) -->
+		<property name="addressSet">
+			<set value-type="java.lang.String">
+				<value>서울시 강남구 역삼동</value>
+				<value>서울시 강남구 서초동</value>
+				<value>서울시 강남구 서초동</value>
+				<value>1234</value>
+			</set>
+		</property>
+		
+		<!-- Map<key, value> 타입에 대한 설정 -->
+		<property name="addressMap">
+			<map>
+				<!-- 태그만 사용하는 작성 예 -->
+				<entry>
+					<key>
+						<value>홍길동</value>
+					</key>
+					<value>서울시 강남구 역삼동</value>
+				</entry>
+				<!-- 속성을 사용하는 방식 -->
+				<entry key="김유신" value="서울시 강남구 서초동" />
+				<entry key="을지문덕" value="서울시 강남구 서초동" />
+			</map>
+		</property>
+	
+		<!-- Properties 타입에 대한 설정(key, value 형태 모두 String) -->
+		<property name="addressProp">
+			<props>
+				<prop key="홍길동">서울시 강남구 역삼동</prop>
+				<prop key="김유신">서울시 강남구 서초동</prop>
+				<prop key="을지문덕">서울시 강남구 서초동</prop>
+			</props>
+		</property>
+	
+	</bean>
+	
+	
+</beans>
+
+
+
+
+
+
+
