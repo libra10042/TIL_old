@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Aug 14 14:55:50 KST 2020
+commons-pool-1.5.4-sources.jar>central=
+commons-pool-1.5.4.jar>central=
+commons-pool-1.5.4.pom>central=
