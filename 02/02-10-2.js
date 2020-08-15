@@ -48,3 +48,5 @@ work1and2()
   .then((msg3) => {
     console.log("done after 600ms : " + msg3);
   });
+
+// 서버에 데이터를 요청하며 axios와 ajax 같은 라이브러리를 사용하게 될 거싱다.
