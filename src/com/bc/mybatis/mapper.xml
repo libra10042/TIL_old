@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SHOP">
+	<!-- ====================================================== 충진영역 ====================================================== -->
+	<select id="viewSeller" resultType="com.bc.vo.S_sellerRegistVO" parameterType="String">
+		select * from seller_regist where sr_idx = #{idx}
+	</select>
+	
+	<select id="viewShop" resultType="String" parameterType="String">
+		select sr_idx from shop where userid = #{userid}
+	</select>
+	
+	<select id="viewShop2" resultType="String" parameterType="String">
+		select s_idx from shop where userid = #{userid}
+	</select>
+	
+	<insert id="insertShop" parameterType="map">
+		insert into seller_regist
+		(sr_idx, sr_rname, sr_number, sr_address, sr_name, sr_email, sr_phone, sr_check)
+		values(#{sr_idx}, #{sr_rname}, #{sr_number}, #{sr_address}, #{sr_name}, #{sr_email}, #{sr_phone}, #{sr_check})
+	</insert>
+	
+	<insert id="shopRegister" parameterType="map">
+		insert into shop
+		(s_idx, userid, sr_idx)
+		values (#{s_idx}, #{userid}, #{sr_idx})
+	</insert>
+	
+	<select id="searchProduct" parameterType="String" resultType="com.bc.vo.P_boardVO">
+		select * from p_board where s_idx = #{s_idx}
+	</select>
+	
+	<select id="viewCategory" resultType="com.bc.vo.CategoryVO">
+		select * from category
+	</select>
+	
+	<insert id="insertProduct" parameterType="map">
+		insert into p_board(p_idx, c_num, p_name, p_price, p_reserve, userid, p_date, p_image, p_thumbnail, s_idx)
+		values (seq.nextval , #{option}, #{p_name}, #{p_price}, 1, #{userid}, sysdate, #{p_image}, #{p_thumbnail}, #{s_idx} )
+	</insert>
+	<!-- ====================================================== 은영영역 ====================================================== -->
+	<insert id="register" parameterType="com.bc.vo.MemberVO" >
+		 INSERT INTO signup (name, userid, password, phone, email, addr) 
+		 VALUES (#{name}, #{userid}, #{password}, #{phone}, #{email}, #{addr})
+	</insert>
+	<!-- ====================================================== 민형영역 ====================================================== -->
+	<!-- 주문 조회 -->
+	<select id="Shop_order" resultType="com.bc.vo.O_OrderVO" parameterType="String">
+		SELECT * FROM O_ORDER WHERE USERID = #{userid}
+	</select>
+	
+	<!-- 주문서 작성(주문리스트) -->
+	<select id="Shop_view" resultType="com.bc.vo.P_boardVO" parameterType="String">
+		SELECT * FROM P_BOARD WHERE USERID = #{userid}
+	</select>
+	
+	<!-- 주문서 작성(주문자정보) -->
+	<insert id="Shop_write" parameterType="com.bc.vo.SignUpVO">
+	 INSERT INTO SIGNUP
+			(NAME, EMAIL, PHONE, ADDR)
+	 VALUES (#{name}, #{email}, #{phone}, #{addr})
+	</insert>
+	
+	<select id="viewName" resultType="string" parameterType="string">
+		select name from signup where userid = #{userid}
+	</select>
+	
+	<select id="cardChk" resultType="int" parameterType="map">
+		select count(*) 
+		from cardpass 
+		where cardnum = #{cardNum} and cardpw = #{cardPw}
+	</select>
+	
+	<insert id="insertArrive" parameterType="map">
+		insert into o_arrive (userid, a_person, a_address, a_email, a_phone, a_message)
+		values (#{userid}, #{insertName}, #{a_address}, #{a_email}, #{a_phone}, #{a_message})
+	</insert>
+	
+	<insert id="insertOrder" parameterType="map">
+		insert into o_order(o_num,userid,p_idx,o_product,o_place,o_order,o_date,o_con,p_price,s_idx,c_reserve)
+		values(seq1.nextval, #{userid},#{p_idx},#{o_product},#{o_place},#{o_order},sysdate,'배송준비중',#{p_price},#{s_idx},#{c_reserve})
+	</insert>
+	
+	<select id="viewOrder" parameterType="string" resultType="com.bc.vo.O_OrderVO">
+		select * from o_order where userid=#{userid}
+	</select>
+	
+	<select id="viewOrder2" parameterType="string" resultType="com.bc.vo.O_arriveVO">
+		select * from o_arrive where userid=#{userid}
+	</select>
+	
+	<select id="viewPoint" parameterType="string" resultType="com.bc.vo.O_OrderVO">
+		select * from o_order where userid = #{userid}
+	</select>
+	
+	<!-- ====================================================== 박실영역 ====================================================== -->
+	<select id="pview" resultType="com.bc.vo.P_boardVO" parameterType="string">
+		select * 
+		from p_board 
+		where p_idx = #{p_idx}
+	</select>
+	
+	<select id="showReview" resultType="com.bc.vo.P_reviewVO" parameterType="string">
+		SELECT *
+		  FROM P_REVIEW
+		 WHERE P_IDX = #{p_idx}
+	</select>
+	
+	<select id="showReview2" resultType="com.bc.vo.P_reviewVO" parameterType="string">
+		SELECT *
+		  FROM P_REVIEW
+		 WHERE userid = #{userid}
+	</select>
+	
+	<select id="showInquiry" resultType="com.bc.vo.P_inquiryVO" parameterType="string">
+		SELECT *
+		  FROM P_INQUIRY
+		 WHERE P_IDX = #{p_idx}
+	</select>
+	
+	<select id="showInquiry2" resultType="com.bc.vo.P_inquiryVO" parameterType="string">
+		SELECT *
+		  FROM P_INQUIRY
+		 WHERE userid = #{userid}
+	</select>
+	
+	<select id="showOption" resultType="com.bc.vo.P_optionVO" parameterType="string">
+		select * 
+		from p_option 
+		where p_idx = #{p_idx}
+	</select>
+	
+	<insert id="insertCart" parameterType="map">
+		insert into o_cartlist (USERID, P_IDX, P_THUMBNAIL, P_NAME, O_OPTION, C_QUANTITY, C_RESERVE, P_PRICE, C_DELEVERY, s_idx)
+		values(#{userid}, #{p_idx},#{p_thumbnail}, #{p_name}, #{o_option}, #{c_quantity}, #{c_reserve}, #{p_price}, '무료배송', #{s_idx})
+	</insert>
+	
+	<select id="showCartlist" parameterType="string" resultType="com.bc.vo.O_cartlistVO">
+		select *
+		from o_cartlist 
+		where userid = #{userid}
+	</select>
+	
+	<select id="chkDuplicate" resultType="int" parameterType="map">
+		select count(*) 
+		from o_cartlist 
+		where userid = #{userid} and p_idx = #{p_idx}
+	</select>
+	
+	<update id="editQuant" parameterType="map">
+		update o_cartlist set 
+		c_quantity = #{c_quantity}, 
+		p_price = #{p_price}, 
+		c_reserve = #{c_reserve}
+		where p_idx= #{p_idx} and userid= #{userid}
+	</update>
+	
+	<delete id="deleteAll" parameterType="string">
+		delete from o_cartlist where userid = #{userid}
+	</delete>
+	
+	<select id="loginChk" resultType="int" parameterType="map">
+		select count(userid) 
+		from signup 
+		where userid = #{userid} and password = #{password}
+	</select>
+	
+	<insert id="writeQna" parameterType="map">
+		insert into p_inquiry(p_idx, userid, i_category, i_content, i_date, i_idx, i_title)
+		values(#{p_idx}, #{userid}, #{i_category}, #{i_content}, sysdate, P_INQUIRY_SEQ.NEXTVAL, #{i_title})
+	</insert>
+	
+	<select id="chkBuy" parameterType="map" resultType="int">
+		select count(userid)
+		from o_order
+		where userid = #{userid} and p_idx = #{p_idx}
+	</select>
+	
+	<insert id="writeReview" parameterType="map">
+		insert into p_review(p_idx, userid, r_size, r_colorsimiliarity, r_satisfaction,
+							r_content, r_date,r_idx)
+		values(#{p_idx}, #{userid}, #{r_size}, #{r_colorsimiliarity}, #{r_satisfaction},
+							#{r_content}, sysdate, P_REVIEW_SEQ.nextval)
+	</insert>
+	<delete id="delCartlist" parameterType="map">
+		delete from o_cartlist where userid = #{userid} and p_idx = #{p_idx}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
