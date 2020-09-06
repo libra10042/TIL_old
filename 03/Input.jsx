@@ -51,12 +51,12 @@ class Input extends PureComponent {
   }
 }
 
-Input.PropTypes = {
+Input.propTypes = {
   type: PropTypes.oneOf(["text", "number", "price"]),
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   errorMesssage: PropTypes.string,
-  label: ProptTypes.string,
+  label: PropTypes.string,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   autoFocus: PropTypes.bool,
@@ -70,4 +70,3 @@ Input.defaultProps = {
 };
 
 export default Input;
-W;
