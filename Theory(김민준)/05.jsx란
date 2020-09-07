@@ -10,4 +10,6 @@ es6에서 사용하는 함수로 argument, this, super 개념이 없는 함수�
 
 
 jsx에서 클래스 css 사용하기?
+- html에서 class를 사용헀지만, react에서는 'className'을 사용한다.
+- 주석은 'something'을 사용한다.
 
