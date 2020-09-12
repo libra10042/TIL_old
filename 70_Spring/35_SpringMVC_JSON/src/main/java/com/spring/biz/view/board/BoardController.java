@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -114,4 +115,26 @@ public class BoardController {
 		boardService.deleteBoard(vo);
 		return "getBoardList.do";
 	}
+	
+	@RequestMapping("/dataTransform.do")
+	@ResponseBody //response 객체의 몸체(body)에 데이타 전달
+	public List<BoardVO> dataTransform(BoardVO vo) {
+		vo.setSearchCondition("TITLE");
+		vo.setSearchKeyword("");
+		
+		List<BoardVO> boardList = boardService.getBoardList(vo);
+		System.out.println("boardList : " + boardList);
+		
+		return boardList;
+	}
+	
+
 }
+
+
+
+
+
+
+
+
