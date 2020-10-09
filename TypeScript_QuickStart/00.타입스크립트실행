@@ -1,0 +1,8 @@
+npm install -g ts-node : ts-node를 사용하여 전역적으로 설치
+
+npm install -g typescript : ts-node는 typescript 컴파일러를 번들하지 않으므로 설치해야 한다.
+
+ts-node main.ts :  main.ts라는 스크립트를 실행한다.
+
+
+sudo npm uninstall -g typesscript : typescript를 제거하기 위한 명령어이다.
