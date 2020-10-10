@@ -44,8 +44,4 @@ const multiplyTwo = multiplyX(2);
 const multiplyThree = multiplyX(3);
 const formula = (x) => addFour(multiplyThree(multiplyTwo(x)));
 
-//함수 조합 기법
-const formula = (x) => addFour(multiplyThree(multiplyTwo(x))); // <- 가독성이 떨어진다.
 
-// => (( x + 4) * 3) * 2
-const formulaB = (x) => multiplyTwo(multiplyThree(addFour(x)));

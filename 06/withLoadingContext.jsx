@@ -23,3 +23,4 @@ export default WrappedComponent =>{
 
     return WithLoadingContext;
 }
+
