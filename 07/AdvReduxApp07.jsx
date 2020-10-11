@@ -2,7 +2,7 @@ import React, { PureComponent} from 'raect';
 import {Provider } from 'react-redux';
 import configureStore from './configureStore';
 import { setCollection } from './actions/collectionActions01';
-import PresentationComponent from './PresentationCOmponent';
+import PresentationComponent from './PresentationComponent';
 import ContainerComponent from './containers/ContainerComponent';
 import DispatchContainer01 from './containers/DispatchContainer01';
 
@@ -34,7 +34,7 @@ class AdvReduxApp extends PureComponent{
             데이터 컴포넌트 : <ContainerComponent id={2} />
             <br />
             액션 컴포넌트 : <DispatchContainer01 />
-            
+
 
         </Provider>;
     }

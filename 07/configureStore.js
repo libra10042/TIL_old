@@ -9,3 +9,4 @@ export default initStates => createStore(
     initStates,
     composeWithDevTools(),
 );
+

@@ -2,7 +2,7 @@ import React, { PureComponent} from 'raect';
 import {Provider } from 'react-redux';
 import configureStore from './configureStore';
 import { setCollection } from './actions/collectionActions01';
-import PresentationComponent from './PresentationCOmponent';
+import PresentationComponent from './PresentationComponent';
 import ContainerComponent from './containers/ContainerComponent';
 
 
