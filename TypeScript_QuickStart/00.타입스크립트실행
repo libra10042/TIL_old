@@ -1,8 +1,19 @@
 npm install -g ts-node : ts-node를 사용하여 전역적으로 설치
 
 npm install -g typescript : ts-node는 typescript 컴파일러를 번들하지 않으므로 설치해야 한다.
+npm install typescript : 로컬로 설치 (현재 위치의 폴더에 설치)
 
 ts-node main.ts :  main.ts라는 스크립트를 실행한다.
 
 
 sudo npm uninstall -g typesscript : typescript를 제거하기 위한 명령어이다.
+
+npm init : package.json 파일을 생성한다.
+
+
+
+npm install jquery : jqeury 패키지 포함.
+npm install gulp-typescript typescript : typescript 패키지 포함.
+
+
+npx tsc : main.js 가 생긴다.
