@@ -10,7 +10,20 @@ class EagerLogger {
         return this.uniqueObject;
     }
 
-    
+    //#4 정보 로그를 출력
+    public info(message : string){
+        console.log(`[info]${message}`);
+    }
 
-
+    //#5 경고 로그를 출력
+    public warning(message : string){
+        console.log(`[warn] ${message}`);
+    }
 }
+
+//#6 유일한 객체를 얻고 메서드(info, warning)를 사용함. 
+let eagerLogger : EagerLogger = EagerLogger.getLogger();
+let eagerLogger2 : EagerLogger = EagerLogger.getLogger();
+eagerLogger.info("1번 : 정보 log");
+eagerLogger.warning("2번 : 경고 log");
+eagerLogger.info(`3번 : ${eagerLogger === eagerLogger2}`); // True
