@@ -6,4 +6,7 @@ export namespace CarInfo {
     export function Hello(){
         console.log("hello");
     }
+
+
+    
 }
