@@ -1,0 +1,22 @@
+package javaUtilExam;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapExam {
+	
+	public static void main(String[] args) {
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("1", "kim");
+		map.put("2", "lee");
+		map.put("3", "hong");
+		
+		map.put("4", "kang");
+		
+		System.out.println(map.size());
+		
+		
+		
+	}
+}

@@ -1,0 +1,17 @@
+package javaUtilExam;
+
+public class BoxExam {
+	public static void main(String[] args) {
+		Box box = new Box();
+		box.setObj(new Object());
+		Object obj = box.getObj();
+		
+		box.setObj("hello");
+		box.getObj();
+		
+		System.out.println(box);
+		
+		
+		
+	}
+}

@@ -1,0 +1,9 @@
+package javaStudy;
+
+public class MathExam {
+	public static void main(String[] args) {
+		int value1 = Math.max(5, 30);
+		System.out.println(value1);
+	
+	}
+}
