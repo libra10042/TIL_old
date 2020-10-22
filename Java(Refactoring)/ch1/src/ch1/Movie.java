@@ -1,33 +1,51 @@
 package ch1;
 
 public class Movie {
-	public static final int CHILDRENS = 2; 
-	public static final int REGULAR = 0; 
-	public static final int NEW_RELEASE = 1; 
-	private String _title; 
-	private int _priceCode; 
-	
+	public static final int CHILDRENS = 2;
+	public static final int REGULAR = 0;
+	public static final int NEW_RELEASE = 1;
+	private String _title;
+	private int _priceCode;
+
 	public Movie(String title, int priceCode) {
-		_title = title; 
+		_title = title;
 		_priceCode = priceCode;
-		
+
 	}
-	
-	
+
 	public int getPriceCode() {
-		return _priceCode; 
+		return _priceCode;
 	}
-	
+
 	public void setPriceCode(int arg) {
 		_priceCode = arg;
 	}
-	
+
 	public String getTitle() {
-		return _title; 
+		return _title;
 	}
-	
-	
-	
-	
-	
+
+	// 비디오별 종류별 대여료 계산 기능을 빼내어 별도의 함수로 작성 (반환값을 int로 하면 오류 출력)
+	double getCharge(int daysRented) {
+		double result = 0; 
+		switch (getPriceCode()) {
+		case Movie.REGULAR:
+			result += 2;
+			if (daysRented > 2)
+				result += (daysRented - 2) * 1.5;
+			break;
+		case Movie.NEW_RELEASE:
+			result += daysRented * 3;
+			break;
+		case Movie.CHILDRENS:
+			result += 1.5;
+			if (daysRented > 3)
+				result += 1.5;
+			if (daysRented > 3)
+				result += (daysRented - 3) * 1.5;
+			break;
+		}
+		return result;
+	}
+
 }
