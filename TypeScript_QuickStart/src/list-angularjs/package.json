@@ -1,0 +1,24 @@
+{
+  "name": "angularjs-client",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Angularjs Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "happygrammer",
+  "license": "ISC",
+  "dependencies": {
+    "@types/angular": "^1.6.4",
+    "@types/underscore": "^1.8.0",
+    "angular": "^1.6.4",
+    "underscore": "^1.8.0"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^3.0.1",
+    "ts-loader": "^3.5.0",
+    "typescript": "^2.7.2",
+    "webpack": "^3.11.0"
+  }
+}
