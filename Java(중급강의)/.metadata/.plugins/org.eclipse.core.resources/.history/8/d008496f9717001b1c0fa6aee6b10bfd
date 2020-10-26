@@ -1,0 +1,14 @@
+package javaDemon.exam;
+
+public class DaemonThread implements Runnable{
+	
+	@Override
+	public void run() {
+		while(true) {
+			System.out.println("데몬 스레드가 실행중입니다.");
+			Thread.sleep(500);
+		}
+		
+	}
+
+}

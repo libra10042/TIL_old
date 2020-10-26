@@ -1,0 +1,10 @@
+package javaThreadMethod.exam;
+
+public class ThreadB extends Thread{
+	int total; 
+	
+	public void run() {
+		System.out.println();
+	}
+	
+}

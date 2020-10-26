@@ -1,0 +1,15 @@
+package javaThreadMethod.exam;
+
+public class JoinExam {
+	public static void main(String[] args) {
+		MyThread5 thread = new MyThread5();
+		thread.start();
+		
+		
+		
+		System.out.println("시작");
+		
+		
+		System.out.println("종료");
+	}
+}

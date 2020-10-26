@@ -1,0 +1,8 @@
+package javaThreadMethod.exam;
+
+public class MyThread5 extends Thread {
+	public void run() {
+		// TODO Auto-generated method stub
+		super.run();
+	}
+}

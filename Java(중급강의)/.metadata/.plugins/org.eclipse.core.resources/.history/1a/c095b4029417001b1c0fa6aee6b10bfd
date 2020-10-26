@@ -1,0 +1,8 @@
+package javaThreadMethod.exam;
+
+public class JoinExam {
+	public static void main(String[] args) {
+		MyThread5 thread = new MyThread5();
+		
+	}
+}
