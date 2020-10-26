@@ -1,0 +1,6 @@
+package javaUtilExam;
+
+public @interface Count100 {
+
+	
+}
