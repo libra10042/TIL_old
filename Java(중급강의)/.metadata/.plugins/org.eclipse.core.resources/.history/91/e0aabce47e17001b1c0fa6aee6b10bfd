@@ -1,0 +1,18 @@
+package javaIO.exam;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class ByteExam1 {
+	public static void main(String[] args) {
+		FileInputStream fis = null; 
+		
+		try {
+			fis = new FileInputStream("src/javaIO/exam/ByteExam1.java");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}

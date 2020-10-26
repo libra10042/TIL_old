@@ -1,0 +1,14 @@
+package javaIO.exam;
+
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+
+public class ByteExam3 {
+	public static void main(String[] args) {
+		try{
+			DataOutputStream out = new DataOutputStream(new FileOutputStream(""));
+		}catch(Exception e) {
+			
+		}
+	}
+}

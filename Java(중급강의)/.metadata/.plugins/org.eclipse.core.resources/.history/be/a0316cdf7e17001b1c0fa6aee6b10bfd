@@ -1,0 +1,12 @@
+package javaIO.exam;
+
+import java.io.FileInputStream;
+
+public class ByteExam1 {
+	public static void main(String[] args) {
+		FileInputStream fis = null; 
+		
+		fis = new FileInputStream("src/javaIO/exam/ByteExam1.java");
+		
+	}
+}
