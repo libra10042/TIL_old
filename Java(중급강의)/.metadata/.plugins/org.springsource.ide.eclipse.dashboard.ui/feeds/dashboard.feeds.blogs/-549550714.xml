@@ -5,7 +5,344 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2020-10-22T20:47:55Z</updated>
+  <updated>2020-10-26T16:52:09Z</updated>
+  <entry>
+    <title>Case Study: Aggregator Function and Processor</title>
+    <link rel="alternate" href="https://spring.io/blog/2020/10/26/case-study-aggregator-function-and-processor" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Artem Bilan</name>
+    </author>
+    <id>tag:spring.io,2020-10-23:4237</id>
+    <updated>2020-10-26T16:52:09Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;This article is part of a blog series that explores the newly redesigned Spring Cloud Stream applications based on Java Functions.
+In this episode, we are investigating the Aggregator function and its relationship with the Splitter function.
+We will see how we can customize the default behavior.
+We will also take a look at the importance of configuring a shared message store for the aggregator.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here are all the previous parts of this blog series.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2020/07/13/introducing-java-functions-for-spring-cloud-stream-applications-part-0"&gt;Introducing Function Based Streaming Applications&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2020/07/20/introducing-java-functions-for-spring-cloud-stream-applications-part-1"&gt;Function Composition with Streaming Applications&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2020/07/27/creating-a-supplier-function-and-generating-spring-cloud-stream-source"&gt;How to Build a Supplier and Source Application&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2020/08/03/creating-a-function-for-consuming-data-and-generating-spring-cloud-stream-sink-applications"&gt;How to Build a Consumer and Sink Application&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2020/08/10/case-study-build-and-run-a-streaming-application-using-an-http-source-and-a-jdbc-sink"&gt;Build and Run a Simple Stream Application&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2020/08/17/case-study-http-request-function-and-processor"&gt;Case Study: HTTP Request Function and Processor&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2020/08/25/case-study-reading-from-a-file-and-writing-to-mongodb"&gt;Case Study: File Source and MongoDB Sink&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2020/09/10/case-study-relational-database-source-and-file-sink"&gt;Case Study: Relational Database Source and File Sink&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://spring.io/blog/2020/09/29/case-study-remote-file-ingest-with-spring-cloud-data-flow"&gt;Case Study: Remote File Ingest with Spring Cloud Data Flow&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="aggregator-function"&gt;&lt;a class="anchor" href="#aggregator-function"&gt;&lt;/a&gt;Aggregator function&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The Aggregator function is the basis for the &lt;code&gt;&lt;a href="https://docs.spring.io/spring-integration/docs/current/reference/html/message-routing.html#aggregator"&gt;AggregatingMessageHandler&lt;/a&gt;&lt;/code&gt; from Spring Integration, inheriting most of its functionality and exposes commonly used aggregator options as configuration properties.
+See &lt;code&gt;AggregatorFunctionProperties&lt;/code&gt; (or next section) for more information.
+The aggregator function is fully reactive and defined as a &lt;code&gt;Function&amp;lt;Flux&amp;lt;Message&amp;lt;?&amp;gt;&amp;gt;, Flux&amp;lt;Message&amp;lt;?&amp;gt;&amp;gt;&lt;/code&gt;.
+That＊s because an aggregator logic does not require it to produce a reply immediately.
+Rather, it stores the current message in a message store, grouped with other messages to be collected or reduced to some result, until the conditions required to release the result are met.
+This way it feels natural to have inbound messages as a stream (&lt;code&gt;Flux&lt;/code&gt;) and let them be combined via an aggregator to output stream (also a &lt;code&gt;Flux&lt;/code&gt;).
+So, what we just need is to &lt;code&gt;subscribe()&lt;/code&gt; to the result of the Aggregator function to initiate the flow.
+In fact, this is exactly what happens automatically when use such a reactive function in Spring Cloud Stream application when we use: the framework builds for us a &lt;code&gt;Flux&lt;/code&gt; of messages from input destination and processes a resulting &lt;code&gt;Flux&lt;/code&gt; on output destination.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="usage"&gt;&lt;a class="anchor" href="#usage"&gt;&lt;/a&gt;Usage&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Typically an aggregator is used in combination with the &lt;a href="https://docs.spring.io/spring-integration/docs/current/reference/html/message-routing.html#splitter"&gt;Splitter&lt;/a&gt;, which transforms a single incoming message into several outgoing message inluding some sequence detail headers.
+After some individual item processing (transforming, enriching etc.) we add an aggregator to combine those items back to a single message.
+The mentioned sequence detail headers are used as default correlation and release strategies to store messages in groups and make a decision when and how to combine and produce a single message.
+It feels natural to build such processing logic with function composition, which we will discuss later.
+But for now let&amp;#8217;s imagine (for simplicity) that we have some data we would like to combine into a single message!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;First of all we need to add a dependency for the aggregator function in our Spring Boot project:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code data-lang="xml"&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.springframework.cloud.fn&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;aggregator-function&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;And that&amp;#8217;s it!
+The aggregator function bean will be auto-configured just enough to let us autowire the function into our code and use it:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code data-lang="java"&gt;@Autowired
+Function&amp;lt;Flux&amp;lt;Message&amp;lt;?&amp;gt;&amp;gt;, Flux&amp;lt;Message&amp;lt;?&amp;gt;&amp;gt;&amp;gt; aggregatorFunction;
+...
+Flux&amp;lt;Message&amp;lt;?&amp;gt;&amp;gt; input =
+        Flux.just(MessageBuilder.withPayload("2")
+                .setHeader(IntegrationMessageHeaderAccessor.CORRELATION_ID, "some_mey")
+                .setHeader(IntegrationMessageHeaderAccessor.SEQUENCE_NUMBER, 2)
+                .setHeader(IntegrationMessageHeaderAccessor.SEQUENCE_SIZE, 2)
+                .build(),
+         MessageBuilder.withPayload("1")
+                .setHeader(IntegrationMessageHeaderAccessor.CORRELATION_ID, "some_mey")
+                .setHeader(IntegrationMessageHeaderAccessor.SEQUENCE_NUMBER, 1)
+                .setHeader(IntegrationMessageHeaderAccessor.SEQUENCE_SIZE, 2)
+                .build());
+
+Flux&amp;lt;Message&amp;lt;?&amp;gt;&amp;gt; output = this.aggregatorFunction.apply(input);
+
+output.as(StepVerifier::create)
+            .assertNext((message) -&amp;gt;
+                    assertThat(message)
+                            .extracting(Message::getPayload)
+                            .isInstanceOf(List.class)
+                            .asList()
+                            .hasSize(2)
+                            .contains("1", "2"))
+            .thenCancel()
+            .verify();&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;In this code snippet we demonstrate how two simple messages with predefined sequence details are combined to a single &lt;code&gt;List&amp;lt;String&amp;gt;&lt;/code&gt;.
+All the hard work is done inside the &lt;code&gt;aggregatorFunction&lt;/code&gt; and its default correlation and release strategies.
+This also includes a default group combinator options which builds a list of payloads from messages in the released group.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;More complex use-cases and configuration options we will review in the next sections.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="a-persistent-state-store"&gt;&lt;a class="anchor" href="#a-persistent-state-store"&gt;&lt;/a&gt;A persistent state store&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The data and information we process and operate in our application is really the most important part of the application.
+We need to think twice about when to keep the data in memory instead of some external store.
+In most cases we would use some database for a state store and/or messaging middleware to prevent data loss between producer and consumer.
+As an added bonus, this gives different instances in a cluster an access to the shared store for smooth distributed computation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;A persistent state store is not required for the Aggregator function to work, but is necessary in production to avoid data loss and ensure fail-over.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="configuration"&gt;&lt;a class="anchor" href="#configuration"&gt;&lt;/a&gt;Configuration&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The configuration options (&lt;code&gt;AggregatorFunctionProperties&lt;/code&gt;) for the Aggregator functions are straight forward and fully aligned with high-level options for the &lt;code&gt;&lt;a href="https://docs.spring.io/spring-integration/docs/current/reference/html/message-routing.html#aggregator"&gt;AggregatingMessageHandler&lt;/a&gt;&lt;/code&gt;.
+Here they are:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;correlation&lt;/code&gt; - a SpEL expression to determine a correlation key (group id) from the incoming messages.
+Such an expression (if provided) builds an &lt;code&gt;ExpressionEvaluatingCorrelationStrategy&lt;/code&gt; for the underlying &lt;code&gt;AggregatingMessageHandler&lt;/code&gt;.
+By default (when not provided), the &lt;code&gt;AggregatingMessageHandler&lt;/code&gt; uses a &lt;code&gt;HeaderAttributeCorrelationStrategy&lt;/code&gt; which is based on the &lt;code&gt;IntegrationMessageHeaderAccessor.CORRELATION_ID&lt;/code&gt; - a header which can be populated upstream by the splitter, or &lt;code&gt;PublishSubscribeChannel&lt;/code&gt; or recipient-list router.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;release&lt;/code&gt; - a SpEL expression to determine if stored message group should be released and emitted as an output message.
+Such an expression (if provided) builds an &lt;code&gt;ExpressionEvaluatingReleaseStrategy&lt;/code&gt; for the underlying &lt;code&gt;AggregatingMessageHandler&lt;/code&gt;.
+By default (when not provided), the &lt;code&gt;AggregatingMessageHandler&lt;/code&gt; uses a &lt;code&gt;SimpleSequenceSizeReleaseStrategy&lt;/code&gt; which is based on the stored group size and an &lt;code&gt;IntegrationMessageHeaderAccessor.SEQUENCE_SIZE&lt;/code&gt; - a header which can be populated upstream by the splitter, or &lt;code&gt;PublishSubscribeChannel&lt;/code&gt; or recipient-list router.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;aggregation&lt;/code&gt; - a SpEL expression to build an output result from the released message group.
+This expression (if provided) contributes to the &lt;code&gt;ExpressionEvaluatingMessageGroupProcessor&lt;/code&gt; for the underlying &lt;code&gt;AggregatingMessageHandler&lt;/code&gt;.
+By default (when not provided), the &lt;code&gt;AggregatingMessageHandler&lt;/code&gt; uses a &lt;code&gt;DefaultAggregatingMessageGroupProcessor&lt;/code&gt; which just combines payloads of messages in group into the &lt;code&gt;List&lt;/code&gt; and merge their headers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;groupTimeout&lt;/code&gt; - a SpEL expression to schedule a background task for expiring the group when no more messages arrive to it.
+See more information about this option in &lt;a href="https://docs.spring.io/spring-integration/docs/current/reference/html/message-routing.html#agg-and-group-to"&gt;Spring Integration&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;messageStoreType&lt;/code&gt; - a value from the &lt;code&gt;AggregatorFunctionProperties.MessageStoreType&lt;/code&gt; constant class to indicate which &lt;code&gt;MessageGroupStore&lt;/code&gt; implementation to use for storing the messages until the group for them is released.
+The supported &lt;code&gt;MessageGroupStore&lt;/code&gt; are: &lt;code&gt;ConfigurableMongoDbMessageStore&lt;/code&gt;, &lt;code&gt;RedisMessageStore&lt;/code&gt;, &lt;code&gt;GemfireMessageStore&lt;/code&gt;, &lt;code&gt;JdbcMessageStore&lt;/code&gt; and &lt;code&gt;SimpleMessageStore&lt;/code&gt; which is default one and stores messages on in the memory.
+This is the most important option which should be chosen according the target environment and available persistent store.
+It has more value when an Aggregator function is deployed as clustered instance (e.g. via Spring Cloud Data Flow when used as a part of the &lt;code&gt;aggregator-processor&lt;/code&gt;), so sharing the state you may produce messages into an aggregator on one instance, but they can be released on a different one.
+And with this you won&amp;#8217;t lose messages when application is crashed.
+The dependencies for the &lt;code&gt;MessageGroupStore&lt;/code&gt; implementations are packed into the final function uber jar and auto-configured according this options.
+Only the difference comes with the JDBC, where we have to supply an appropriate driver according target environment requirements.
+See more information about &lt;code&gt;MessageGroupStore&lt;/code&gt; abstraction in &lt;a href="https://docs.spring.io/spring-integration/docs/current/reference/html/system-management.html#message-store"&gt;Spring Integration System Management&lt;/a&gt; and in the previous blog post how to &lt;a href="https://spring.io/blog/2020/09/10/case-study-relational-database-source-and-file-sink"&gt;supply JDBC driver&lt;/a&gt;.
+All the configuration options for those persistent stores are just the same what Spring Boot provides for us to auto-configure them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;messageStoreEntity&lt;/code&gt; - this option is specific only for some &lt;code&gt;MessageGroupStore&lt;/code&gt; implementation: it refers to the client region for Gemfire/Geode; the table prefix for JDBC; a collection name in case of MongoDB.
+For the rest of implementations it is ignored.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;See more information about those components in &lt;a href="https://docs.spring.io/spring-integration/docs/current/reference/html/index.html"&gt;Spring Integration&lt;/a&gt; and respective function implementations (if any) in the &lt;a href="https://github.com/spring-cloud/stream-applications"&gt;Stream Applications&lt;/a&gt; project.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;So, if we want to run an Aggregator function (as a standalone, as a Spring Cloud Stream &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/applications/processor/aggregator-processor"&gt;processor&lt;/a&gt; or as a part of Spring Cloud Data Flow stream definition) with some custom properties and against shared MongoDB store, we may declare it like this:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre&gt;java -jar aggregator-processor-kafka-3.0.0-SNAPSHOT.jar
+    --aggregator.correlation=T(Thread).currentThread().id
+    --aggregator.release=!messages.?[payload == 'bar'].empty
+    --aggregator.aggregation=#this.?[payload == 'foo'].![payload]
+    --aggregator.messageStoreType=mongodb
+    --aggregator.message-store-entity=aggregatorTest
+    --spring.data.mongodb.uri=mongodb://localhost/test&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Where the values for these properties are:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;aggregator.correlation&lt;/code&gt; - the consumer thread id as a key for messages to group;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;aggregator.release&lt;/code&gt; - a SpEL expression against message group to release it only when &lt;code&gt;bar&lt;/code&gt; payload has arrived;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;aggregator.aggregation&lt;/code&gt; - a SpEL expression to select and project a message group collection where only messages with &lt;code&gt;foo&lt;/code&gt; payload are combined to the final result;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;aggregator.messageStoreType&lt;/code&gt; - use a MongoDb &lt;code&gt;MessageGroupStore&lt;/code&gt; implementation;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;aggregator.message-store-entity&lt;/code&gt; - a collection name in MongoDb database;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;spring.data.mongodb.uri&lt;/code&gt; - the MongoDb database connection.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The same configuration properties set remains unaffected even if we compose this function with others in the custom Spring Boot application.
+See the next section for more information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="composition"&gt;&lt;a class="anchor" href="#composition"&gt;&lt;/a&gt;Composition&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The Aggregator function may not make sense by itself in a production solution.
+Of course, in most cases, it is used in combination with other upstream and downstream functions.
+As mentioned before, it is typical to have an aggregator to be composed with a &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/functions/function/splitter-function"&gt;splitter&lt;/a&gt; pre-processing.
+It is possible to compose these functions programmatically using Java API via &lt;code&gt;Function.andThan()&lt;/code&gt; and &lt;code&gt;Function.compose()&lt;/code&gt;, but, since these methods are very type strict, we would need to perform some intermediate conversions between to satisfy functions' inputs and outputs.
+With the &lt;a href="https://spring.io/projects/spring-cloud-function"&gt;Spring Cloud Function&lt;/a&gt; library on board,  we can bypass the hard programming work of writing various conversions, while retaining the required sequence details message headers.
+We rather will rely on the type inference and out-of-the-box conversion capabilities in the framework and to keep our composition as simple as possible.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Let&amp;#8217;s assume we have an input JSON like this:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code data-lang="json"&gt;{
+  "store": {
+    "book": [
+      {
+        "category": "reference",
+        "author": "Nigel Rees",
+        "title": "Sayings of the Century",
+        "price": 8.95
+      },
+      {
+        "category": "fiction",
+        "author": "Evelyn Waugh",
+        "title": "Sword of Honour",
+        "price": 12.99
+      },
+      {
+        "category": "fiction",
+        "author": "Herman Melville",
+        "title": "Moby Dick",
+        "isbn": "0-553-21311-3",
+        "price": 8.99
+      },
+      {
+        "category": "fiction",
+        "author": "J. R. R. Tolkien",
+        "title": "The Lord of the Rings",
+        "isbn": "0-395-19395-8",
+        "price": 22.99
+      }
+    ]
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;And our task is to provided the book names as a single comma-delimited string.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We just need to compose three out-of-the-box functions into a single Spring Cloud Function (or Stream) application.
+The dependencies for these functions are: &lt;code&gt;splitter-function&lt;/code&gt;, &lt;code&gt;spel-function&lt;/code&gt; and our &lt;code&gt;aggregator-function&lt;/code&gt;.
+The configuration properties for such an application might be like this:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre&gt;spring.cloud.function.definition=splitterFunction|spelFunction|aggregatorFunction
+splitter.expression=#jsonPath(payload,'$.store.book')
+spel.function.expression=title
+aggregator.aggregation=T(org.springframework.util.StringUtils).collectionToCommaDelimitedString(#this.![payload])&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We could use a similar stream definition and configuration with Spring Cloud Data Flow.
+The only difference is that messages from/to the functions will travel over the binder, using pre-built processor applications.
+You could actually use this composition in something like the &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/applications/source/mongodb-source"&gt;Mongo DB source&lt;/a&gt;.
+One more point to keep in mind with Spring Cloud Data Flow is that Aggregator function is type-agnostic and consumes messages with a &lt;code&gt;byte[]&lt;/code&gt; payload.
+If you are planning to perform some complex logic against payload, as in the above expressions, you probably need to compose this function with one upstream to convert the &lt;code&gt;byte[]&lt;/code&gt; payload into a domain object or some other compatible type like &lt;code&gt;HashMap&lt;/code&gt;.
+If payload is a JSON representation, it always can be accessed with a &lt;code&gt;#jsonPath()&lt;/code&gt; SpEL function we showed above for splitter expression.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;See more information about &lt;a href="https://spring.io/blog/2020/07/20/introducing-java-functions-for-spring-cloud-stream-applications-part-1"&gt;functions composition&lt;/a&gt; in one of the previous blog post for this series.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="conclusion"&gt;&lt;a class="anchor" href="#conclusion"&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This blog blog walked through the details of an Aggregator &lt;code&gt;Function&lt;/code&gt; and how it is used in the Spring Cloud Stream Aggregator Processor.
+We also looked at how to use the configuration properties for this function.
+We then took a deep dive into a few variants of using the aggregator in a standalone application, exploring various features along the way.
+Finally, we saw how we can easily switch &lt;code&gt;MessageGroupStore&lt;/code&gt; implementation for persistent state in the aggregator between messages.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="stay-tuned"&gt;&lt;a class="anchor" href="#stay-tuned"&gt;&lt;/a&gt;Stay tuned&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This series is going to continue. In the next coming weeks, we will look at more functions and applications.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>A Bootiful Podcast: Optic CEO Aidan Cunniffe on OpenAPI, contract testing, and so much more</title>
     <link rel="alternate" href="https://spring.io/blog/2020/10/22/a-bootiful-podcast-optic-ceo-aidan-cunniffe-on-openapi-contract-testing-and-so-much-more" />
@@ -865,507 +1202,6 @@ azure.cosmos.primary.key=your-primary-cosmosDb-key
 &lt;p&gt;&lt;strong&gt;Deprecation of Helm Hub Chart&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Helm charts for SCDF are now deprecated and moved into &lt;a href="https://github.com/bitnami/charts/tree/master/bitnami/spring-cloud-dataflow"&gt;Bitnami OSS charts&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;&lt;a href="#stay-in-touch-hellip" class="anchor" name="stay-in-touch-hellip"&gt;&lt;/a&gt;Stay in touch&amp;hellip;&lt;/h2&gt;
 &lt;p&gt;As always, we welcome feedback and contributions, so please reach out to us on &lt;a href="https://stackoverflow.com/questions/tagged/spring-cloud-dataflow"&gt;Stack Overflow&lt;/a&gt; or &lt;a href="https://github.com/spring-cloud/spring-cloud-dataflow/issues"&gt;GitHub&lt;/a&gt; or via &lt;a href="https://gitter.im/spring-cloud/spring-cloud-dataflow"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Case Study: Remote File Ingest with Spring Cloud Data Flow</title>
-    <link rel="alternate" href="https://spring.io/blog/2020/09/29/case-study-remote-file-ingest-with-spring-cloud-data-flow" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>David Turanski</name>
-    </author>
-    <id>tag:spring.io,2020-09-28:4216</id>
-    <updated>2020-09-29T14:31:55Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;This article is part of a blog series that explores the newly redesigned Spring Cloud Stream applications based on Java Functions. In this chapter, we explore how to use &lt;a href="https://github.com/spring-cloud/stream-applications"&gt;Spring Cloud Stream Applications&lt;/a&gt; and &lt;a href="https://dataflow.spring.io"&gt;Spring Cloud Data Flow&lt;/a&gt; to implement a very common ETL use case: Ingesting files from a remote service. Specifically, we will look at how to ingest files from S3, SFTP, and FTP.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Here is what is included in the blog series to date:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2020/07/13/introducing-java-functions-for-spring-cloud-stream-applications-part-0"&gt;Introducing Function Based Streaming Applications&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2020/07/20/introducing-java-functions-for-spring-cloud-stream-applications-part-1"&gt;Function Composition with Streaming Applications&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2020/07/27/creating-a-supplier-function-and-generating-spring-cloud-stream-source"&gt;How to Build a Supplier and Source Application&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2020/08/03/creating-a-function-for-consuming-data-and-generating-spring-cloud-stream-sink-applications"&gt;How to Build a Consumer and Sink Application&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2020/08/10/case-study-build-and-run-a-streaming-application-using-an-http-source-and-a-jdbc-sink"&gt;Build and Run a Simple Stream Application&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2020/08/17/case-study-http-request-function-and-processor"&gt;Case Study: HTTP Request Function and Processor&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2020/08/25/case-study-reading-from-a-file-and-writing-to-mongodb"&gt;Case Study: File Source and MongoDB Sink&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2020/09/10/case-study-relational-database-source-and-file-sink"&gt;Case Study: Relational Database Source and File Sink&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="remote-file-ingest-architecture"&gt;&lt;a class="anchor" href="#remote-file-ingest-architecture"&gt;&lt;/a&gt;Remote File Ingest Architecture&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To put things in perspective, Spring Cloud Data Flow has supported remote file ingest with SFTP for a few years. The fundamental architecture hasn&amp;#8217;t changed since I authored &lt;a href="https://tanzu.vmware.com/content/blog/need-24x7-etl-then-move-to-cloud-native-file-ingest-with-spring-cloud-data-flow"&gt;this post&lt;/a&gt;, but as we shall see, the new stream applications allow a much simpler and more flexible solution.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;span class="image"&gt;&lt;img src="https://github.com/spring-cloud/stream-applications/raw/gh-pages/img/s3-file-ingest/fileingest.png" alt="fileingest"&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The file ingest architecture starts with a &lt;em&gt;remote file source&lt;/em&gt; which polls a remote directory and publishes a message for each file it detects.
-The term &lt;em&gt;remote file source&lt;/em&gt; refers to any of source application that provides this functionality. To date, this includes &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/applications/source/s3-source"&gt;Amazon S3 source&lt;/a&gt;, &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/applications/source/sftp-source"&gt;SFTP source&lt;/a&gt;, and &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/applications/source/ftp-source"&gt;FTP source&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Each of these sources may be configured to synchronize files in a remote directory to a local directory. The message payload produced by the underlying &lt;code&gt;Supplier&lt;/code&gt; function, in this case, is the local file path. The output of the supplier is converted to a Task Launch Request along the way. We&amp;#8217;ll explain how this is done later. The request is received by a &lt;code&gt;Task Launcher&lt;/code&gt; sink which posts it to a Data Flow Server, via its REST API, to launch a batch job to ingest the file contents. In the example shown below, the job inserts each line of a CSV file into a database table.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;If we&amp;#8217;re running on a cloud platform, such as Kubernetes or Cloud Foundry, we need to configure a shared volume, using NFS for example, so that the task application can access the file that the source downloaded.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This is the recommended file ingest architecture using Spring Cloud Data Flow. The following characteristics make it very resilient:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;The file ingest job is implemented using Spring Batch. It is well suited for large file processing, in which an interim failure may require the job to restart where it left off - a situation which Spring Batch is specifically designed to handle.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/applications/sink/tasklauncher-sink"&gt;Task Launcher sink&lt;/a&gt; uses a &lt;a href="https://spring.io/blog/2018/02/27/spring-cloud-stream-2-0-polled-consumers"&gt;PollableMessageSource&lt;/a&gt; so that it can first confirm that Data Flow can accept a task request before pulling a task launch request from the input queue.  Data Flow is configured with a maximum number of allowed concurrent task executions. The sink, using the Data Flow API, checks this limit has not been reached before accepting the next request. This flow control, similar to back-pressure,  prevents platform resource saturation that can easily occur when, say,  100 files are dropped into the remote directory.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The shared volume is required to enable the batch job to continue processing from the last committed transaction,  if necessary.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;It is possible to implement this type of workload without Spring Cloud Data Flow, or Spring Batch for that matter. We&amp;#8217;ll leave that as an exercise for the reader.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="remote-file-sources"&gt;&lt;a class="anchor" href="#remote-file-sources"&gt;&lt;/a&gt;Remote File Sources&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;What do we mean by a remote file source? The Amazon S3, SFTP, and FTP source applications share a common lineage in Spring Integration so behave essentially the same way. For example classes that extend &lt;a href="https://docs.spring.io/spring-integration/api/org/springframework/integration/file/remote/synchronizer/AbstractInboundFileSynchronizer.html"&gt;AbstractInboundFileSynchronizer&lt;/a&gt; are used to synchronize a local directory with a remote directory. The base class includes configuring a &lt;code&gt;FileListFilter&lt;/code&gt; to specify which files to include. Commonly, this is used to pattern match file names. Additionally, this component uses a &lt;a href="https://docs.spring.io/spring-integration/api/org/springframework/integration/metadata/MetadataStore.html"&gt;MetadataStore&lt;/a&gt; used to track what files are in the local directory already, along with last modified time, so that only new or changed files are synchronized. By default the metadata store is an in memory implementation. This means that we may get an event for a file we have already processed when the source restarts.  To address this,  each of these sources may be easily customized to use one of several &lt;a href="https://docs.spring.io/spring-integration/reference/html/meta-data-store.html"&gt;persistent implementations&lt;/a&gt; available. &lt;code&gt;AbstractFileSynchronizer&lt;/code&gt; also supports using a SpEL expression to create the local file name, automatic remote file deletion, and more.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Besides file synchronization, each of these sources includes the &lt;code&gt;file.consumer.mode&lt;/code&gt; property which can be one of&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;contents&lt;/code&gt; - The payload is the file contents a byte array&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;ref&lt;/code&gt; - The payload is the local file path&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;lines&lt;/code&gt; - Each payload is a line in the file&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In addition, each source provides a &lt;code&gt;list-only&lt;/code&gt; option, in which the payload contains metadata about the remote file and synchronization is not performed.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="sftp-source"&gt;&lt;a class="anchor" href="#sftp-source"&gt;&lt;/a&gt;SFTP Source&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/applications/source/sftp-source"&gt;SFTP Source&lt;/a&gt; consumes files from an SFTP server. Since SFTP is the most commonly used remote file service, this component has the most advanced features. In fact, in the previous generation of stream applications, SFTP was the only source we supported for the file ingest architecture.  As it evolved to support task launch requests,  we ended up implementing a special variant specifically for the file ingest use case. The &lt;code&gt;sftp-datalow&lt;/code&gt; source, designed to work with the &lt;code&gt;tasklauncher-dataflow&lt;/code&gt; sink, embedded code to transform the payload to a task launch request.  In the current release, we have retired this variation in favor of function composition.  Additionally, the sftp source can be set up to poll multiple remote directories, rotating among each. In this configuration, the rotation algorithm can be &lt;code&gt;fair&lt;/code&gt; - each remote directory gets one poll - or not - each remote directory is continually polled until there are no new files. It also supports &lt;code&gt;sftp.supplier.stream=true&lt;/code&gt; which will stream the contents directly without synchronizing to a local directory.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="ftp-source"&gt;&lt;a class="anchor" href="#ftp-source"&gt;&lt;/a&gt;FTP Source&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/applications/source/ftp-source"&gt;FTP Source&lt;/a&gt; is very similar to the SFTP source, except that it uses FTP and does not encrypt data in transit, so it is less secure. It provides the same core features, but currently does not support multiple remote directories, &lt;code&gt;list-only&lt;/code&gt;, or &lt;code&gt;stream&lt;/code&gt; mode.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="amazon-s3-source"&gt;&lt;a class="anchor" href="#amazon-s3-source"&gt;&lt;/a&gt;Amazon S3 Source&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The &lt;a href="https://github.com/spring-cloud/stream-applications/blob/master/applications/source/s3-source/README.adoc"&gt;Amazon S3 Source&lt;/a&gt; is modelled after the others, and supports the same file consumer modes as well as &lt;code&gt;list-only&lt;/code&gt; mode.  In this case &lt;code&gt;s3.supplier.remote-dir&lt;/code&gt; refers to an S3 bucket.  When using &lt;code&gt;list-only&lt;/code&gt;, the payload contains an &lt;code&gt;S3ObjectSummary&lt;/code&gt; which provides metadata about the S3 object. S3 itself provides a richer set of features than FTP/SFTP.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In addition to AWS S3, this source can now be used with S3 compatible implementations, such as &lt;a href="https://min.io/product/overview"&gt;Minio&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="the-task-launcher-sink"&gt;&lt;a class="anchor" href="#the-task-launcher-sink"&gt;&lt;/a&gt;The Task Launcher Sink&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In prior releases, this was known as &lt;code&gt;tasklauncher-dataflow&lt;/code&gt; sink. Originally, we also had standalone task launchers, one for each supported platform. These have since been deprecated, in favor of the Data Flow backed implementation, for ease of use, and resilience, as described above.  Accordingly, we dropped "Data Flow" from the name. It is now simply &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/applications/sink/tasklauncher-sink"&gt;tasklauncher-sink&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The sink is built on a corresponding &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/functions/function/tasklauncher-function"&gt;tasklauncher-function&lt;/a&gt;, which may be used in any standalone application to send a task launch request to Data Flow. This is implemented as
-&lt;code&gt;Function&amp;lt;LaunchRequest, Optional&amp;lt;Long&amp;gt;&amp;gt;&lt;/code&gt; . &lt;a href="https://github.com/spring-cloud/stream-applications/blob/master/functions/function/tasklauncher-function/src/main/java/org/springframework/cloud/fn/tasklauncher/LaunchRequest.java"&gt;LaunchRequest&lt;/a&gt; is a simple value object that contains, at a minimum, the name of the task to launch. This task must be defined in Data Flow using the same name.  Optionally, the launch request includes command line arguments, and deployment properties. The function returns the unique task ID as a long if the request was submitted. The request will not be submitted if the Data Flow server indicates the task platform has reached its maximum running tasks, the data flow server cannot be reached, or if the request is invalid.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The Task Launcher sink invokes its base function from within a scheduled task, triggered by a &lt;a href="https://docs.spring.io/spring-integration/api/org/springframework/integration/util/DynamicPeriodicTrigger.html"&gt;DynamicPeriodicTrigger&lt;/a&gt; which allows updating its period at runtime. In this case, we use it to implement exponential backoff. From an initial period of one second, the trigger will back off, eventually to every 30 seconds if:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;There are no queued launch requests&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The platform is already running the maximum number of tasks&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;If either of these conditions changes, the source resets the period to its initial value.
-Of course the initial and maximum trigger period are configurable.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The triggered task, checks if the server can except new launch requests, and if so, it polls the input queue, using a &lt;a href="https://spring.io/blog/2018/02/27/spring-cloud-stream-2-0-polled-consumers"&gt;PollableMessageSource&lt;/a&gt;. If there is a request, it will post the request to Data Flow via its REST API.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="creating-a-task-launch-request"&gt;&lt;a class="anchor" href="#creating-a-task-launch-request"&gt;&lt;/a&gt;Creating a task launch request&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The new function-based architecture provides first class support for &lt;a href="https://spring.io/blog/2020/07/20/introducing-java-functions-for-spring-cloud-stream-applications-part-1"&gt;function composition&lt;/a&gt;. As part of this strategy, certain common functions may be composed with any source. Notably, this includes a &lt;a href="https://github.com/spring-cloud/stream-applications/tree/master/functions/function/task-launch-request-function"&gt;task-launch-request-function&lt;/a&gt;.
-This means that any remote file source may now be configured to produce a task launch request. The task launch request function can evaluate SpEL expressions. For example, each task launch request may provide a different file path as a command line argument.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="putting-it-all-together"&gt;&lt;a class="anchor" href="#putting-it-all-together"&gt;&lt;/a&gt;Putting it all together&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Let&amp;#8217;s dive into an example to see how this works. We will use the S3 Source, the Task Launcher Sink, Spring Cloud Data Flow, an S3 compatible service, and a simple Spring Batch application to process the file.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To keep it simple, we will run everything locally, using Docker Compose.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="install-spring-cloud-data-flow"&gt;&lt;a class="anchor" href="#install-spring-cloud-data-flow"&gt;&lt;/a&gt;Install Spring Cloud Data Flow&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Create a project directory for this example, open a terminal session, and cd to the project directory. Download the SCDF docker-compose file.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;wget -O docker-compose.yml https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow/v2.6.1/spring-cloud-dataflow-server/docker-compose.yml&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="start-spring-cloud-data-flow"&gt;&lt;a class="anchor" href="#start-spring-cloud-data-flow"&gt;&lt;/a&gt;Start Spring Cloud Data Flow&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Set the Data Flow and Skipper versions, along with the URI to import the latest stream applications.  Then run &lt;code&gt;docker-compose&lt;/code&gt;:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;export DATAFLOW_VERSION=2.6.1
-export SKIPPER_VERSION=2.5.1
-export STREAM_APPS_URI=https://repo.spring.io/libs-snapshot-local/org/springframework/cloud/stream/app/stream-applications-descriptor/2020.0.0-SNAPSHOT/stream-applications-descriptor-2020.0.0-SNAPSHOT.stream-apps-kafka-maven
-docker-compose up&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="create-some-data"&gt;&lt;a class="anchor" href="#create-some-data"&gt;&lt;/a&gt;Create some data&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The SCDF &lt;code&gt;docker-compose.yml&lt;/code&gt; mounts the current direcory, so these files are accessible to the containers, under the mount path &lt;code&gt;/root/scdf&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We will use Minio for S3 storage, and will run it in a Docker container to bind to the &lt;code&gt;minio&lt;/code&gt; directory. We will add a data file to &lt;code&gt;minio/mybucket&lt;/code&gt;.  This will act as our remote directory.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Let&amp;#8217;s also create a &lt;code&gt;download&lt;/code&gt; directory to act as our shared local directory.
-The &lt;code&gt;download&lt;/code&gt; directory is located on a shared volume that is accessible to any application containers that need it. In this case, the S3 source that downloads files from S3, and the batch application that will ingest the data and write it to a database table. In a production environment, this would be an external persistent volume, such as an NFS mounted directory on a dedicated server.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;mkdir -p minio/mybucket
-mkdir download&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Create a data file, &lt;code&gt;name-list.csv&lt;/code&gt; in the S3 bucket location. We happen to have one you can download:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;wget -o minio/mybucket/name-list.csv https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow-samples/master/batch/file-ingest/data/name-list.csv&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This contains lines of &lt;code&gt;firstname&lt;/code&gt;,&lt;code&gt;lastname&lt;/code&gt;. The batch job will insert a row into the &lt;code&gt;people&lt;/code&gt; table for each line in the file.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Our project directory should now look like this:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;.
-戍式式 docker-compose.yml
-戍式式 download
-戌式式 minio
-    戌式式 mybucket
-        戌式式 name-list.csv&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="start-minio"&gt;&lt;a class="anchor" href="#start-minio"&gt;&lt;/a&gt;Start Minio&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We will run Minio, creating a volume mount to bind its container&amp;#8217;s &lt;code&gt;/data&lt;/code&gt; path to the &lt;code&gt;minio&lt;/code&gt; directory.
-This will create an S3 bucket, &lt;code&gt;mybucket&lt;/code&gt; containing &lt;code&gt;name-list.csv&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;docker run --mount type=bind,source="$(pwd)"/minio,target=/data -p 9000:9000 -e "MINIO_ACCESS_KEY=minio" -e "MINIO_SECRET_KEY=minio123" minio/minio server /data&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;At this point, if you like, you can open a browser to &lt;a href="http://localhost:9000" class="bare"&gt;http://localhost:9000&lt;/a&gt; and log in with the above credentials and view the bucket.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="use-data-flow-to-create-the-task-and-stream"&gt;&lt;a class="anchor" href="#use-data-flow-to-create-the-task-and-stream"&gt;&lt;/a&gt;Use Data Flow to create the task and stream&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Now that we have set up our local environment, we can orchestrate our file ingest pipeline.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect3"&gt;
-&lt;h4 id="register-the-batch-application"&gt;&lt;a class="anchor" href="#register-the-batch-application"&gt;&lt;/a&gt;Register the batch application&lt;/h4&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We happen to have the application we need, published to the &lt;code&gt;repo.spring.io&lt;/code&gt; Maven repo.
-The source code is &lt;a href="https://github.com/spring-cloud/spring-cloud-dataflow-samples/tree/master/batch/file-ingest"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;To register this application, open your browser to &lt;a href="http://localhost:9393/dashboard" class="bare"&gt;http://localhost:9393/dashboard&lt;/a&gt; and navigate to the Apps page. Click on &lt;code&gt;Add Application(s)&lt;/code&gt; and register a &lt;code&gt;Task&lt;/code&gt; application, named &lt;code&gt;fileingest&lt;/code&gt; using the URI.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;maven://io.spring.cloud.dataflow.ingest:ingest:1.0.0.BUILD-SNAPSHOT&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Then click on &lt;code&gt;Register the application(s)&lt;/code&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;span class="image"&gt;&lt;img src="https://github.com/spring-cloud/stream-applications/raw/gh-pages/img/s3-file-ingest/RegisterTaskApplication.png" alt="RegisterTaskApplication"&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect3"&gt;
-&lt;h4 id="create-a-task-definition"&gt;&lt;a class="anchor" href="#create-a-task-definition"&gt;&lt;/a&gt;Create a task definition&lt;/h4&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Once the application is registered, we need to create a task definition which will be referenced in the task launch request. We will name the task &lt;code&gt;fileingest&lt;/code&gt;, the same as the app.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;span class="image"&gt;&lt;img src="https://github.com/spring-cloud/stream-applications/raw/gh-pages/img/s3-file-ingest/CreateFileIngestTask.png" alt="CreateFileIngestTask"&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect3"&gt;
-&lt;h4 id="create-the-stream"&gt;&lt;a class="anchor" href="#create-the-stream"&gt;&lt;/a&gt;Create the stream&lt;/h4&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Now we will create a stream to launch the &lt;code&gt;fileingest&lt;/code&gt; task for each new file in the S3 bucket.
-Since we already have a file in the S3 bucket, we expect it to be downloaded to our shared &lt;code&gt;download&lt;/code&gt; directory. When that happens, a task launch request will be sent to the Task Launcher sink, which will launch the &lt;code&gt;fileingest&lt;/code&gt; task to process it.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Select &lt;code&gt;Streams&lt;/code&gt; on the left menu bar and click on &lt;code&gt;Create stream(s)&lt;/code&gt;.  Cut and paste the stream definition, below, into the text area.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock note"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;div class="title"&gt;Note&lt;/div&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-Substitute your host&amp;#8217;s LAN IP address in the S3 endpoint URL. Since &lt;code&gt;localhost&lt;/code&gt; resolves to the container&amp;#8217;s own IP, we need to use the LAN IP. There are various ways to get this value.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;works for me on OS/X.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Also&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;dig +short $(hostname)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;used to work until my employer put my machine on their domain.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Here is the stream definition:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;s3 --spring.cloud.function.definition=s3Supplier,taskLaunchRequestFunction --file.consumer.mode=ref --s3.common.endpoint-url=http:&amp;lt;lan-ip-address&amp;gt;:9000 --s3.common.path-style-access=true --s3.supplier.remote-dir=mybucket --s3.supplier.local-dir=/root/scdf/download --cloud.aws.credentials.accessKey=minio --cloud.aws.credentials.secretKey=minio123 --cloud.aws.region.static=us-east-1 --cloud.aws.stack.auto=false --task.launch.request.taskName=fileingest --task.launch.request.argExpressions='localFilePath=payload' | tasklauncher --spring.cloud.dataflow.client.server-uri=http://dataflow-server:9393&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The stream definition is basically &lt;code&gt;s3|tasklauncher&lt;/code&gt; but the S3 source requires some configuration. To break it down:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;spring.cloud.function.definition=s3Supplier,taskLaunchRequestFunction&lt;/code&gt; - the secret sauce for function composition.
-Here, we are using the comma as a composition delimiter, instead of the standard &lt;code&gt;|&lt;/code&gt;. The DSL parser gets confused if the &lt;code&gt;|&lt;/code&gt; is used in this way.
-We are composing &lt;code&gt;s3supplier&lt;/code&gt;,  the primary function for the S3 source, with &lt;code&gt;taskLaunchRequestFunction&lt;/code&gt;, a Function Bean in the application context, available to any of the standard sources, if we care to use it.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;file.consumer.mode=ref&lt;/code&gt; - The payload is the path of the downloaded file.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;s3.common.endpoint-url&lt;/code&gt; - The S3 service endpoint for our Minio instance. You don&amp;#8217;t need this if you&amp;#8217;re using AWS S3.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;s3.common.oath-style-access=true&lt;/code&gt; - Minio requires this&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;s3.supplier.remote-dir=mybucket&lt;/code&gt; - The S3 bucket our source will monitor&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;3.supplier.local-dir=/root/scdf/download&lt;/code&gt; - The local directory path from the container&amp;#8217;s perspective&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;cloud.aws.credentials.accessKey=minio&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;cloud.aws.credentials.secretKey=minio123&lt;/code&gt; - The credentials use the &lt;code&gt;spring-cloud-aws&lt;/code&gt; property names directly&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;cloud.aws.region.static=us-east-1&lt;/code&gt; - The AWS s3 SDK requires a region, Minio ignores this&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;cloud.aws.stack.auto=false&lt;/code&gt; - Don&amp;#8217;t do anything special for AWS.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;task.launch.request.taskName=fileingest&lt;/code&gt; - The name of the task to launch. This is required but may be dynamically set via a SpEL expression.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;task.launch.request.argExpressions='localFilePath=payload'&lt;/code&gt; - Each time we launch the task, we want to pass the file location as a command line argument, in this case, our ingest task is looking for an argument named &lt;code&gt;localFilePath&lt;/code&gt;, the value is the message payload evaluated for each message. This path is in the configured local directory, &lt;code&gt;/root/scdf/download/&amp;lt;filename&amp;gt;&lt;/code&gt;. So the batch application can see it.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The task launcher sink in this case only needs the Data Flow Server URI. For the sink, running in the skipper container, the host name is &lt;code&gt;dataflow-server&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;span class="image"&gt;&lt;img src="https://github.com/spring-cloud/stream-applications/raw/gh-pages/img/s3-file-ingest/CreateFileIngestStream.png" alt="CreateFileIngestStream"&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Create the stream and give it a name.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect3"&gt;
-&lt;h4 id="deploy-the-stream"&gt;&lt;a class="anchor" href="#deploy-the-stream"&gt;&lt;/a&gt;Deploy the stream&lt;/h4&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Deploy the stream using the &lt;code&gt;play&lt;/code&gt; button.  This opens a page to let you review the configuration and make any changes. Press &lt;code&gt;Deploy stream&lt;/code&gt; at the bottom of the page.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect3"&gt;
-&lt;h4 id="verify-the-task-was-launched"&gt;&lt;a class="anchor" href="#verify-the-task-was-launched"&gt;&lt;/a&gt;Verify the task was launched&lt;/h4&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Once the stream is deployed, go to the &lt;code&gt;Tasks&lt;/code&gt; page, eventually (within 30 seconds) you should see the &lt;code&gt;fileingest&lt;/code&gt; task is complete.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;span class="image"&gt;&lt;img src="https://github.com/spring-cloud/stream-applications/raw/gh-pages/img/s3-file-ingest/TaskView.png" alt="TaskView"&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;You can also see, the file was copied to the &lt;code&gt;download&lt;/code&gt; directory:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;.
-戍式式 docker-compose.yml
-戍式式 download
-弛?? 戌式式 name-list.csv
-戌式式 minio
-    戌式式 mybucket
-        戌式式 name-list.csv&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;From the &lt;code&gt;Executions&lt;/code&gt; tab you can get more details on the task execution.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Since this is also a Spring Batch application, you can go to the &lt;code&gt;Jobs&lt;/code&gt; page,  go to &lt;code&gt;ingestJob&lt;/code&gt;, and click on the &lt;code&gt;info&lt;/code&gt; icon to display the Job execution details:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;span class="image"&gt;&lt;img src="https://github.com/spring-cloud/stream-applications/raw/gh-pages/img/s3-file-ingest/JobDetails.png" alt="JobDetails" width="100%"&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="verify-the-data-in-the-database"&gt;&lt;a class="anchor" href="#verify-the-data-in-the-database"&gt;&lt;/a&gt;Verify the data in the database&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Job details reports it performed 5494 writes. The Data Flow Server configures all task apps' DataSource to use its database to record task and job execution status.
-For this demo, we are using the same DataSource to write the application data.
-We can connect to the &lt;code&gt;dataflow-mysql&lt;/code&gt; container to query the table:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;docker exec -it dataflow-mysql mysql -u root -p&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;login with the password &lt;code&gt;rootpw&lt;/code&gt; and query the table:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;span class="image"&gt;&lt;img src="https://github.com/spring-cloud/stream-applications/raw/gh-pages/img/s3-file-ingest/VerifyData.png" alt="VerifyData" width="50%"&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="conclusion"&gt;&lt;a class="anchor" href="#conclusion"&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;If you read this far, thank you for your time and attention.
-If you ran the demo, a well deserved Congratulations!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Even in its simplest form, this is a fairly advanced use case for Data Flow.
-Here we provided the Spring Batch application.
-Normally, you would write your own (although the next release of Spring Cloud Task is rumored to include a configurable batch application).
-Other than that, we didn&amp;#8217;t need to write any code to have a fully functional, cloud native, event-driven ETL pipeline to ingest data from S3 to a relational database.
-Being event-driven means new data is ingested and available to users as soon as it arrives, rather than running on a nightly schedule with data available the next day.
-Files may be processed concurrently, with multiple job instances running as needed.
-Since Data Flow limits the number of concurrent tasks running on the platform, this architecture can handle a very high load without exhausting  platform resources.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;A viable alternative for ingesting files from S3 eliminates the need to copy files to a shared file system.
-In this case, the S3 source can be configured as &lt;code&gt;list only=true&lt;/code&gt; so that it will provide the remote S3 path.
-The batch job then connects to S3 and processes the remote file directly.
-This &lt;a href="https://stackoverflow.com/questions/30832041/spring-batch-read-files-from-aws-s3"&gt;Stack Overflow post&lt;/a&gt; gives some hints on how to do this.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;When using S/FTP however, this approach is less desirable, since these are file transfer protocols, and direct streaming is limited.
-If you do not use a persistent volume, and the job fails for some reason, you have to start from scratch, likely having to manually rewind from a partially complete state. The implementation of this pipeline with S/FTP is very similar to what we have shown here.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="stay-tuned"&gt;&lt;a class="anchor" href="#stay-tuned"&gt;&lt;/a&gt;Stay Tuned&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This post is part of a series of articles on topics related to the new function-based Spring Cloud Stream applications.
-Look for more in coming weeks.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>
