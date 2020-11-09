@@ -33,9 +33,10 @@
 		<javax.servlet.jsp-version>2.3.3</javax.servlet.jsp-version>
 		<javax.servlet.jsp.jstl-version>1.2</javax.servlet.jsp.jstl-version>
 		<org.springframework-version>5.2.2.RELEASE</org.springframework-version>
+		<!--  <org.springframework-version>4.3.25.RELEASE</org.springframework-version>-->
 	</properties>
-	
-	
+
+
 	<!-- 라이브러리 셋팅 -->
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -70,7 +71,14 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<!-- <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
 
+ 		-->
 	</dependencies>
 </project>
