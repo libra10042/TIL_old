@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<H1>index.jsp</H1>
+	<h1>index</h1>
+	<img src="image/spring.svg"/>
 </body>
 </html>
