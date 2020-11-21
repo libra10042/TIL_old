@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<H1>Hello Spring MVC JAVA</H1>
-	<img src="image/spring.svg" />
+	<a href="test1">test1</a>
 </body>
 </html>
