@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:beans="http://www.springframework.org/schema/beans"
+			xmlns:context="http://www.springframework.org/schema/context"
+			xsi:schemaLocation="http://www.springframework.org/schema/mvc
+								http://www.springframework.org/schema/mvc/spring-mvc.xsd
+								http://www.springframework.org/schema/beans
+								http://www.springframework.org/schema/beans/spring-beans.xsd
+								http://www.springframework.org/schema/context
+								http://www.springframework.org/schema/context/spring-context.xsd">
+								
+								
+			<!-- 스캔한 패키지 내부의 클래스 중 Controller 어노테이션을 가지고 있는 클래스들을 Controller로 로딩하도록 한다. -->
+			<annotation-driven />
+			
+			<!-- 스캔할 bean들이 모여있는 패키지를 지정한다. -->
+			<context:component-scan base-package="kr.co.softcampus.controller" />
+			
+			<!-- Controller의 메서드에서 반환하는 문자열 앞 뒤에 붙힐 경로 정보를 셋팅한다. -->
+			<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+				<beans:property name="prefix" value="/WEB-INF/views/"/>
+				<beans:property name="suffix" value=".jsp" />
+			</beans:bean>
+			
+			<!-- 정적파일(이미지, 사운드, 동영상, JS, CSS 등등) 경로 셋팅 -->
+			<resources mapping="/**" location="/resources/" />
+			
+			
+			<!-- MessageSource를 등록한다. -->
+			<beans:bean class='org.springframework.context.support.ReloadableResourceBundleMessageSource' id='messageSource'>
+				<!-- <beans:property name="basename" value="/WEB-INF/properties/data1" /> -->
+				<beans:property name="basenames">
+					<beans:list>
+						<beans:value>/WEB-INF/properties/data1</beans:value>
+						<beans:value>/WEB-INF/properties/data2</beans:value>
+					</beans:list>
+				</beans:property>
+			</beans:bean>
+			
+			<!-- MessageSource를 사용하기 위한 Accessor 등록 -->
+			<beans:bean id='messageSourceAccessor' class='org.springframework.context.support.MessageSourceAccessor'>
+				<beans:constructor-arg ref='messageSource'/>
+			</beans:bean>
+			
+</beans:beans>
+									
