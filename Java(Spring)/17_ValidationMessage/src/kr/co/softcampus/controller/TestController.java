@@ -13,7 +13,7 @@ import kr.co.softcampus.beans.DataBean1;
 public class TestController {
 
 	@GetMapping("/input_data")
-	public String input_data() {
+	public String input_data(DataBean1 dataBean1) {
 		return "input_data";
 	}
 
