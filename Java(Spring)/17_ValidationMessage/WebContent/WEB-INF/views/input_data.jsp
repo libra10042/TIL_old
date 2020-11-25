@@ -11,16 +11,16 @@
 <body>
 	<h1>input_data</h1>
 	<form action='input_pro' method='post'><br/>
-		data1 : <input type='text' name='data1' />
+		data1 : <input type='text' name='data1' /><br/>
 		<spring:hasBindErrors name="dataBean1">
 			<c:if test="${errors.hasFieldErrors('data1') }">
-				${errors.getFieldError('data1').defaultMessage }<br/>
+				<spring:message code="${errors.getFieldError('data1').codes[0] }"/><br/>
 			</c:if>
 		</spring:hasBindErrors>
 		data2 : <input type='text' name='data2' /><br/>
 		<spring:hasBindErrors name="dataBean1">
 			<c:if test="${errors.hasFieldErrors('data2') } ">
-				${errors.getFieldError('data2').defaultMessage }<br/>
+				<spring:message code="${errors.getFieldError('data2').codes[0] }" /><br/>
 			</c:if>
 		</spring:hasBindErrors>
 		
