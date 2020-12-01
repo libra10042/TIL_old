@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="22_HandleException" path="/22_HandleException" reloadable="true" source="org.eclipse.jst.jee.server:22_HandleException"/></Host>
+      <Context docBase="23_MybatisJava" path="/23_MybatisJava" reloadable="true" source="org.eclipse.jst.jee.server:23_MybatisJava"/></Host>
     </Engine>
   </Service>
 </Server>
