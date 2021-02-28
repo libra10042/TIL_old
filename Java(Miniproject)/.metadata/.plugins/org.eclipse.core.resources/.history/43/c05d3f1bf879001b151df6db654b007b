@@ -1,0 +1,10 @@
+package kr.co.softcampus.dao;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class TestDAO {
+
+		
+	
+}

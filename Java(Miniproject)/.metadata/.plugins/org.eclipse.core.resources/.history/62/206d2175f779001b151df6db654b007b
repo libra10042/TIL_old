@@ -1,0 +1,15 @@
+package kr.co.softcampus.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class TestService {
+
+	
+	public String testMethod(){
+		return "문자열";
+	}
+	
+	
+	
+}
