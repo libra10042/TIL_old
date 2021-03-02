@@ -257,3 +257,16 @@
 0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:51:11 +0900] "GET /MiniProjectJava/user/logout HTTP/1.1" 200 110
 0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:51:13 +0900] "GET /MiniProjectJava/main HTTP/1.1" 200 9151
 0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:51:14 +0900] "GET /MiniProjectJava/main HTTP/1.1" 200 9151
+127.0.0.1 - - [01/Mar/2021:05:55:18 +0900] "GET / HTTP/1.1" 404 1115
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:20 +0900] "GET /MiniProjectXML/ HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:24 +0900] "GET /MiniProjectXML/main HTTP/1.1" 200 9538
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:26 +0900] "GET /MiniProjectXML/;jsessionid=90EA795736F0AB62663F125C4C243403board/main HTTP/1.1" 200 9142
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:28 +0900] "GET /MiniProjectXML/board/main HTTP/1.1" 200 7761
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:28 +0900] "GET /MiniProjectXML/board/main HTTP/1.1" 200 7761
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:28 +0900] "GET /MiniProjectXML/board/main HTTP/1.1" 200 7761
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:29 +0900] "GET /MiniProjectXML/board/main HTTP/1.1" 200 7761
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:30 +0900] "GET /MiniProjectXML/user/login HTTP/1.1" 200 3664
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:31 +0900] "GET /MiniProjectXML/user/join HTTP/1.1" 200 4025
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:32 +0900] "GET /MiniProjectXML/user/modify HTTP/1.1" 200 3915
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:33 +0900] "GET /MiniProjectXML/user/logout HTTP/1.1" 200 109
+0:0:0:0:0:0:0:1 - - [01/Mar/2021:05:55:34 +0900] "GET /MiniProjectXML/main HTTP/1.1" 200 9142
