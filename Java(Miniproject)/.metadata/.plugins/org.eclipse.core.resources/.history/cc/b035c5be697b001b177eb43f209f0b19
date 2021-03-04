@@ -1,0 +1,8 @@
+package kr.co.softcampus.beans;
+
+public class UserBean {
+	private String user_idx;
+	private String user_name;
+	private String user_id;
+	private String user_pw;
+}

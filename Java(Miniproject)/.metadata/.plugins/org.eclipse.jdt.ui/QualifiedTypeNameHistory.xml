@@ -8,6 +8,16 @@
 <fullyQualifiedTypeName name="kr.co.softcampus.dao.TestDAO"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.PropertySource"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+<fullyQualifiedTypeName name="org.apache.commons.dbcp.BasicDataSource"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.dbcp.dbcp2.BasicDataSource"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
+<fullyQualifiedTypeName name="org.mybatis.spring.SqlSessionFactoryBean"/>
+<fullyQualifiedTypeName name="org.mybatis.spring.mapper.MapperFactoryBean"/>
+<fullyQualifiedTypeName name="kr.co.softcampus.mapper.BoardMapper"/>
 </qualifiedTypeNameHistroy>

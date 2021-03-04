@@ -1,0 +1,18 @@
+package kr.co.softcampus.beans;
+
+public class ContentBean {
+	private int content_idx;
+	private String content_subject; 
+	private String content_text; 
+	private String content_file;
+	private String content_
+	
+	
+	CONTENT_IDX	NUMBER
+	CONTENT_SUBJECT	VARCHAR2(500 BYTE)
+	CONTENT_TEXT	LONG
+	CONTENT_FILE	VARCHAR2(500 BYTE)
+	CONTENT_WRITER_IDX	NUMBER
+	CONTENT_BOARD_IDX	NUMBER
+	CONTENT_DATE	DATE
+}
