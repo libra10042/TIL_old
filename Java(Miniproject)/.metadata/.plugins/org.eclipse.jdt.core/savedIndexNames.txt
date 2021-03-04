@@ -1,23 +1,16 @@
 INDEX VERSION 1.130+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.plugins\org.eclipse.jdt.core
-4073203045.index
-229223035.index
 3231465828.index
 4212195811.index
 2492909726.index
 1942359185.index
-3333483909.index
 1233919542.index
 1845031563.index
 3980762305.index
-3734896729.index
 3963084204.index
 2899478204.index
-4057356787.index
 202638269.index
-3006572707.index
 1860485910.index
 290037144.index
-3790877328.index
 144380394.index
 2007162689.index
 531533494.index
@@ -29,7 +22,5 @@ INDEX VERSION 1.130+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.p
 1241298325.index
 3263897811.index
 2418709952.index
-84745315.index
 1401678300.index
 997399896.index
-3462788235.index

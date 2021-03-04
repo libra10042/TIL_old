@@ -1,14 +1,6 @@
 use miniproject;
 
-create sequence user_seq
-start with 0
-increment by 1
-minvalue 0;
 
-create sequence content_seq
-start with 0
-increment by 1
-minvalue 0;
 
 create table board_info_table(
 	board_info_idx INT, 
@@ -42,7 +34,7 @@ create table content_table(
 	content_board_idx INT not null,
 	content_date date not null,
     PRIMARY KEY (content_idx),
-    FOREIGN KEY CONTENT_FK1 REFERENCES user_table (user_idx),
-    FOREIGN KEY CONTENT_FK2 REFERENCES board_info_table (board_info_idx)
+    FOREIGN KEY (content_writer_idx) REFERENCES user_table (user_idx),
+    FOREIGN KEY (content_board_idx) REFERENCES board_info_table (board_info_idx)
 );
 
