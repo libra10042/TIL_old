@@ -15,6 +15,40 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
+
+
+<script>
+	function checkUserIdExist(){
+		
+		var user_id = $("#user_id").val()
+		
+		if(user_id.length == 0 ){
+			alert("id를 입력해주세요");
+			return 
+		}
+		
+		$.ajax({
+			url : '${root }user/checkUserIdExist/' + user_id, 
+			data : 'text',
+			type : 'get',
+			success : function(result){
+				if(result.trim() == 'true'){
+					alert("사용할 수 있는 아이디입니다.");
+					$("userIdExists").val("true");
+				}else{
+					alert("사용할 수 없는 아이디입니다.");
+					$("userIdExsists").val("false");
+				}
+			}
+		})
+	}
+	
+	function resetUserIdExist(){
+		$("userIdExist").val('false')
+	}
+</script>
+
+
 <body>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
@@ -25,7 +59,8 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form:form action="${root }user/join_pro" method="post" modelAttribute="joinUserBean">					
+					<form:form action="${root }user/join_pro" method="post" modelAttribute="joinUserBean">
+						<form:hidden path = "userIdExist" />
 						<div class="form-group">
 							<label for="user_name">이름</label>
 							<form:label path="user_name"></form:label>
@@ -35,9 +70,9 @@
 						<div class="form-group">
 							<form:label path="user_id">아이디</form:label>
 							<div class="input-group">
-								<form:input path="user_id" class='form-control' />
+								<form:input path="user_id" class='form-control' onkeypress="resetUserIdExist()"/>
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary">중복확인</button>
+									<button type="button" class="btn btn-primary" onclick='checkUserIdExist()'>중복확인</button>
 								</div>
 							</div>
 							<form:errors path="user_id" style='color:red'/>
