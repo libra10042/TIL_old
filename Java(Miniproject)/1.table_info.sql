@@ -37,4 +37,3 @@ create table content_table(
     FOREIGN KEY (content_writer_idx) REFERENCES user_table (user_idx),
     FOREIGN KEY (content_board_idx) REFERENCES board_info_table (board_info_idx)
 );
-

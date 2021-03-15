@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;error_message.properties&apos; to &apos;properties&apos;&#x0D;&#x0A;- Original project: &apos;MiniProjectXML&apos;&#x0D;&#x0A;- Destination element: &apos;properties&apos;&#x0D;&#x0A;- Original element: &apos;error_message.properties&apos;" description="Copy file" element1="WebContent/WEB-INF/properties/error_message.properties" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1615770914666" target="/MiniProjectJava/WebContent/WEB-INF/properties" units="0" version="1.0"/>
+</session>

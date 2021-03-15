@@ -1,0 +1,8 @@
+Size.joinUserBean.user_name = 2~4 character
+Size.joinUserBean.user_id = 4~20 character
+Size.joinUserBean.user_pw = 4~20 character
+Size.joinUserBean.user_pw2 = 4~20 character
+Pattern.joinUserBean.user_name = only korean
+Pattern.joinUserBean.user_id = only english, number
+Pattern.joinUserBean.user_pw = only english, number
+Pattern.joinUserBean.user_pw = only english, number

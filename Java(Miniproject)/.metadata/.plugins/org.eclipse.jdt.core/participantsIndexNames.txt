@@ -1,0 +1,17 @@
+INDEX VERSION 1.131
+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3442240330.index
+\MiniProjectJava\src
+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2430733002.index
+\MiniProjectXML\src
+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3570450086.index
+\MiniProjectXML\src
+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3664618760.index
+\MiniProjectJava\src
+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1359942692.index
+\MiniProjectXML\src
+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1732825014.index
+\MiniProjectJava\src
+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\645004015.index
+\MiniProjectJava\src
+C:\Users\User\Desktop\IT\Java\Java(Miniproject)\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1757059014.index
+\MiniProjectXML\src

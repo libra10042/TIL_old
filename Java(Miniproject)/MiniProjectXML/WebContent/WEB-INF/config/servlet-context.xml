@@ -19,6 +19,8 @@
 
 	<!-- 스캔할 bean들이 모여있는 패키지를 지정한다. -->
 	<context:component-scan base-package="kr.co.softcampus.controller" />
+	<context:component-scan base-package="kr.co.softcampus.dao" />
+	<context:component-scan base-package="kr.co.softcampus.service" />
 
 	<!-- Controller의 메서드에서 반환하는 문자열 앞 뒤에 붙힐 경로 정보를 셋팅한다. -->
 	<beans:bean
@@ -58,8 +60,30 @@
 		id='sqlSessionTemplate'>
 		<beans:constructor-arg index='0' ref='sqlSession' />
 	</beans:bean>
-
-
+	
+	
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/**/"/>
+			<beans:bean class="kr.co.softcampus.interceptor.TopMenuInterceptor"/>
+		</interceptor>
+	
+	</interceptors>
+	
+	<!--MessageSource를 등록한다.  -->
+	<beans:bean class='org.springframework.context.support.ReloadableResourceBundleMessageSource' id='messageSource'>
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>/WEB-INF/properties/error_message</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+		
+	<!-- Message 접근을 위한 접근자 등록 -->
+	<beans:bean class='org.springframework.context.support.MessageSourceAccessor'>
+		<beans:constructor-arg ref='messageSource'/>
+	</beans:bean>
 </beans:beans>
 
 

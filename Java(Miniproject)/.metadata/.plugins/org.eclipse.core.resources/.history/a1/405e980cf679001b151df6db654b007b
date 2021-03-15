@@ -1,9 +1,0 @@
-package kr.co.softcampus.controller;
-
-import org.springframework.stereotype.Controller;
-
-@Controller
-public class TestController {
-	
-	
-}

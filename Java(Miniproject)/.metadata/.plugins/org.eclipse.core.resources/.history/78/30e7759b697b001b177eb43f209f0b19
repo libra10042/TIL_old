@@ -1,8 +1,0 @@
-package kr.co.softcampus.beans;
-
-public class BoardInfoBean {
-
-	private int board_info_idx; 
-	private String board_info_name;
-	
-}
