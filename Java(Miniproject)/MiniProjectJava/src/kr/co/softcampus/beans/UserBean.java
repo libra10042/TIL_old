@@ -22,13 +22,14 @@ public class UserBean {
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String user_pw2; 
 	
-	
-	
+
 	private boolean userIdExist;
+	private boolean userLogin;
 	
 	
 	public UserBean() {
-		this.userIdExist = false; 
+		this.userIdExist = false;
+		this.userLogin =false; 
 	}
 	
 	public int getUser_idx() {
@@ -69,9 +70,14 @@ public class UserBean {
 	public void setUserIdExist(boolean userIdExist) {
 		this.userIdExist = userIdExist;
 	}
-	
-	
-	
-	
+
+	public boolean isUserLogin() {
+		return userLogin;
+	}
+
+	public void setUserLogin(boolean userLogin) {
+		this.userLogin = userLogin;
+	}
+
 	
 }

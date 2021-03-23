@@ -1,4 +1,4 @@
-package kr.co.softcampus.validator;
+ package kr.co.softcampus.validator;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -17,14 +17,24 @@ public class UserValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		// TODO Auto-generated method stub
 		UserBean userBean = (UserBean) target;
-		if(userBean.getUser_pw().equals(userBean.getUser_pw2())==false) {
-			errors.rejectValue("user_pw", "NotEquals");
-			errors.rejectValue("user_pw2", "NotEquals");
+		
+		String beanName = errors.getObjectName();
+		
+//		System.out.println(beanName);
+		
+		if(beanName.equals("joinUserBean")) {
+			if(userBean.getUser_pw().equals(userBean.getUser_pw2())==false) {
+				errors.rejectValue("user_pw", "NotEquals");
+				errors.rejectValue("user_pw2", "NotEquals");
+			}
+			
+			if(userBean.isUserIdExist()== false) {
+				errors.rejectValue("user_id", "DontCheckUserIdExist");
+			}
 		}
 		
-		if(userBean.isUserIdExist()== false) {
-			errors.rejectValue("user_id", "DontCheckUserIdExist");
-		}
+		
+		
 	}
 	
 	
