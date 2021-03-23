@@ -1,5 +1,6 @@
 package kr.co.softcampus.config;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -27,6 +28,7 @@ import kr.co.softcampus.mapper.BoardMapper;
 import kr.co.softcampus.mapper.TopMenuMapper;
 import kr.co.softcampus.mapper.UserMapper;
 import kr.co.softcampus.service.TopMenuService;
+import kr.co.softcampus.beans.UserBean;
 import kr.co.softcampus.interceptor.TopMenuInterceptor;
 
 
@@ -56,6 +58,10 @@ public class ServletAppContext implements WebMvcConfigurer{
 	
 	@Autowired
 	private TopMenuService topMenuService;
+	
+	@Resource(name = "loginUserBean")
+	private UserBean loginUserBean;
+	
 	
 	// Controller의 메서드가 반환하는 jsp의 이름 앞뒤에 경로와 확장자를 붙혀주도록 설정한다.
 	@Override
@@ -131,7 +137,7 @@ public class ServletAppContext implements WebMvcConfigurer{
 		// TODO Auto-generated method stub
 		WebMvcConfigurer.super.addInterceptors(registry);
 		
-		TopMenuInterceptor topMenuInterceptor = new TopMenuInterceptor(topMenuService);
+		TopMenuInterceptor topMenuInterceptor = new TopMenuInterceptor(topMenuService, loginUserBean);
 		
 		InterceptorRegistration reg1 = registry.addInterceptor(topMenuInterceptor);
 		reg1.addPathPatterns("/**");
