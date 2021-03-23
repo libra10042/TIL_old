@@ -43,8 +43,8 @@ const start = user_input[0];
 const end = user_input[1];
 
 
-let queue = [];
-let visited = [];
+let queue = [start];
+let visited = [start];
 
 function solution(){
     let count = -1; 
@@ -58,16 +58,21 @@ function solution(){
             if(node == end){
                 return count; 
             }
-
-
-
+            for(let next_node in graph[node]){
+                if(!visited.includes(graph[node][next_node])){
+                    visited.push(graph[node][next_node]);
+                    queue.push(graph[node][next_code]);
+                }
+            }
         }
     }    
-
-
-
-
 }
+
+console.log(solution());
+// let a = [10, 20, 30, 40];
+// for(let i of a){
+//     console.log(i);
+// }
 
 
 
