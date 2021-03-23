@@ -29,6 +29,7 @@ import kr.co.softcampus.mapper.TopMenuMapper;
 import kr.co.softcampus.mapper.UserMapper;
 import kr.co.softcampus.service.TopMenuService;
 import kr.co.softcampus.beans.UserBean;
+import kr.co.softcampus.interceptor.CheckLoginInterceptor;
 import kr.co.softcampus.interceptor.TopMenuInterceptor;
 
 
@@ -141,12 +142,18 @@ public class ServletAppContext implements WebMvcConfigurer{
 		
 		InterceptorRegistration reg1 = registry.addInterceptor(topMenuInterceptor);
 		reg1.addPathPatterns("/**");
+		
+		CheckLoginInterceptor checkLoginInterceptor = new CheckLoginInterceptor(loginUserBean);
+		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
+		reg2.addPathPatterns("/user/modify", "/user/logout", "/board/*");
+		reg2.excludePathPatterns("/board/main");
+				
 	}
 	
 	
 	@Bean
-	public static PreferencesPlaceholderConfigurer PropertySourcesPlaceholderConfigurer() {
-		return new PreferencesPlaceholderConfigurer();
+	public static org.springframework.context.support.PropertySourcesPlaceholderConfigurer PropertySourcesPlaceholderConfigurer() {
+		return new org.springframework.context.support.PropertySourcesPlaceholderConfigurer();
 	}
 	
 	@Bean

@@ -68,6 +68,13 @@
 			<mapping path="/**/"/>
 			<beans:bean class="kr.co.softcampus.interceptor.TopMenuInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/user/modify" />
+			<mapping path="/user/logout" />
+			<mapping path="/board/*"/>	
+			<exclude-mapping path="/board/main" />
+			<beans:bean class='kr.co.softcampus.interceptor.CheckLoginInterceptor' />
+		</interceptor>
 	
 	</interceptors>
 	

@@ -91,6 +91,11 @@ public class UserController {
 	}
 	
 	
+	@GetMapping("/not_login")
+	public String not_login() {
+		return "user/not_login";
+	}
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		UserValidator validator1 = new UserValidator();
