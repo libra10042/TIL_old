@@ -1,6 +1,7 @@
 package kr.co.softcampus.service;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -56,8 +57,14 @@ public class BoardService {
 	}
 	
 	
+	public String getBoardInfoName(int board_info_idx) {
+		return boardDao.getBoardInfoName(board_info_idx);
+	}
 	
 	
+	public List<ContentBean> getContentList(int board_info_idx){
+		return boardDao.getContentList(board_info_idx);
+	}
 	
 	
 }

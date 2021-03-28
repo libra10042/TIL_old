@@ -12,15 +12,15 @@ public class ContentBean {
 	
 	@NotBlank
 	private String content_text;
-	
 	// 클라이언트가 보낼 파일 데이터들 담는 변수.
 	private MultipartFile upload_file;
-	
 	// DB가 보낼 파일 데이터를 담는 변수
 	private String content_file;
 	private int content_writer_idx;
 	private int content_board_idx;
 	private String content_date;
+	
+	private String content_writer_name; 
 	
 	public int getContent_idx() {
 		return content_idx;
@@ -69,6 +69,12 @@ public class ContentBean {
 	}
 	public void setUpload_file(MultipartFile upload_file) {
 		this.upload_file = upload_file;
+	}
+	public String getContent_writer_name() {
+		return content_writer_name;
+	}
+	public void setContent_writer_name(String content_writer_name) {
+		this.content_writer_name = content_writer_name;
 	}
 	
 
