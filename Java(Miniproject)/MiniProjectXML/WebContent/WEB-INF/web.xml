@@ -23,6 +23,11 @@
 
 
 		<load-on-startup>1</load-on-startup>
+		<multipart-config>
+			<max-file-size>52428800</max-file-size>
+			<max-request-size>524288000</max-request-size>
+			<file-size-threshold>0</file-size-threshold>
+		</multipart-config>
 	</servlet>
 
 	<!-- Bean을 정의할 xml 파일을 지정한다. -->
@@ -50,14 +55,26 @@
 		</init-param>
 	</filter>
 	
-	
-	
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<filter>
 	
+		<display-name>springMultipartFilter</display-name>
+		<filter-name>springMultipartFilter</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+		<init-param>
+			<param-name>multipartResolverBeanName</param-name>
+			<param-value>multipartResolver</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>springMultipartFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 
 </web-app>

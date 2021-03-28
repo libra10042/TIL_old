@@ -1,9 +1,22 @@
 package kr.co.softcampus.beans;
 
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class ContentBean {
 	private int content_idx;
+	
+	@NotBlank
 	private String content_subject;
+	
+	@NotBlank
 	private String content_text;
+	
+	// 클라이언트가 보낼 파일 데이터들 담는 변수.
+	private MultipartFile upload_file;
+	
+	// DB가 보낼 파일 데이터를 담는 변수
 	private String content_file;
 	private int content_writer_idx;
 	private int content_board_idx;
@@ -51,6 +64,14 @@ public class ContentBean {
 	public void setContent_date(String content_date) {
 		this.content_date = content_date;
 	}
+	public MultipartFile getUpload_file() {
+		return upload_file;
+	}
+	public void setUpload_file(MultipartFile upload_file) {
+		this.upload_file = upload_file;
+	}
+	
+
 	
 	
 }

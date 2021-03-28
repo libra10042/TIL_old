@@ -35,8 +35,11 @@
 	<!-- properties 파일의 내용을 사용할수 있도록 Bean을 정의한다. -->
 	<beans:bean
 		class='org.springframework.beans.factory.config.PropertyPlaceholderConfigurer'>
-		<beans:property name="location">
-			<beans:value>/WEB-INF/properties/db.properties</beans:value>
+		<beans:property name="locations">
+			<beans:list>
+				<beans:value>/WEB-INF/properties/db.properties</beans:value>
+				<beans:value>/WEB-INF/properties/option.properties</beans:value>
+			</beans:list>
 		</beans:property>
 	</beans:bean>
 
@@ -91,6 +94,14 @@
 	<beans:bean class='org.springframework.context.support.MessageSourceAccessor'>
 		<beans:constructor-arg ref='messageSource'/>
 	</beans:bean>
+	
+	
+	<beans:bean class='org.springframework.web.multipart.support.StandardServletMultipartResolver' 
+					id ='multipartResolver'/>
+	
+	
+	
+	
 </beans:beans>
 
 

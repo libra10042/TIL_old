@@ -1,0 +1,25 @@
+Size.joinUserBean.user_name = 2~4 character
+Size.joinUserBean.user_id = 4~20 character
+Size.joinUserBean.user_pw = 4~20 character
+Size.joinUserBean.user_pw2 = 4~20 character
+Pattern.joinUserBean.user_name = only korean
+Pattern.joinUserBean.user_id = only english, number
+Pattern.joinUserBean.user_pw = only english, number
+Pattern.joinUserBean.user_pw = only english, number
+
+
+NotEquals.joinUserBean.user_pw = not equals password
+NotEquals.joinUserBean.user_pw2 = not equals password
+
+DontCheckUserIdExists.joinUserBean.user_id = doublecheck please 
+
+
+Size.tempLoginUserBean.user_id =  4~20 character
+Size.tempLoginUserBean.user_pw =  4~20 character
+
+Size.modifyUserBean.user_pw = 4~20 character
+Size.modifyUserBean.user_pw2 = 4~20 character
+Pattern.modifyUserBean.user_pw = only english, number
+Pattern.modifyUserBean.user_pw = only english, number
+NotEquals.modifyUserBean.user_pw = not equals password
+NotEquals.modifyUserBean.user_pw2 = not equals password

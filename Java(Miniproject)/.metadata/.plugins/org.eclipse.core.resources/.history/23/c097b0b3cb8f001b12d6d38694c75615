@@ -1,0 +1,14 @@
+package kr.co.softcampus.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class BoardDao {
+
+	
+	@Autowired
+	private BoardMapper boardMapper;
+	
+	
+}
