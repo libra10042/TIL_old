@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;modfiy_success.jsp&apos; to &apos;user&apos;&#x0D;&#x0A;- Original project: &apos;MiniProjectJava&apos;&#x0D;&#x0A;- Destination element: &apos;user&apos;&#x0D;&#x0A;- Original element: &apos;modfiy_success.jsp&apos;" description="Copy file" element1="WebContent/WEB-INF/views/user/modfiy_success.jsp" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1616925880276" target="/MiniProjectXML/WebContent/WEB-INF/views/user" units="0" version="1.0"/>
+</session>

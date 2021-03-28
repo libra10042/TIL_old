@@ -27,5 +27,23 @@
 			]]>
 	
 	</select>
+	
+	<select id="getModifyUserInfo" parameterType="java.lang.Integer" resultType="kr.co.softcampus.beans.UserBean">
+			<![CDATA[
+				select user_id, user_name
+				from user_table
+				where user_idx = #{user_idx}
+			]]>
+	
+	</select>
+		
+	<update id="modifyUserInfo" parameterType="kr.co.softcampus.beans.UserBean">
+			<![CDATA[
+				update user_table
+				set user_pw = #{user_pw}
+				where user_idx = #{user_idx}
+			]]>
+		
+	</update>
 
 </mapper>

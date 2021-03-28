@@ -33,6 +33,8 @@
 		<item key="org.eclipse.jdt.ui.typecomment.deprecated" value="true"/>
 	</section>
 	<section name="quick_assist_proposal_size">
+		<item key="size.x" value="934"/>
+		<item key="size.y" value="316"/>
 	</section>
 	<section name="NewPackageWizardPage">
 		<item key="create_package_info_java" value="false"/>

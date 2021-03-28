@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.dao.TestDAO"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
@@ -17,14 +16,12 @@
     <fullyQualifiedTypeName name="kr.co.softcampus.dao.TopMenuDao"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.ComponentScan"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.HandlerInterceptor"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.beans.BoardInfoBean"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.InterceptorRegistry"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.intercept.TopMenuIntercept"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.ViewResolverRegistry"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.interceptor.TopMenuInterceptor"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.InterceptorRegistration"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.mapper.TopMenuMapper"/>
     <fullyQualifiedTypeName name="org.apache.commons.dbcp2.BasicDataSource"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.service.TopMenuService"/>
@@ -40,13 +37,19 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.mybatis.spring.SqlSessionTemplate"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.service.UserService"/>
     <fullyQualifiedTypeName name="org.springframework.web.context.annotation.SessionScope"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
-    <fullyQualifiedTypeName name="kr.co.softcampus.beans.UserBean"/>
     <fullyQualifiedTypeName name="javax.validation.Valid"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.HandlerInterceptor"/>
+    <fullyQualifiedTypeName name="kr.co.softcampus.beans.UserBean"/>
+    <fullyQualifiedTypeName name="kr.co.softcampus.interceptor.CheckLoginInterceptor"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.InterceptorRegistration"/>
+    <fullyQualifiedTypeName name="org.springframework.context.support.PropertySourcesPlaceholderConfigurer"/>
     <fullyQualifiedTypeName name="javax.annotation.Resource"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Lazy"/>
 </qualifiedTypeNameHistroy>
