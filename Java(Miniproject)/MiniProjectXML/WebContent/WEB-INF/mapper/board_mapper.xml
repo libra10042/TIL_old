@@ -5,15 +5,17 @@
 
 	
 	<insert id="addContentInfo" parameterType="kr.co.softcampus.beans.ContentBean">
+	
+		<selectKey keyProperty="content_idx" order="BEFORE" resultType="java.lang.Integer">
+			select content_seq.nextvalu from dual
+		</selectKey>
+	
 		<![CDATA[
 			insert into content_table(content_idx, content_subject, content_text, 
 			content_file, content_writer_idx, content_board_idx, content_data)
-			values (content_seq.nextval, #{content_subject}, #{content_text}, #{content_file, jdbcType=VARCHAR},
+			values (#{content_idx}, #{content_subject}, #{content_text}, #{content_file, jdbcType=VARCHAR},
 			#{content_writer_idx}, #{content_board_idx}, sysdate)
 		]]>
-	
-	
-	
 	</insert>
 
 
@@ -38,6 +40,18 @@
 	
 	</select>
 
+
+	<select id="getContentInfo" parameterType="java.lang.Integer" resultType="kr.co.softcampus.beans.ContentBean">
+		<![CDATA[
+			select a2.user_name as content_writer_name,
+			 			to_char(a1.content_date, 'YYYY-MM-DD') as content_date,  
+			 			a1.content_subject, a1.content_text, a1.content_file 
+			 	from content_table a1, user_table a2 
+			 	where a1.content_writer_idx = a2.user_idx 
+			 	and content_idx = #{content_idx}
+		]]>
+	
+	</select>
 			
 
 

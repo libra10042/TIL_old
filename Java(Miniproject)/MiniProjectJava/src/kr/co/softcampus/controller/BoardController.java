@@ -41,7 +41,14 @@ public class BoardController {
 	}
 	
 	@GetMapping("/read")
-	public String read() {
+	public String read(@RequestParam("board_info_idx") int board_info_idx, @RequestParam("content_idx") int content_idx, Model model) {
+		
+		model.addAttribute("board_info_idx", board_info_idx);
+		
+		ContentBean readContentBean = boardService.getContentInfo(content_idx);
+		
+		model.addAttribute("readContentBean", readContentBean);
+		
 		return "board/read";
 	}
 	
@@ -60,7 +67,7 @@ public class BoardController {
 		}
 		
 
-		
+		// 저장된 주소값이 writeContentBean이다. 이걸 addContentInfo로 넘긴다.
 		boardService.addContentInfo(writeContentBean);
 		
 		
@@ -77,6 +84,8 @@ public class BoardController {
 		return "board/delete";
 	}
 }
+
+
 
 
 

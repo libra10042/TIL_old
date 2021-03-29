@@ -7,7 +7,6 @@
     <fullyQualifiedTypeName name="kr.co.softcampus.dao.TopMenuDao"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.ComponentScan"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.beans.BoardInfoBean"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.InterceptorRegistry"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.intercept.TopMenuIntercept"/>
@@ -19,7 +18,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.InitBinder"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.WebDataBinder"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.validator.UserValidator"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Select"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.mapper.UserMapper"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.dao.UserDao"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="javax.annotation.Resource"/>
     <fullyQualifiedTypeName name="kr.co.softcampus.beans.UserBean"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Lazy"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Select"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
