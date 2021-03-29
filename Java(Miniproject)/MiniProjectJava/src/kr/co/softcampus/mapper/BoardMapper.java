@@ -2,9 +2,11 @@ package kr.co.softcampus.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 
 import kr.co.softcampus.beans.ContentBean;
 
@@ -46,8 +48,16 @@ public interface BoardMapper {
 	ContentBean getContentInfo(int content_idx);
 	
 	
+	@Update("update content_table " + 
+			"set content_subject = #{content_subject}, content_text = #{content_text}, " + 
+			"content_file #{content_file, jdbcType=VARCHAR} "+
+			"where content_idx =#{content_idx}")
+	void modifyContentInfo(ContentBean modifyContentBean);
 	
 
+	
+	@Delete("delete from content_table where content_idx = #{content_idx}")
+	void deletecContentInfo(int content_idx);
 	
 	
 	

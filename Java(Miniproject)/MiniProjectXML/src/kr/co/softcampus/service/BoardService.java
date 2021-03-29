@@ -68,4 +68,21 @@ public class BoardService {
 	public ContentBean getContentInfo(int content_idx) {
 		return boardDao.getContentInfo(content_idx);
 	}
+	
+
+	public void modifyContentInfo(ContentBean modifyContentBean) {
+		MultipartFile upload_file = modifyContentBean.getUpload_file();
+		
+		if(upload_file.getSize()>0) {
+			String file_name = saveUploadFile(upload_file);
+			modifyContentBean.setContent_file(file_name);
+		}
+		
+		boardDao.modifyContentInfo(modifyContentBean);
+	}
+	
+	public void deleteContentInfo(int content_idx) {
+		boardDao.deleteContentInfo(content_idx);
+	}
+	
 }

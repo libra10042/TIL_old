@@ -53,7 +53,25 @@
 	
 	</select>
 			
+	<update id="modifyContentInfo" parameterType="kr.co.softcampus.beans.ContentBean">
+		<![CDATA[
+			update content_table
+			set content_subject = #{content_subject}, content_text = #{content_text},
+			content_file = #{content_file, jdbcType=VARCHAR}
+			where content_idx = #{content_idx}
+		]]>
+	</update>
 
+	<select id="deleteContentInfo" parameterType="java.lang.Integer">
+		<![CDATA[
+			delete from content_table where content_idx = #{content_idx}"
+		]]>
+	
+	</select>
+		
+
+	
+	
 
 
 </mapper>

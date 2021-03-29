@@ -14,7 +14,7 @@ import kr.co.softcampus.service.BoardService;
 
 public class CheckWriterInterceptor implements HandlerInterceptor {
 
-	@Resource(name ="userLoginBean")
+	@Resource(name ="loginUserBean")
 	@Lazy
 	private UserBean loginUserBean; 
 	

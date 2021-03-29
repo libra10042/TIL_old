@@ -28,4 +28,13 @@ public class BoardDao {
 	public ContentBean getContentInfo(int content_idx) {
 		return sqlSessionTemplate.selectOne("board.getContentInfo", content_idx);
 	}
+	
+	public void modifyContentInfo(ContentBean modifyContentBean) {
+		sqlSessionTemplate.selectOne("board.modifyContentInfo", modifyContentBean);
+	}
+	
+	public void deleteContentInfo(int content_idx) {
+		sqlSessionTemplate.delete("board.deleteContentInfo", content_idx);
+	}
+	
 }
