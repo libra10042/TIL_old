@@ -78,6 +78,11 @@
 			<exclude-mapping path="/board/main" />
 			<beans:bean class='kr.co.softcampus.interceptor.CheckLoginInterceptor' />
 		</interceptor>
+		<interceptor>
+			<mapping path="/board/modify"></mapping>
+			<mapping path="/board/delete"></mapping>
+			<beans:bean class="kr.co.softcampus.interceptor.CheckWriterInterceptor" />
+		</interceptor>
 	
 	</interceptors>
 	

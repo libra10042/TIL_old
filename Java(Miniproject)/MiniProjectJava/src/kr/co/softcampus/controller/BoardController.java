@@ -2,6 +2,7 @@ package kr.co.softcampus.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.softcampus.beans.ContentBean;
+import kr.co.softcampus.beans.UserBean;
 import kr.co.softcampus.service.BoardService;
 
 @Controller
@@ -24,6 +26,8 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	@Resource(name = "loginUserBean")
+	private UserBean loginUserBean;
 	
 	@GetMapping("/main")
 	public String main(@RequestParam("board_info_idx") int board_info_idx, Model model) {
@@ -44,10 +48,15 @@ public class BoardController {
 	public String read(@RequestParam("board_info_idx") int board_info_idx, @RequestParam("content_idx") int content_idx, Model model) {
 		
 		model.addAttribute("board_info_idx", board_info_idx);
+		model.addAttribute("content_idx", content_idx);
+
+		
 		
 		ContentBean readContentBean = boardService.getContentInfo(content_idx);
-		
 		model.addAttribute("readContentBean", readContentBean);
+				
+		model.addAttribute("loginUserBean", loginUserBean);
+		
 		
 		return "board/read";
 	}
@@ -82,6 +91,11 @@ public class BoardController {
 	@GetMapping("/delete")
 	public String delete() {
 		return "board/delete";
+	}
+	
+	@GetMapping("/not_writer")
+	public String not_writer() {
+		return "board/not_writer";
 	}
 }
 
