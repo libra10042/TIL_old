@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.session.RowBounds;
 
 import kr.co.softcampus.beans.ContentBean;
 
@@ -35,7 +36,7 @@ public interface BoardMapper {
 			"where a1.content_writer_idx = a2.user_idx "+
 			"		and a1.content_board_idx = #{board_info_idx} " +
 			"order by a1.content_idx desc")
-	List<ContentBean> getContentList(int board_info_idx);
+	List<ContentBean> getContentList(int board_info_idx, RowBounds rowBounds);
 			
 
 	
@@ -60,6 +61,8 @@ public interface BoardMapper {
 	void deletecContentInfo(int content_idx);
 	
 	
+	@Select("select conut(*) from content_table where content_board_idx = #{content_board_idx}")
+	int getContentCnt(int content_board_idx);
 	
 	
 }

@@ -1,9 +1,0 @@
-package kr.co.softcampus.interceptor;
-
-import org.springframework.web.servlet.HandlerInterceptor;
-
-public class CheckLoginInterceptor implements HandlerInterceptor {
-
-	private 
-	
-}

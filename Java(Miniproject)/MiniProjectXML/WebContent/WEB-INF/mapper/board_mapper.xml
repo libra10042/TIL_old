@@ -69,8 +69,14 @@
 	
 	</select>
 		
-
+	<select id="getContentCnt" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		<![CDATA[
+			select count(*) from content_table where content_board_idx = ${content_board_idx}
+		]]>
 	
+	</select>
+		
+
 	
 
 
