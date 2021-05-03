@@ -38,4 +38,12 @@ window.addEventListener('scroll', _.throttle(function(){
         })
     }
 }, 300));
-// _.throttle(함수, 시간)
+
+
+const fadeElements = document.querySelectorAll(".visual .fade-in");
+fadeElements.forEach(function(fadeElement, index){
+    gsap.to(fadeElement, 1, {
+        delay : (index + 1) * .7,
+        opacity : 1
+    });
+});
