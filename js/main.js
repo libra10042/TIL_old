@@ -74,6 +74,20 @@ new Swiper('.promotion .swiper-container', {
 });
 
 
+new Swiper('.awards .swiper-container', {
+    autoplay : true, 
+    loop : true, 
+    spaceBetween: 30, 
+    slidesPerView : 5,
+    navigation : {
+        prevEl : 'awards .swiper-prev',
+        nextEl : 'awards .swiper-next'
+    }
+});
+
+
+
+
 const promotionEl = document.querySelector('.promotion');
 const promotionToggleBtn     = document.querySelector('.toggle-promotion');
 let isHidePromotion = false;
@@ -122,3 +136,7 @@ spyEls.forEach(function(spyEl){
         .setClassToggle(spyEl, 'show')
         .addTo(new ScrollMagic.Controller());
 })
+
+
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear(); //2021
