@@ -6,7 +6,6 @@ function solution()
 
 
     for(let i=0; i<number.length; i++){
-        let check =0; 
 
         if(number[i] !== number[i+1]){
             answer.push(number[i]);
