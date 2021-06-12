@@ -35,4 +35,4 @@ let test = {
 
 console.log(test.prop1); //'test'
 delete test.prop1; 
-console.log(test.prop1); // undefined
+console.log(test.prop1); // undefined_
