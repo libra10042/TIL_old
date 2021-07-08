@@ -133,3 +133,43 @@ AVLTree.prototype.setDepthBasedOnChildren = function(){
         this.depth = this.right.depth +1; 
     }
 }
+
+
+// --------------------------------------------------------
+// 삭제
+BinarySearchTree.prototype.remove = function(value){
+
+    return deleteRecursively(this._root, value);
+
+    function deleteRecursively(root, value){
+        if(!root){
+            return null; 
+        }else if(value < root.value){
+            root.left = deleteRecursively(root.left, value);
+        }else if(value > root.value) {
+            root.right = deleteRecursively(root.right, value);
+        }else { 
+            // 자식이 없는 경우
+            if(!root.left && !root.right){
+                return null; // 첫 번째 경우
+            }else if(!root.left){ // 두 번째 경우
+                root = root.right; 
+                return root;
+            }else { 
+                var temp = findMin(root.right); // 세 번째 경우
+                root.value = temp.value; 
+                root.right = deleteRecursively(root.right, temp.value);
+                return root;
+            }
+        }
+        return root;
+    }
+
+    function findMin(root){
+        while(root.left){
+            root = root.left;
+        }
+        return null; 
+    }
+}
+//   시간 복잡도 (균형트리) : O(log2(n))   /    시간 복잡도(불균형 트리) : O(n)
