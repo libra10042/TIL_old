@@ -1,1 +1,1 @@
-### JS Algorism 문제 & 서적을 보고 기록하는 Repository 입니다.
+### JS Algorism 공부한 내용을 기록하는 Repository 입니다.
