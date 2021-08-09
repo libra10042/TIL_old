@@ -1,0 +1,8 @@
+1.  test source 파일은 src 폴더 아래에  myspring.user.test  팩키지에  위치하면 됩니다. 
+     UserClient.java를 이용하여 테스트 할때 메서드를 한개만 테스트 하고, 테스트 하지 않는 메서드들은
+     @Ignore 어노테이션을 사용하여 테스트 되지 않도록 하시면 됩니다. 
+
+2.  beans.xml 파일은 src/config  폴더 아래에 위치하면 됩니다. 
+      value.properties 파일도 src/config 폴더 아래에  위치하면 됩니다. 
+     
+3. user.sql  파일은  oracle command tool 에서 테이블을 생성할때 사용하면 됩니다. 

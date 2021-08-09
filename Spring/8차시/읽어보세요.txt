@@ -1,0 +1,6 @@
+1. java source 파일은  src 폴더 아래에  myspring.di.xml  팩키지에  위치하면 됩니다. 
+    test source 파일은  src 폴더 아래에 myspring.di.xml.test  팩키지에  위치하면 됩니다. 
+
+2. beans.xml 파일은 src/config  폴더 아래에 위치하면 됩니다. 
+     value.properties 파일도 src/config 폴더 아래에  위치하면 됩니다. 
+

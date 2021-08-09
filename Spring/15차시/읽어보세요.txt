@@ -1,0 +1,4 @@
+1. source 파일은  myspring.aop.annot  팩키지 폴더 아래에  위치하면 됩니다. 
+  
+2.  beans.xml 파일은 config  폴더 아래에 위치하면 됩니다. 
+

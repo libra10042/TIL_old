@@ -1,0 +1,8 @@
+1.  HelloController.java 파일은 src 폴더 아래에 myspring.user.controller  팩키지에  위치하면 됩니다. 
+      hello.jsp 파일은 WebContent 폴더 아래에 위치하면 됩니다. 
+     
+2.  UserController.java 파일은 src 폴더 아래에 myspring.user.controller  팩키지에  위치하면 됩니다. 
+      index.jsp , userList.jsp 파일은 WebContent 폴더 아래에 위치하면 됩니다. 
+
+3.  web.xml 파일은  WebContent/WEB-INF  폴더 아래에 위치하면 됩니다. 
+ 

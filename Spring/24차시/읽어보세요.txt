@@ -1,0 +1,3 @@
+     
+1.  beans-web.xml 파일은  src/config  폴더 아래에 위치하면 됩니다. 
+ 

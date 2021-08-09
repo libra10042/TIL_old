@@ -1,0 +1,6 @@
+     
+1.  RestfulUserController.java 파일은 src 폴더 아래에 myspring.user.controller  팩키지에  위치하면 됩니다. 
+      UserVOXML.java 파일은src 폴더 아래에  myspring.user.vo 팩키지에 위치하면 됩니다.       
+
+2.  userList_Xml.html  파일은 WebContent 폴더 아래에 위치하면 됩니다. 
+ 
