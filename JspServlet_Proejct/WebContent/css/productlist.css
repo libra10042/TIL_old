@@ -1,0 +1,101 @@
+
+
+.button {
+   border: 1px solid gainsboro;
+   background-color: gainsboro;
+   padding: 20px;
+   border-radius: 10px;
+}
+.qnaContent {
+	padding:20px;
+}
+.input {
+    border: 1px solid gainsboro;
+    width: 40px;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: right;
+}
+#p_summary table th {
+	margin:20px;
+	
+}
+#p_summary table td {
+	font-size: 1.3em;
+	margin:20px;
+}
+#p_detail {
+	text-align: center;
+}
+#p_upper {
+	display: inline-block;
+}
+#p_thumbnail img {
+	width: 550px;
+}
+#hr {
+	border: 0;
+	height: 0.5px;
+	background: #ccc;
+	text-align:center;
+}
+#p_review {
+	width: 1100px;
+	margin: 0px auto;
+	text-align: left;
+}
+#p_review_font {
+	font-size: 1.3em; 
+	padding: 30px; 
+	height:30px;"
+}
+#p_review_contents {
+	padding: 20px;
+	height: 50px;
+}
+#review_list_detail {
+	padding: 10px;
+}
+#p_review table td{
+	width: 1000px;
+	text-align:center;
+}
+#p_writeReview {
+	float: right;
+	margin: 20px;
+}
+#p_qna table{
+	width: 1000px;
+	
+	margin: 0px auto;
+	text-align: center;
+}
+#p_qna th {
+	font-weight: lighter;
+	height: 20px;
+	margin-top: 5px; margin-bottom: 5px;
+	
+}
+#p_qna td {
+	height: 30px;
+}
+#p_qna td p{
+	height: 30px;
+}
+#gray {
+	font-size: 0.8em;
+	color: gray;
+}
+#left {
+	text-align: left;
+}
+#right {
+	text-align: right;
+}
+
+
+/*------------------------- 포동애비 -----------------------*/
+
+.button:hover {
+    background-color: darkgray;
+}

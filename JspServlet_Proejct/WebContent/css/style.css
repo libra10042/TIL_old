@@ -1,0 +1,717 @@
+
+.menu {
+    text-align: center;
+    padding: 1%;
+    vertical-align: middle;
+    position: sticky;
+}
+li {
+    display:inline-block;
+    margin-right: 11px;
+    vertical-align: middle;
+}
+/*마이페이지*/
+select {
+    cursor: pointer;
+    text-align-last: center;
+}
+.menu a:hover {
+    background: #FFB82B;
+}
+.menu a:hover{
+    color: white;
+    font-size: 16px;
+}
+.menu {
+    margin: 30px auto;
+}
+.user{
+    float: left;
+    word-spacing: 3px;
+}
+/*로고*/
+.logo {
+    position: relative; /*기준이 됨*/
+    text-align: center;
+    margin: 10px;
+}
+.logo .cart {
+    position: absolute; 
+    right: 30px;
+    top: 25px;
+    cursor: pointer;
+}
+/*회원가입, 로그인 버튼 */
+#btn_group {
+    float: left;
+}
+h2 {
+    padding: 10px;
+    margin: 30px;
+}
+/*회원가입 버튼*/
+#signup_btn{
+    background-color: white;
+}
+/*로그인 버튼*/
+#login_btn {
+    background-color: white;
+    cursor: pointer;
+}
+/*로그인창*/
+.lg{
+    text-align: center; /*글자 중앙 정렬*/
+    width: 700px; /*가로 사이즈*/
+    height: 1000px; /*세로 사이즈*/
+    display: none; /*클릭하기 전까지 안 보임*/
+    border: 1px solid gainsboro;
+    padding: 20px;
+    margin: 80px auto; /*가운데 배치*/
+}
+/*아이디, 비번 입력 창*/
+.lg .lg-control {
+    padding: 20px;
+    width: 500px;
+    border: 1px solid gainsboro;
+    margin: 10px; /* 아이디, 비밀번호 항목 간격 */
+}
+/*로그인창-로그인버튼*/
+.lg .lgf-control {
+    border: 1px solid;
+    background-color: rgb(46, 46, 48);
+    color: white;
+    width: 160px;
+    height: 50px;
+    float: right; /*화면 오른쪽 위치*/
+    margin-right: 80px;
+    cursor: pointer;
+}
+/*아이디저장 체크박스*/
+.checkbox {
+    float: left;
+    margin-left: 90px;
+} 
+/*로그인창-회원가입버튼*/
+.lg .lgs-control {
+    border: 1px solid gainsboro;
+    background-color: white;
+    width: 160px;
+    height: 50px;
+    float: right;
+    margin-top: 80px;
+    margin-right: -160px;
+    cursor: pointer;
+}
+#line {
+    margin-bottom: 100px;
+    border:0.1px solid gainsboro; height: 0px !important;
+}
+
+/*----------------- 포동애비 ------------------------------------------*/
+
+.title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.o_step {
+    margin-bottom: 50px;
+    text-align: center;
+    background-color: #fff3e5;
+    padding: 50px;
+}
+.o_step ul li {
+    width:220px;
+}
+.step1_2 {
+    opacity: 0.3;
+}
+.step1_3 {
+    opacity: 0.3;
+}
+.step2_1 {
+    opacity: 0.3;
+}
+.step2_3 {
+    opacity: 0.3;
+}
+.step3_1 {
+    opacity: 0.3;
+}
+.step3_2 {
+    opacity: 0.3;
+}
+.div_k {
+    width: 1200px;
+    margin: auto;
+    overflow: auto;
+}
+.div_k2 {
+    width: 1100px;
+    margin: auto;
+}
+.div_order {
+    float: left;
+    margin-left: 50px;
+}
+.menubar {
+    border: 1px solid gainsboro;
+    width: 120px;
+    height: 300px;
+    font-size: 0.9rem;
+}
+.menubar2:hover {
+    background-color: #FFB82B;
+    color: white;
+    font-size: 16px;
+}
+.div_order2 {
+    margin-left: 250px;
+}
+.div_cart {
+    width: 1100px;
+    margin: auto;
+}
+.div_cart_2_1 {
+    width: 1100px;
+    margin: auto;
+    margin-bottom: 120px;
+}
+.div_cart_2_2 {
+    width: 1100px;
+    margin: auto;
+    margin-bottom: 120px;
+}
+.div_cart_2_3 {
+    width: 1100px;
+    margin: auto;
+    margin-bottom: 120px;
+}
+.div_cart_2_4 {
+    width: 1100px;
+    margin: auto;
+    margin-bottom: 120px;
+}
+.div_cart_2_5 {
+    width: 1100px;
+    margin: auto;
+    margin-bottom: 120px;
+}
+.div_cart_2_6 {
+    width: 1100px;
+    margin: auto;
+    margin-bottom: 120px;
+}
+.div_cart2 {
+    margin-top: 30px;
+}
+.div_cart3 {
+    text-align: right;
+}
+.div_cart37 {
+    padding-left: 700;
+}
+.div_coupon {
+    text-align: right;
+    margin-right: 50px;
+    margin-top: 30px;
+}
+.div_member {
+    width: 900px;
+    margin: auto;
+}
+.div_member2 {
+    width: 150px;
+    margin: auto;
+    margin-top: 30px;
+}
+.div_board {
+    width: 900px;
+}
+.table_board {
+    width: 900px;
+}
+#pg {
+    text-align: right;
+}
+#r_opt {
+    text-align: right;
+}
+.div_review {
+    margin-top: 30px;
+    width: 900px;
+}
+.div_ctrl {
+    width: 900px;
+    margin-bottom: 30px;
+}
+.div_r_button {
+    width: 900px;
+    margin-top: 100px;
+    text-align: right;
+}
+.div_finish {
+    width: 1100px;
+    margin-top: 100px;
+}
+.div_finish2 {
+    width: 1100px;
+    margin-top: 180px;
+}
+.div_finish3 {
+    width: 1100px;
+    margin-top: 100px;
+}
+.div_finish4 {
+    text-align: right;
+    margin-top: 50px;
+}
+.table_ctrl {
+    width: 900px;
+    border: 1px solid gainsboro;
+    padding: 20px;
+}
+.table_list {
+    border-top: 1px solid black;
+    width: 900px;
+}
+.table_list tr th {
+    border-bottom: 1px solid gainsboro;
+    background-color: #fff3e5;
+    width: 50px;
+    height: 30px;
+}
+.table_list tr td {
+    border-bottom: 1px solid gainsboro;
+    text-align: center;
+    height: 40px;
+}
+.table_cart {
+    border-top: 1px solid black;
+    width: 1100px;
+}
+.table_cart tr th {
+    border-bottom: 1px solid gainsboro;
+    width: 50px;
+    height: 30px;
+}
+.table_cart tr td {
+    border-bottom: 1px solid gainsboro;
+    text-align: center;
+}
+.table_cart_2_1 {
+    border-top: 1px solid black;
+    height: 70px;
+    width: 1100px;
+}
+.table_cart_2_1 tr th {
+    border-bottom: 1px solid gainsboro;
+    width: 50px;
+    height: 30px;
+}
+.table_cart_2_1 tr td {
+    border-bottom: 1px solid gainsboro;
+    text-align: center;
+}
+.table_cart_2_2 {
+    border-top: 1px solid black;
+    width: 1100px;
+    height: 200px;
+}
+.table_cart_2_2 tr th {
+    border-bottom: 1px solid gainsboro;
+    background-color: #fff3e5;
+    width: 100px;
+}
+.table_cart_2_2 tr td {
+    border-bottom: 1px solid gainsboro;
+    padding-left: 50px;
+}
+.table_cart_2_3 {
+    border-top: 1px solid black;
+    width: 1100px;
+    height: 450px;
+}
+.table_cart_2_3 tr th {
+    border-bottom: 1px solid gainsboro;
+    background-color: #fff3e5;
+}
+.table_cart_2_3 tr td {
+    border-bottom: 1px solid gainsboro;
+    padding-left: 30px;
+}
+.table_cart_2_4 {
+    border-top: 1px solid black;
+    width: 1100px;
+    height: 230px;
+}
+.table_cart_2_4 tr th {
+    border-bottom: 1px solid gainsboro;
+    background-color: #fff3e5;
+}
+#po_cou {
+    padding-left: 50px;
+}
+.table_cart_2_4 tr td {
+    border-bottom: 1px solid gainsboro;
+}
+.table_cart_2_5 {
+    border-top: 1px solid black;
+    width: 1100px;
+    height: 330px;
+}
+.table_cart_2_5 tr th {
+    border-bottom: 1px solid gainsboro;
+    background-color: #fff3e5;
+    width: 140px;
+}
+.table_cart_2_5 tr td {
+    border-bottom: 1px solid gainsboro;
+    padding-left: 40px;
+    
+}
+.table_cart_2_6 {
+    border-top: 1px solid black;
+    width: 1100px;
+    height: 150px;
+}
+.table_cart_2_6 tr th {
+    border-bottom: 1px solid gainsboro;
+    background-color: #fff3e5;
+}
+.table_cart_2_6 tr td {
+    border-bottom: 1px solid gainsboro;
+    padding-left: 30px;
+}
+#o_dc {
+    text-align: center;
+}
+.table_member {
+    border: 1px solid gainsboro;
+    padding: 70px;
+    width: 900px;
+    height: 700px;
+    margin-top: 100px;
+}
+.table_member tr {
+    text-align: left;
+    height: 80px;
+}
+.table_member tr th {
+    width: 120px;
+    border-bottom: 1px solid gainsboro;
+    background-color: #fff3e5;
+    text-align: center;
+}
+.table_member tr td {
+    border-bottom: 1px solid gainsboro;
+    padding-left: 40px;
+}
+#name_top {
+    border-top: 1px solid gainsboro;
+}
+#ad_hgt {
+    height: 120px;
+}
+#l_text {
+    border: 1px solid gainsboro;
+    width: 40px;
+    border-radius: 5px;
+    padding: 3px;
+    text-align: right;
+}
+#m_text {
+    border: 1px solid gainsboro;
+    width: 150px;
+    border-radius: 5px;
+    padding: 5px;
+}
+#m_text2 {
+    border: 1px solid gainsboro;
+    width: 100px;
+    border-radius: 5px;
+    padding: 5px;
+}
+#m_text3 {
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    width: 300px;
+    padding: 5px;
+}
+#text_area {
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+}
+#m_address {
+    border: 1px solid gainsboro;
+    width: 130px;
+    border-radius: 5px;
+    padding: 5px;
+    text-align-last: left;
+}
+#m_card {
+    border: 1px solid gainsboro;
+    width: 310px;
+    border-radius: 5px;
+    padding: 5px;
+    text-align-last: left;
+}
+#year {
+    border: 1px solid gainsboro;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    text-align-last: left;
+}
+#month, #day, #m_phone {
+    border: 1px solid gainsboro;
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    text-align-last: left;
+}
+#r_option {
+    border: 1px solid gainsboro;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+}
+#cp_button {
+    border: 1px solid orange;
+    background-color: orange;
+    padding: 8px;
+    border-radius: 5px;
+}
+#cp_button:hover {
+    background-color: darkgoldenrod;
+}
+#l_button1 {
+    border: 1px solid orange;
+    background-color: orange;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+#l_button1:hover {
+    background-color: darkgoldenrod;
+}
+#l_button2 {
+    border: 1px solid gainsboro;
+    background-color: gainsboro;
+    padding: 5px;
+    border-radius: 5px;
+}
+#l_button2:hover {
+    background-color: darkgray;
+}
+.table_price {
+    margin-left: 800px;
+    margin-bottom: 10px;
+}
+.table_price tr th {
+    width: 200px;
+}
+.table_price tr td {
+    height: 50px;
+    text-align: right;
+}
+#c_button1 {
+    border: 1px solid gainsboro;
+    background-color: gainsboro;
+    padding: 20px;
+    border-radius: 10px;
+}
+#c_button1:hover {
+    background-color: darkgray;
+}
+#c_button2 {
+    border: 1px solid gainsboro;
+    background-color: gainsboro;
+    padding: 20px;
+    border-radius: 10px;
+}
+#c_button2:hover {
+    background-color: darkgray;
+}
+#c_button3 {
+    border: 1px solid gainsboro;
+    background-color: orange;
+    padding: 20px;
+    border-radius: 10px;
+}
+#c_button3:hover {
+    background-color: darkgoldenrod;
+}
+#c_button3_cardpass {
+    border: 1px solid gainsboro;
+    background-color: orange;
+    padding: 20px;
+    border-radius: 10px;
+}
+#c_button3_cardpass:hover {
+    background-color: darkgoldenrod;
+}
+.div_o_button {
+    width: 1100px;
+    text-align: center;
+}
+.o_borton {
+    border-bottom: 1px solid black;
+    font-weight: 900;
+}
+.o_borton:hover {
+    color: orange;
+    font-size: 15px;
+}
+.paybox {
+    margin-bottom: 5px;
+}
+.div_cardpass {
+    width: 500px;
+    margin: auto;
+    display: none;
+    position: fixed;
+    left: 500px;
+    bottom: 200px;
+    
+}
+.table_carpass_head {
+    border: 1px solid gainsboro;
+    border-bottom: 0px solid;
+    width: 500px;
+    text-align: left;
+    padding-left: 30px;
+    font-size: 20px;
+    height: 70px;
+    background-color: #fff3e5;
+}
+#normalpass td{
+    border: 1px solid gainsboro;
+    height: 45px;
+}
+#normal_left {
+    background-color: #fff3e5;
+}
+.table_cardpass {
+    width: 500px;
+    border: 1px solid gainsboro;
+    height: 350px;
+    background-color: white;
+}
+.table_cardpass tr td {
+    padding-left: 5px;
+    width: 20px;
+}
+#close {
+    text-align: right;
+    padding-right: 20px;
+}
+#close_x:hover {
+    color: lightgray;
+}
+#n_box {
+    border: 1px solid gainsboro;
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+}
+#n_but {
+    text-align: center;
+}
+#n_but1 {
+    border: 1px solid gainsboro;
+    background-color: gainsboro;
+    border-radius: 5px;
+    padding: 12px 20px;
+    margin-right: 5px;
+}
+#n_but1:hover {
+    background-color: darkgray;
+}
+#n_but2 {
+    border: 1px solid gainsboro;
+    background-color: orange;
+    border-radius: 5px;
+    padding: 12px 20px;
+    margin-left: 5px;
+}
+#n_but2:hover {
+    background-color: darkgoldenrod;
+}
+.h_finish {
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+.table_finish {
+    margin: auto;
+}
+.table_finish td {
+    padding-left: 50px;
+    padding-bottom: 15px;
+}
+.table_finish2 {
+    border: 1px solid black;
+    margin: auto;
+    text-align: center;
+    width: 1100px;
+    height: 150px;
+}
+.table_finish2 th {
+    border: 1px solid gainsboro;
+    background-color: #fff3e5;
+}
+.table_finish2 tr td {
+    border: 1px solid gainsboro;
+    font-size: 25px;
+}
+.table_finish2_1 {
+    border: 1px solid gainsboro;
+    margin: auto;
+    width: 1100px;
+    height: 50px;
+}
+.table_finish2_1 th {
+    border: 1px solid gainsboro;
+}
+.table_finish2_1 td {
+    border: 1px solid gainsboro;
+    padding-left: 30px;
+}
+.table_finish3 {
+    border: 1px solid gainsboro;
+    width: 1100px;
+    height: 200px;
+}
+.table_finish3 th {
+    border: 1px solid gainsboro;
+}
+.table_finish3 td {
+    border: 1px solid gainsboro;
+    padding-left: 30px;
+}
+footer {
+    margin-top: 300px;
+}
+footer table {
+    margin: auto;
+    margin-bottom: 100px;
+    width: 1200px;
+}
+footer tr {
+    text-align: center;
+}
+footer th {
+    width: 300px;
+    height: 70px;
+}
+footer td {
+    text-align: center;
+    height: 20px;
+    color: darkgray;
+}
+.hr_line {
+    border:0.1px solid gainsboro;
+    margin-bottom: 30px;
+}
+.div_cart37 {
+	padding-left: 740px;
+}

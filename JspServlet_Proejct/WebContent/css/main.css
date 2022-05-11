@@ -1,0 +1,405 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
+.whole_form {
+    width: 80%;
+    margin: 0 auto; /*가운데정렬*/
+}
+
+.whole_signup {
+    width: 100%;
+    padding: 1%;
+    margin-left: 5%;
+}
+
+.join_chang{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 80px;
+}
+
+li {
+    display:inline-block;
+    margin-right: 11px;
+    vertical-align: middle;
+}
+
+/*마이페이지*/
+select {
+    cursor: pointer;
+    text-align-last: center;
+}
+
+.menu1{
+	 padding: 10px 0px;
+     width: 100%;
+     background-color:white;
+     text-align:center;     
+	 word-spacing:8px;
+}
+
+.menu1 a:hover {
+    background: tomato;
+}
+
+.mypage {
+    margin: 0;
+}
+
+/*메인페이지-회원가입, 로그인, 마이페이지 버튼*/
+.user{
+    float: left;
+    word-spacing: 3px;
+    margin-left: 1%;
+}
+
+/*로고*/
+.logo {
+    position: relative; /*기준이 됨*/
+    text-align: center;
+    margin: 30px;
+    cursor: pointer;
+}
+.logo .cart {
+    position: absolute; 
+    right: 30px;
+    top: 25px;
+    cursor: pointer;
+}
+
+/*회원가입, 로그인 버튼 */
+#btn_group {
+    float: left;
+}
+h2 {
+    margin-bottom: 10px;
+
+}
+
+/*회원가입 버튼*/
+#signup_btn{
+    background-color: white;
+}
+/*로그인 버튼*/
+#login_btn {
+    background-color: white;
+    cursor: pointer;
+}
+
+#logout_btn {
+    background-color: white;
+    cursor: pointer;
+}
+
+/*상단바*/
+.banner {
+    text-align:center;
+    margin:0 10px;
+    margin-top:4%;
+ 
+}
+.banner a:hover {
+    background-color: #FFB82B;
+    color: white;
+    font-size: 16px;
+}
+
+/*로그인창*/
+.lg{
+    text-align: center; /*글자 중앙 정렬*/
+    width: 700px; /*가로 사이즈*/
+    height: 1000px; /*세로 사이즈*/
+    display: none; /*클릭하기 전까지 안 보임*/
+    border: 1px solid gainsboro;
+    padding: 30px;
+    margin: 80px auto; /*가운데 배치*/
+}
+/*로그인창 닫는 x버튼*/
+.close_btn {
+    cursor: pointer;
+    float: right;
+}
+
+/*아이디, 비번 입력 창*/
+.lg .lg-control {
+    padding: 20px;
+    width: 500px;
+    border: 1px solid gainsboro;
+    margin: 10px; /* 아이디, 비밀번호 항목 간격 */
+    margin-left: 3%;
+}
+
+/*로그인창-로그인버튼*/
+.lg .lgf-control {
+    border: 1px solid;
+    background-color: rgb(46, 46, 48);
+    color: white;
+    width: 160px;
+    height: 50px;
+    float: right; /*화면 오른쪽 위치*/
+    margin-right: 80px;
+    cursor: pointer;
+}
+/*아이디저장 체크박스*/
+.checkbox {
+    float: left;
+    margin-left: 90px;
+
+} 
+/*로그인창-회원가입버튼*/
+.lg .lgs-control {
+    border: 1px solid gainsboro;
+    background-color: white;
+    width: 160px;
+    height: 50px;
+    float: right;
+    margin-top: 60px;
+    margin-right: -160px;
+    cursor: pointer;
+}
+
+u {
+    font-size: 0.8em; color: gray;
+}
+/* 전체동의 항목*/
+.join_form {
+    border: 1px solid gainsboro;
+    border-bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+
+}
+.join_form:nth-child(4){
+    border-bottom: 1px solid gainsboro;
+}
+
+
+/* 개인정보 수집 및, 처리위탁 체크 항목 */
+.join_form1 {
+    float:left;
+    width:33.3%;
+    border:1px solid gainsboro;
+    box-sizing:border-box;
+    border-top-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    }
+
+
+/*회원가입 전체동의 체크박스*/
+.join-checkbox {
+    float: left;
+}
+
+/*회원가입 하는 버튼*/
+.ajoin_btn {
+    border: 1px solid black;
+    width: 13%;
+    padding: 10px;
+    background-color: rgb(46, 46, 48);
+    color: white;
+    cursor: pointer;
+    margin-left: 18%;
+    margin-top: 40px;
+}
+
+.etc{
+    margin-top: 10px;   
+}
+/* 휴대폰인증 창*/
+.phc {
+    border: 1px solid gainsboro;
+    font-size: 0.9em;
+    color:gray;
+    margin-bottom: 3%;
+}
+
+/* 휴대폰인증 버튼*/
+.phc_btn {
+    border: 1px solid gainsboro;
+    cursor: pointer;
+} 
+
+/*회원정보 입력 창*/
+.form_group{
+    border: 1px solid gainsboro;
+    width: 70%;
+    margin: auto; /*가운데 정렬*/
+    padding: 1%;
+    margin-bottom: 3%;
+    box-sizing: border-box;
+
+}
+/*회원가입 이름 항목 길이 조절*/
+.form_name {
+    margin-bottom: 1.5%;
+}
+
+/*중복확인 버튼*/
+.id_c {
+    background-color: rgb(46, 46, 48);
+    color: white;
+    padding: 0.9%;
+    cursor: pointer;
+    margin-left: 3%;
+    
+}
+/*회원정보 항목(이름,아이디 어쩌고)*/
+.label {  
+    font-size: 0.9em;
+    margin-left: 3%;
+}
+
+/*입력하는 네모칸*/
+.form_ele {
+    border: 1px solid gainsboro;
+    width: 25%;
+    padding: 1%;
+    margin-left: 13%;
+    
+}
+
+.email_form {
+    border: 1px solid gainsboro;
+    width: 30%;
+    padding: 7px;
+    margin-left: 17px;
+}
+/*가입 창에 줄 긋기*/
+.line{ 
+    border-bottom: 1px gainsboro solid;
+    margin-bottom: 2%;
+    margin-top: 0.2%;
+    padding: 0.3%;
+}
+
+/*회원가입 집주소 입력창*/
+.form_addr_in {
+    border: 1px solid gainsboro;
+    width: 15%;
+    padding: 7px;
+    margin-left: 17px;
+}
+
+/*메인 메뉴 줄*/
+.main_line {
+    border-bottom: 1px gray solid;
+    margin-top: 0.1%;
+}
+
+/*(회원가입 창의) 가입 취소 버튼*/
+.form_btn1 {
+	display:inline-block; 
+    background-color: gray;
+    color:gainsboro;
+    padding: 2%;
+    cursor: pointer;
+    color: white; 
+    margin-left:10px;
+}
+
+/*회원가입 완료 버튼*/
+.form_btn2 {
+    background-color: rgb(46, 46, 48);
+    color: white;
+   	display:inline-block; 
+    padding: 2%;
+    cursor: pointer;
+   
+}
+
+
+
+/*가입 동의서 이용약관 항목*/
+.useContract{
+    border: 1px solid gainsboro;
+    width: 100%;
+    overflow:auto;
+    
+}
+/*가입 동의서 개인정보 수집 및 이용 테이블 */
+.useContract1 {
+    width: 100%;
+    margin-top: 30px;
+    
+}
+.useContract1 table {
+   width: 100%;
+    border: 1px solid gainsboro;
+    border-collapse: collapse;
+}
+
+.useContract1 table th, td{
+    padding: 10px;
+} 
+
+.useContract1 th {
+    border-bottom: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    background-color: whitesmoke;
+}
+
+.useContract1 td {
+    border-bottom: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    text-align: center;
+}
+
+.useContract1 thead {
+   background-color: whitesmoke;
+}
+
+.form_tot {
+    width: 80%;
+    padding: 0.5%;
+}
+
+.form_notice {
+    float: right;
+    font-size: 0.8em;
+    color: gray;
+    margin-bottom:1%;
+}
+
+.form_enter {
+    margin-top: 1%;
+}
+
+/*기본주소, 상세 주소*/
+.form_ele_plus {
+    border: 1px solid gainsboro;
+    width: 20%;
+    padding: 7px;
+  
+}
+.form_ele_plus1 {
+    margin-top: 10px;
+    margin-left:10%;
+    
+}
+
+.form_btn {
+	margin-left:50%;
+}
+.eve {
+	border-bottom:1px solid gainsboro;
+}
+
+.form_email{
+	margin-bottom:1%;
+}
+
+.jbFixed {
+        position: fixed;
+        top: 0px;
+      }
+
+/* ----------------------- 포동애비 --------------------------*/
+.container {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    width: 1100px;
+}
