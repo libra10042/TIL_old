@@ -1,3 +1,1 @@
 # Javascript
-
-:seedling::seedling::seedling:
