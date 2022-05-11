@@ -1,0 +1,4 @@
+1.  UserController.java 파일은 src 폴더 아래에 myspring.user.controller  팩키지에  위치하면 됩니다. 
+      userInfo.jsp , userInsert.jsp   파일은  WebContent 폴더 아래에 위치하면 됩니다. 
+ 
+2.  beans-web.xml 파일은 src/config  폴더 아래에 위치하면 됩니다. 

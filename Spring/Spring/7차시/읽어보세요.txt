@@ -1,0 +1,2 @@
+1. java source 파일은  src 폴더 아래에  myspring.di.xml.test  팩키지에  위치하면 됩니다. 
+
