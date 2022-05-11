@@ -1,0 +1,8 @@
+package javaThreadMethod.exam;
+
+public class ThreadB extends Thread{
+	int total; 
+	
+	
+	
+}

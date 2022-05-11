@@ -1,0 +1,13 @@
+127.0.0.1 - - [04/Mar/2021:23:46:28 +0900] "GET / HTTP/1.1" 404 1115
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:46:30 +0900] "GET /MiniProjectJava/ HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:46:32 +0900] "GET /MiniProjectJava/main HTTP/1.1" 200 8866
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:46:32 +0900] "GET /favicon.ico HTTP/1.1" 404 1126
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:55:08 +0900] "GET /MiniProjectJava/board/main HTTP/1.1" 200 7486
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:55:09 +0900] "GET /MiniProjectJava/board/main HTTP/1.1" 200 7486
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:55:09 +0900] "GET /MiniProjectJava/board/main HTTP/1.1" 200 7486
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:55:10 +0900] "GET /MiniProjectJava/board/main HTTP/1.1" 200 7486
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:55:11 +0900] "GET /MiniProjectJava/user/login HTTP/1.1" 200 3376
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:55:12 +0900] "GET /MiniProjectJava/user/join HTTP/1.1" 200 3742
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:55:13 +0900] "GET /MiniProjectJava/user/logout HTTP/1.1" 200 107
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:55:14 +0900] "GET /MiniProjectJava/main HTTP/1.1" 200 8866
+0:0:0:0:0:0:0:1 - - [04/Mar/2021:23:55:15 +0900] "GET /MiniProjectJava/user/modify HTTP/1.1" 200 3625

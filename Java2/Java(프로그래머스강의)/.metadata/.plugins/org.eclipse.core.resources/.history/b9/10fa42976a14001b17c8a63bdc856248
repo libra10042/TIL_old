@@ -1,0 +1,16 @@
+package javaUtilExam;
+
+public class Box<E> {
+	private Object obj; 
+	
+	public void setObj(Object obj) {
+		this.obj = obj; 
+		
+	}
+	
+	
+	public E getObj() {
+		return E; 
+	}
+	
+}

@@ -1,0 +1,10 @@
+package performance_comparison;
+
+import java.util.ArrayList;
+
+public class FileReaderPerformance {
+	public static ArrayList readCharStream(String fileName) throws Exception{
+		ArrayList<StringBuffer> list = new ArrayList<StringBuffer>();
+		
+	}
+}

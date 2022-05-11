@@ -1,0 +1,24 @@
+package kr.co.softcampus.interceptor;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+
+import kr.co.softcampus.beans.UserBean;
+import kr.co.softcampus.service.BoardService;
+
+public class CheckWriterInterceptor implements HandlerInterceptor {
+
+	private UserBean loginUserBean; 
+	private BoardService boardService;
+	
+	
+	public CheckWriterInterceptor(UserBean loginUserBean, BoardService boardService ) {
+		this.loginUserBean = loginUserBean;
+		this.boardService = boardService; 
+	}
+	
+	
+	
+	
+	
+	
+}

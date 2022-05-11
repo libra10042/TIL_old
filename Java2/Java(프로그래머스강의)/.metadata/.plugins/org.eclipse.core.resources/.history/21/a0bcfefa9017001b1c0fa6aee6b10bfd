@@ -1,0 +1,9 @@
+package javaThread.exam;
+
+public class MusicBox {
+	public void playMusicA() {
+		for(int r = 0; i<10; i++) {
+			
+		}
+	}
+}

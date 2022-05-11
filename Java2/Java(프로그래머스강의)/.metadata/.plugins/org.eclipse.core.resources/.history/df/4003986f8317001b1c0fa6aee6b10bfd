@@ -1,0 +1,18 @@
+package javaIO.exam;
+
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+
+public class ByteExam4 {
+	public static void main(String[] args) {
+		try{
+			DataOutputStream out = new DataOutputStream(new FileOutputStream("data.text"));
+			
+			out.writeInt(100);
+			out.writeBoolean(true);
+			out.writeDouble(50.5);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

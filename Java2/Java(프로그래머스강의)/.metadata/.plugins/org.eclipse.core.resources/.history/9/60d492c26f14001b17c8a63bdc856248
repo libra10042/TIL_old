@@ -1,0 +1,15 @@
+package javaUtilExam;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DateExam {
+	public static void main(String[] args) {
+		Date date = new Date();
+		System.out.println(date.toString()); //현재 날짜가 출력된다.
+		
+		
+		
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy/mm/dd");
+	}
+}

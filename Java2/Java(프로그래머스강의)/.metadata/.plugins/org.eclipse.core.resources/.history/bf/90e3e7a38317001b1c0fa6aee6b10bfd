@@ -1,0 +1,17 @@
+package javaIO.exam;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+public class ByteExam4 {
+	public static void main(String[] args) {
+		try(	DataInputStream dis = new DataInputStream(new FileInputStream("data.text"))
+				) {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

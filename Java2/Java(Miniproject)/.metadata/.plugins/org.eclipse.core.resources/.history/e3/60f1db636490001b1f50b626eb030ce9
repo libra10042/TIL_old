@@ -1,0 +1,15 @@
+package kr.co.softcampus.interceptor;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+
+import kr.co.softcampus.beans.UserBean;
+
+public class CheckWriterInterceptor implements HandlerInterceptor {
+
+	private UserBean loginUserBean; 
+	
+	
+	
+	
+	
+}

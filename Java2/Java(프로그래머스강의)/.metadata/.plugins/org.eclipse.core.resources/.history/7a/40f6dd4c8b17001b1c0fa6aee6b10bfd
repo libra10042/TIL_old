@@ -1,0 +1,9 @@
+package javaUtilExam;
+
+public class MyHelloExam {
+	public static void main(String[] args) {
+		MyHello hello = new MyHello(); 
+		
+		Method method = hello.getClass(); 
+	}
+}

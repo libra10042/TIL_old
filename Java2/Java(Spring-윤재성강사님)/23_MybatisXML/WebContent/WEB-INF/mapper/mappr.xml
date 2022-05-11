@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="test_db">
+
+	<insert id="insert_data" parameterType="kr.co.softcampus.beans.DataBean">
+		<![CDATA[
+			insert into spring_mvc_table (data1, data2, data3)
+			values (#{data1}, #{data2}, #{data3})
+		]]>
+	</insert>
+	
+	<select id='select_data' resultType="kr.co.softcampus.beans.DataBean">
+		<![CDATA[
+			select data1, data2, data3 from spring_mvc_table
+		]]>
+	</select>
+	
+</mapper>

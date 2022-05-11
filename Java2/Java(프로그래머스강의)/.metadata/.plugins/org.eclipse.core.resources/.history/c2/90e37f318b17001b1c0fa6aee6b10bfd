@@ -1,0 +1,7 @@
+package javaUtilExam;
+
+public class MyHelloExam {
+	public static void main(String[] args) {
+		
+	}
+}

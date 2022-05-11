@@ -1,0 +1,13 @@
+package javaIO.exam;
+
+import java.io.DataOutputStream;
+
+public class ByteExam3 {
+	public static void main(String[] args) {
+		try{
+			DataOutputStream
+		}catch(Exception e) {
+			
+		}
+	}
+}
