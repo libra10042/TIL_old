@@ -1,0 +1,59 @@
+package com.mystudy.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/hello")
+public class Ex01_Hello extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public Ex01_Hello() {
+    }
+
+
+	public void init(ServletConfig config) throws ServletException {
+	}
+
+	public void destroy() {
+	}
+
+	protected void service(HttpServletRequest request, 
+			HttpServletResponse response) throws ServletException, IOException {
+		//service() 메소드는 요청이 있을 때 마다 호출된다
+		System.out.println(">> service() 실행 ==============");
+		
+		//요청정보를 확인해서 get, post 여부에 따라 분기 처리
+		System.out.println("request.getMethod() : " + request.getMethod());
+		if (request.getMethod().equalsIgnoreCase("get")) {
+			doGet(request, response);
+		} else if (request.getMethod().equalsIgnoreCase("post")) {
+			doPost(request, response);
+		}
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println(">> doGet() 실행~~");
+		response.getWriter().println("<h1>Hello</h1>"); //클라이언트(브라우저)쪽으로 전달
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
+
+
+
+
+
+
+
+
+

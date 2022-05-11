@@ -1,0 +1,50 @@
+package com.mystudy.servlet;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/signup")
+public class Ex04 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//request 객체로 부터 파라미터 값 추출
+		//1. getParameter(파라미터명) : 하나의 파라미터 값 추출
+		//2. getParameterValues(파라미터명) : 배열형태 값 추출(체크박스 등)
+		//3. getParameterMap(파라미터명) : 파라미터 값을 Map형태로 추출
+		// 기타 getParameterNames() : 파라미터명 확인시 사용
+		
+		//전달받은 회원가입 정보를 추출해서 회원가입정보를 작성후 응답처리
+		//요청정보 추출
+		String name = request.getParameter("name"); //파라미터명 없으면 null 리턴
+		System.out.println("name : -" + name + "-");
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		String email = request.getParameter("email");
+		
+		//취미(hobby) 값 추출 
+		String[] hobby = request.getParameter("hobby");
+		System.out.println("hobby 배열 : " + hobby);
+		System.out.println("hobby 배열값 : " + Arrays.toString(hobby));
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(">> doPost() 실행");
+		request.setCharacterEncoding("UTF-8");
+		doGet(request, response);
+	}
+
+}
+
+
+
+
+
+
+

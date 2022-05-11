@@ -1,0 +1,31 @@
+<이름으로 검색>
+- 화면이동
+	index.jsp -> fullname.jsp -> fullnameList.jsp
+- 요청처리
+	index.jsp : fullname
+	fullname.jsp
+		- 요청명 : fullnameList
+		- 요청파라미터명 : fullname
+- fullnameList 요청처리 서블릿 : FullnameListController
+
+<FullnameListController 처리작업>
+	1. 사용할 파라미터 값 추출
+	2. DAO.getFullnameList(fullname) 사용 데이터 조회
+	3. 조회된 데이터 request scope에 "list" 이름으로 저장
+	4. fullnameList.jsp 페이지로 위임처리
+
+- mapper.xml select 태그 작성 처리
+	(입력된 문자열로 FIRST_NAME, LAST_NAME 2곳에서 찾기)	
+- fullnameList.jsp 작성해서 전달받은 데이터 화면출력	
+
+
+
+
+
+
+
+
+
+
+
+	

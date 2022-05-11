@@ -1,0 +1,43 @@
+	#container {
+		width: 512px;
+		margin: auto;
+		/* border: 1px solid blue;*/
+	}
+	#container h2 { text-align: center; }
+	#container p { text-align: center; }
+	#container table {
+		width: 500px;
+		padding: 0 5px;
+		border: 1px solid black;
+		border-collapse: collapse; 
+	}
+	#container table th, td { border: 1px solid black; }
+	#container table th {
+		background-color: #9cf;
+		text-align: center;
+	}
+	#container table tbody td {
+		text-align: left;
+	}
+	#container table > tfoot { text-align: center; }
+	
+	#container p > a {
+		text-decoration: none;
+		font-weight: bold;
+	}
+	#container .center { text-align: center; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

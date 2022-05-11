@@ -1,0 +1,61 @@
+Ajax(Asynchronous JavaScript and XML)
+ 서버와 클라이언트가 속도를 맞출 필요가 없다.
+ (클라이언트가 서버에게 요청하고 기다리지 않아도 된다.)
+: 클라이언트가 비동기 방식으로 자바스크립트를 화면 전환 없이
+  서버측에 자료를 요청하고 화면전환 없이 결과를 출력
+
+  ///////////////////////////////////////////////////////////////////////
+  웹상에서 정보를 전달하는 방법 : xml, json를 가장 많이 사용된다.
+  xml : 사용자가 태그를 직접 만들어서 사용하는 것
+  기상청 > 생활과 산업 > 인터넷 - RSS
+  예)http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1111061500
+
+  
+  json : key와 value(1:1 매칭) http://json.org
+  json형식 : [{"키":"값","키":"값"}], [{"키":["값1","값2","값3"]}]
+  예)http://openapi.seoul.go.kr:8088/sample/json/SeoulLibraryTime/1/5/
+ ///////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////
+1. jQuery.load(url,data,callback); ajax 기능으로 html 로그하고 DOM방식으로 삽입
+	*url : 서버측 위치, *data :가져올 데이터, callback:콜백함수
+           
+2. jQuery.get(url,data,callback,type) : get방식으로 원격페이지 로드
+    jQuery.post(url,data,callback,type) : post방식으로 원격페이지 로드 
+    
+3. jQuery.getJSON() : get방식으로 json 데이터 로드          
+	jQuery.getScript() : get방식으로 script 데이터 로드
+    
+4. serialize() : form 요소에 전송할 데이터를 재가공
+      => 'name1=value&name2=value'.. 액션페이지에 전송한다.
+    serializeArray()
+      => key1:value1,key2:value2, key3:value3...  JSON데이터로 변환하여 
+5. ajaxComplete(function(){}) : Ajax통신이 완료(성공) 되면 함수에 있는 실행문 실행
+ 
+6. jQuery.ajax({url,type,data, datatype});
+   $.ajax({url,type,data, datatype});
+   url : 서버 url (jsp, php, asp);
+   type : get, post
+   data : 서버쪽으로 전송되는 데이터
+   dataType : 응답결과의 데이터 형태 (xml, html, json, text, script,....)
+   success : 성공한 경우 
+   error : 실패한 경우
+   
+   
+   complete: 요청이 완료 되었을때
+   contentType : 서버 전송시 content-type;
+   
+   
+       
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
