@@ -1,0 +1,40 @@
+상속(Inheritance)
+	상위클래스 : 수퍼(super)클래스, 부모(parent)클래스, 조상클래스
+		- 확장(상속)의 대상이 되는 클래스
+	하위클래스 : 서브(sub)클래스, 자녀(child)클래스, 자손클래스
+		- 확장(상속)해서 구현한 클래스
+
+클래스의 extends(확장) : 단일 상속(extends)만 허용	
+	- extends 단어 좌, 우에 동일한 형태(class, interface)가 있어야 함
+	- class extends class : 좌, 우에 모두 class 형태
+	- class extends "abstract class" : 좌측 class, 우측에 추상클래스
+	
+인터페이스의 extends(확장) : 다중 상속(extends, 확장) 허용
+	- interface extends interface1 [, interface2, ...]
+
+인터페이스의 구현(implements, 구현) : 인터페이스(interface) 구현해서 사용시
+	- class implements interface1 [, interface2, ...]
+=========================================
+
+자바의 클래스는 단일 상속(extends)만 허용
+	클래스 extends 클래스
+	클래스 implements 인터페이스 [, 인터페이스, 인터페이스, ...]
+	클래스 extends 클래스 implements 인터페이스 [, 인터페이스, 인터페이스, ...]
+
+	인터페이스 extends 인터페이스 [, 인터페이스, 인터페이스, ...]
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		
