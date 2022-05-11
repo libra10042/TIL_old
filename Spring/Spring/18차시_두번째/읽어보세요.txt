@@ -1,4 +1,0 @@
-1.  UserMapper.java 파일은 src 폴더 아래에 myspring.user.dao  팩키지에  위치하면 됩니다. 
-     MyMapper.java 파일은 src 폴더 아래에 myspring.user.dao  팩키지에  위치하면 됩니다.       
-  
-2.  beans.xml 파일은 config  폴더 아래에 위치하면 됩니다. 

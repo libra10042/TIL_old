@@ -1,3 +1,0 @@
-     
-1.  userList_Json.html  파일은 WebContent 폴더 아래에 위치하면 됩니다. 
- 

@@ -1,9 +1,0 @@
-1. UserDaoImpl.java 파일은  myspring.user.dao  팩키지 폴더 아래에  위치하면 됩니다. 
-
-    UserDaoImplJDBC 클래스내에  @Repository 어노테이션은  아래와 같이 주석처리 해주어야 합니다. 
-	//@Repository("userDao")
-	public class UserDaoImplJDBC implements UserDao {
-  
-2.  beans.xml 파일은 src/config  폴더 아래에 위치하면 됩니다. 
-      SqlMapConfig.xml 파일과 User.xml은 src/config 폴더 아래에  위치하면 됩니다. 
-
