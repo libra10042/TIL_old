@@ -1,0 +1,39 @@
+필요한 도구 설치 
+
+- node js 필요
+(why? webpack and babel 이 node.js를 사용하기 때문에.)
+
+
+nvm을 사용하면 손쉽게 node.js를 설치할 수 있다. 
+
+npm 대신 yarn을 사용해도 된다. 
+
+─────────────────────────────────────────────────────
+node -v : node 버전확인 (버전 8이상 사용할 것. )
+yarn -v : yarn 버전확인. 
+
+yarn대신 npm을 사용해도 됨. (yarn과 npm은 선택사항, node는 필수사항.)
+
+
+─────────────────────────────────────────────────────
+Step1. mkdir react-tutorial     :    directory 만들기
+Step2. cd react-tutorial        :    생성한 directory로 이동. 
+
+Step3. create-react-app contact-app    : react 프로젝트 생성하기. 
+
+Step4. cd contact-app 
+Step5. yarn start
+
+yarn eject : 설치된 파일을  꺼내고 싶을 때 사용한다.
+
+
+───────────────────────────────────────────────────
+reactjs code snippets 설치하기..!
+- rcc
+- rsc
+
+
+
+
+
+

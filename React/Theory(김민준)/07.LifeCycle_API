@@ -1,0 +1,37 @@
+LifeCycle API이란?
+: 리액트에서 component를 만들 때 중요한 개념. 
+
+1. 나타날 때
+2. 업데이트 될 떄 
+3. 사라질 떄 
+
+중간중간에 어떤 작업을 하고 싶을 떄 LifeCycle API를 사용하면 된다.
+
+
+constructor
+
+getDerivedStateFromProps : props의 값을 state에 동기화 시킬 때사용.
+
+*shouldComponentUpdate : component가 업데이트 되는 성능을 최적화 시키고 싶을 때 사용한다.
+                      (부모 컴포넌트가 reRender을 하게 되면 자식 컴포넌트도 따라서 reRenerling 되는데 이것이 불필요할 경우가 있다.)
+                       -> true or false를 반환.! (Virtual Dom에도 렌더링을 할지 말지 결정한다.)
+
+render
+
+getSnapshotBeforeUpdate : 우리가 렌더링을 한 다음에 렌더링을 한 결과물이 브라우저 상에 반환되기 바로 직전에 호출되는 함수이다.
+                          (렌더링을 한 후에 업데이트 바로 하기 전에 스크롤의 위치, 돔의 크기를 가져오고 싶을 때 사용한다.)
+
+
+componentDidMount : 주로 외부 라이브러리. 차트, 네트워크, ajax 요청을 처리한다.
+                   (컴포넌트가 나타난 후 몇 초 후에 작업을 하고 싶을 때 사용.)
+           1) 외부 라이브러리 연동 : D3, masonry, etc
+           2) 컴포넌트에서 필요한 데이터 요청 : Ajax, GraphQL, etc 
+           3) DOM 에 관련된 작업 : 스크롤 설정, 크기 읽어오기 등. 
+          
+
+
+componentDidUpdate 
+
+
+
+componentWillUnmount
