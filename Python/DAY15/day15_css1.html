@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <style>
+    /* 글자 진하게 하는 속성
+        font-weight:bold/숫자 100 /200
+
+    */
+        #box1 li { color : red }
+        #box1 ol li { font-weight:bold }
+        #box1 ul li { font-size:2em }
+        #box1 p { border:1px solid black}
+        #box1 p span { background-color:red;
+                        color:white;
+                        font-size:2em}
+
+
+
+          /*   자식선택자 : >를 사용. 직계 하위 레벨 찾기기 */
+          /* .divBox1>li 디자인 적용안됨.*/
+        .divBox1>li { color:yellow green }
+        .divBox1>ul>li { font-size:1.5em }
+        .divBox2>ul>li>a { font-weight:bold }
+
+
+        /* 순서 선택자
+        선택자(태크/ 클래스/ 아이디... ):nth-child(숫자/odd/even) {속성:값}
+        */
+        /* #dBox1 안에 있는 n번째 p요소 */
+        #dBox1 p:nth-child(1) {background-color:yellow}
+        #dBox1 p:nth-child(3) {background-color:red}
+
+        /* #dBox2 안에 있는 짝수/홀수번째 요소*/
+        #dBox2 p:nth-child(odd) {color:greed}
+        #dBox2 p:nth-child(even) {color:pink;font-size:2em}
+
+
+    </style>
+
+
+<!--
+div : 블록요소
+span : 인라인요소
+-->
+
+<div id = "box1">
+    <ol>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+    </ol>
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+    </ul>
+    <p>문단 <span>P</span>ython</p>  <!-- span은 글자 한글자를 쌀때 CSS와 함께 자주 사용한다.-->
+</div>
+
+<!--    hr+(div.divBox$>ul>(li>a{링크$})*3)*2-->
+    <hr>
+    <div class="divBox1">
+        <ul>
+            <li><a href="">링크1</a></li>
+            <li><a href="">링크2</a></li>
+            <li><a href="">링크3</a></li>
+        </ul>
+    </div>
+    <div class="divBox2">
+        <ul>
+            <li><a href="">링크1</a></li>
+            <li><a href="">링크2</a></li>
+            <li><a href="">링크3</a></li>
+        </ul>
+    </div>
+
+
+<!--    hr+(div#dBox$>p{p$}*5)*2-->
+    <hr>
+    <div id="dBox1">
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+        <p>p4</p>
+        <p>p5</p>
+    </div>
+    <div id="dBox2">
+        <p>p1</p>
+        <p>p2</p>
+        <p>p3</p>
+        <p>p4</p>
+        <p>p5</p>
+    </div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<style lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS2 </title>
+    <!-- CSS 정의  -->
+    <style type="text/css">
+    /*
+        선택자(Selector) {속성1:값;
+                        속성2:값3;}
+
+        3대선택자 - 태그선택자/클래스선택자/아이디선택자자
+   */
+
+    /* 태그선택자 : 문서에서 특정 태그를 사용하면 동일 디자인 적용
+        태그명 { 속성1:값1;...}
+    */
+    /* ul 태그에 공통적인 디자인 정의*/
+
+    .ul{ color:red;
+        line-height:200%;
+        font-size:10pt
+        }
+
+    /* 클래스 선택자 : 도트 선택자
+      1) 클래스 정의
+      .클래스이름 { 속성1:값1;...}
+      클래스 적용
+      2) 클래스 적용
+       태그안에 class 속성 삽입
+       class=클래스 이름
+    */
+
+    /* 클래스 선택자 : 2em, 검정배경, 흰색글자 */
+    .whiteBlack {
+        font-size:2em;
+        background-color:black;
+        color:white;
+    }
+
+
+    /* 클래스 선택자2 : 이미지 테두리 디자인 */
+    /* 테두리 속성
+        border-style: none/solid/double/dotted/dashed/inset/outset
+        border-width: 숫자단위 예)10px
+        border-color: 16진수색상값이나 색상명
+
+        border:스타일 색상 굵기;
+    */
+    .imgFrame1 { border-style:double;
+                border-color:blue;
+                border-width:20px; }
+
+    .imgFrame2 { border:dashed 1px black; }
+
+    /* 아이디선택자 = 샵선택자
+    문서에서 한번만 사용가능.
+    1) 선택자 등록
+    # 아이디이름 {속성:값...}
+    2) 적용
+     태그안에 id=아이디이름
+
+    */
+
+    /* 아이디 선택자 등록 */
+    #olList { }
+
+    </style>
+</head>
+<body>
+<!--h1{css2 -Head방식}-->
+
+<h2>목록1</h2>
+<ul>
+    <li>목륵1</li>
+    <li>목륵2</li>
+    <li>목륵3</li>
+    <li>목륵4</li>
+</ul>
+
+
+<h2></h2>
+<ul>
+    <li>목록1</li>
+    <li>목록2</li>
+    <li>목록3</li>
+    <li>목록4</li>
+</ul>
+
+<h2></h2>
+<ul>
+    <li>목록1</li>
+    <li>목록2</li>
+    <li>목록3</li>
+    <li>목록4</li>
+</ul>
+
+<h2> 특정 글자에 디자인 적용</h2>
+<p>
+    생계형 <span class="whiteblack">수습</span> 변호사 ‘태수’에게 찾아온 일생일대의 기회, 위기의 동물원 ‘동산파크’를 구하라!
+ ‘동산파크’의 새 원장이 된 그는 손님은커녕 동물조차 없는 동물원을 살리기 위해
+ 직원들에게 동물로 위장근무 하자는 기상천외한 제안을 한다.
+ 북극곰, 사자, 기린, 고릴라, 나무늘보로 출근한 ‘동산파크’ 5인방.
+ 묵언수행은 기본, 어깨 결림, 근육 뭉침, 뒷목까지 뻐근한 그들의 털 날리는 고군분투가
+ 계속되는 가운데, 목이 타던 ‘태수’는 북극곰의 신분을 망각하고
+    관람객 앞에서 <span>콜라</span> 한 모금을 마시게 되는데…
+
+ 이런 동물원 처음 봐?
+ 선을 넘은 녀석들의 과감한 도전이 시작된다!
+
+제작노트 보기
+</p>
+<h2>이미지</h2>
+<div>
+    <img src="images/boss.png" alt="boss" class="imgFrame1">
+    <img src="images/cold.png" alt="cold">
+    <img src="images/cry.png" alt="cry">
+    <img src="images/cool.png" alt="cool">
+</div>
+
+
+</body>
+</html>

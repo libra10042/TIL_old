@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>하이퍼링크와 폼요소에 사용되는 선택자</title>
+    <!-- 하이퍼링크 상태
+        미방문 링크 : 파란색 밑줄
+        방문 링크 : 보라색 밑줄
+        활성 링크 : 빨강색 밑줄
+        -->
+    <style>
+        /* text-decoration:none/underline/overline */
+        /*
+        a:link {속성:값} 보통상태
+        a:visited {속성:값} 방문상태
+        a:hover {속성:값} 가져다대면 상태/롤오버 상태
+        a:active {속성:값} 누르는 순간 상태/ 활성상태.
+        */
+        /* 보통상태 밑줄없음.
+        검정색 롤오버상태:밑줄있음.색상변경*/
+        a:link {color:black; text-decoration:none}
+        a:visited {color:black; text-decoration:none}
+        a:hover {color:green; text-decoration:underline}
+        a:active {color:green; text-decoration:underline }
+
+
+        /* .nav2 클래스의 하이퍼링크 메뉴 */
+        .nav2 a:link { font-weight:bold; font-size:1.7em}
+        .nav2 a:visited { font-weight:bold; font-size:1.7em}
+        .nav2 a:hover { background-color:yellow }
+        .nav2 a:active { background-color:pink }
+
+
+        /* 텍스트필드 디자인 : 공통 */
+        input {border:1px solid black; width:300px }
+        input:hover {border:1px solid red}
+        input:focus {background-color:yellowgreen}
+        input:active {background-color:yellowgreen}
+
+
+        /* 텍스트필드 디자인 : .s */
+        .s input:hover {background-color:brown}
+
+    </style>
+
+</head>
+<body>
+<h1>가상요소선택자</h1>
+<!-- hr+h2{하이퍼링크 디자인적용}+ul.nav$>(li>a[href=#]{Menu$})*5)*2-->
+
+    <hr>
+    <h2>하이퍼링크 디자인적용</h2>
+    <ul class="nav1">
+        <li><a href="#">Menu1</a></li>
+        <li><a href="#">Menu2</a></li>
+        <li><a href="#">Menu3</a></li>
+        <li><a href="#">Menu4</a></li>
+        <li><a href="#">Menu5</a></li>
+    </ul>
+    <ul class="nav2">
+        <li><a href="#">Menu1</a></li>
+        <li><a href="#">Menu2</a></li>
+        <li><a href="#">Menu3</a></li>
+        <li><a href="#">Menu4</a></li>
+        <li><a href="#">Menu5</a></li>
+    </ul>
+
+<!--    hr+form>(label>input:text)*2-->
+<hr>
+<form action="">
+    <label>아이디<input type="text" name="" ></label>
+    <label class="s">이름<input type="text" name="" ></label>
+</form>
+
+
+</body>
+</html>
