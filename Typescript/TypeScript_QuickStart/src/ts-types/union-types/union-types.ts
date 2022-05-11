@@ -1,0 +1,15 @@
+function check(p: string | number | boolean) : string | number | boolean {
+    if(typeof p === "string"){
+        return p;
+    }
+    else if(typeof p === "number"){
+        return p;
+    }else { 
+        return p;
+    }
+}
+
+console.log(typeof check(1), check(1));
+console.log(typeof check("Hello"), check("hello"));
+console.log(typeof check(true), check(true));
+

@@ -1,0 +1,25 @@
+📌환경 구축
+- node.js 설치. 
+
+
+💡컴파일 하기
+tsc file1.ts file2.ts file3.ts
+
+
+💡tsconfig.json 파일을 이용한 컴파일
+-tsconfig.json 파일은 타입스크립트 프로젝트를 컴파일할 때 필요한 설정 정보를 담고 있다. 
+(tsconfig.json 파일의 목적은 타입스크립트를 컴파일할 때 필요한 설정을 관리하기 위해서 이다.)
+"실제 타입스크릡트로 프로젝트를 진행하다 보면 컴파일환경이 복잡해지기 때문에 컴파일 시 고려해야 할 사항이 늘어난다.
+[tsc 명령어를 실행할 때마다 컴파일에 필요한 옵션을 입력하는 것은 번거롭다. 따라서 자주 사용하는 컴파일 옵션은 tsconfig.json에 담아서 관리하면 좋다.]
+
+
+👉 tsc
+ 위명령어가 실행되면 tsconfig.json 파일의 설정을 읽어 들여 컴파일 한다.
+ 만약 현재 디렉터리에 tsconfig.json 파일이 없다면 상위 디렉터리로 이동하면서 찾는다.
+
+
+ 확장 기능 추가
+TSLint, Lastest TypeScript Javascript Grammer
+
+명령어로 TSLint 설치하기 :  npm install TSLint
+
