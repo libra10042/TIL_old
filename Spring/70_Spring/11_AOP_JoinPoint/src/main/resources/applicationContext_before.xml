@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<context:component-scan base-package="com.spring.biz" />
+	
+	<!-- ===== AOP 설정(xmlns:aop 추가) ===== -->
+	<!-- Before : 어드바이스 동작시점 before 에 적용할 어드바이스 객체 생성 -->
+	<bean id="before" class="com.spring.biz.common.BeforeAdvice" />
+	
+	<!-- 대상과 적용시점 설정 -->
+	<aop:config>
+		<!-- 대상설정(포인트컷) -->
+		<aop:pointcut id="allPointcut" 
+			expression="execution(* com.spring.biz..*Impl.*(..))" />
+		
+		<!-- 작업설정(연결) -->
+		<aop:aspect ref="before">
+			<aop:before pointcut-ref="allPointcut" method="beforeLog"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
+
+
+
+
+
+
+
+
+
+

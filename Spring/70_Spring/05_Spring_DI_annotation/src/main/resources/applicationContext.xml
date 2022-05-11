@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 어노테이션 설정된 클래스의 객체 생성을 위한 설정 
+		1. 네임스페이스 추가 : context(xmlns:context)
+		2. <context:component-scan> 태그설정으로 찾을 위치 지정
+			- base-package 속성 : 컴포넌트 어노테이션을 찾을 위치 지정
+			(설정된 패키지 포함 하위 패키지를 모두 검색)
+	-->
+	<context:component-scan base-package="di_annotation"></context:component-scan>
+</beans>
+
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<context:component-scan base-package="com.spring.biz" />
+	
+	<!-- ===== AOP 설정(xmlns:aop 추가) ===== -->
+	<!-- *Impl 클래스의 모든 메소드 실행전에 LogAdvice.printLog() 실행 -->
+<!--  
+	<bean id="log" class="com.spring.biz.common.LogAdvice" />
+	<aop:config>
+		<aop:pointcut id="allPointcut" 
+			expression="execution(* com.spring.biz..*Impl.*(..))" />
+		<aop:aspect ref="log">
+			<aop:before pointcut-ref="allPointcut" method="printLog" />
+		</aop:aspect>
+	</aop:config>
+-->		
+	<!-- Log4jAdvice 클래스 사용해서 로그 남기기 -->
+	<bean id="log4j" class="com.spring.biz.common.Log4jAdvice" />
+	<aop:config>
+		<!-- pointcut : 핵심관심 중 AOP 적용대상으로 선정할 메소드 설정 -->
+		<aop:pointcut id="allPointcut" 
+			expression="execution(* com.spring.biz..*Impl.*(..))" />
+		<aop:pointcut id="getPointcut" 
+			expression="execution(* com.spring.biz..*Impl.get*(..))" />
+		<!-- aspect : 적용대상(pointcut)과 적용할 횡단관심(advice) 연결 -->
+		<aop:aspect ref="log4j">
+			<aop:before pointcut-ref="getPointcut" method="printLogging" />
+		</aop:aspect>
+	</aop:config>
+</beans>
+
+
+
+
+
+
+
+
+
+
