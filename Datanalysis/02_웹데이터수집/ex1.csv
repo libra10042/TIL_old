@@ -1,0 +1,81 @@
+﻿subject1,subject2,date,author
+[programming] [react] react 작업환경 설,"
+        react를 시작하기 전에 환경셋팅을 해보자
+      ",2017-05-20 06:29:05 +0000    ,    박정태
+[programming] drag and drop을 이용하여 파일 업로드를 해보자,"
+        query의 외부 라이브러리가 아닌 drag, drop 이벤트를 활용하여 기능 구현해보기
+      ",2017-05-09 23:47:05 +0000    ,    박정태
+"[database] mysqldump를 이용하여 데이터 백업, 복원하기","
+        mysqldump를 이용하여 디비 백업과 source를 이용하여 데이터 복원을 해보자
+      ",2017-05-04 05:33:05 +0000    ,    박정태
+[database] mysql 원격접속하는 방법,"
+        mysql 디비설정, 유저설정을 통해 원격접속
+      ",2017-05-03 11:43:05 +0000    ,    박정태
+"[node.js] 파일 리더기 만들기 - 사용 모듈 정리, pdf와 hwp 구조","
+        docx, hwp, pdf 파일
+      ",2017-05-01 06:02:05 +0000    ,    박정태
+"[node.js] 파일 리더기 만들기 - pdf를 html로 변환, docx를 pdf로 변환","
+        pdf파일 html로 변경하기
+      ",2017-04-30 15:19:05 +0000    ,    박정태
+[programming] git 원격 저장소 바꾸기,"
+        remote set-url을 이용하여 원격 저장소를 바꾸자
+      ",2017-04-25 13:09:05 +0000    ,    박정태
+[programming] python working directory를 바꿔보자,"
+        working directory설정을 하여 경로 문제를 해결하자
+      ",2017-04-25 09:19:05 +0000    ,    박정태
+[server] docker commends,"
+        도커의 명령어들을 간단하게 알아보기
+      ",2017-04-24 23:19:05 +0000    ,    박정태
+[programming] python utc를 timestamp로 바꾸는 방법,"
+        python에서 utc를 timestamp로 바꾸는 방법
+      ",2017-04-24 13:19:05 +0000    ,    박정태
+[programming] ubuntu에 php 개발환경 셋팅,"
+        우분투에 php를 설치해보자
+      ",2017-04-23 09:19:05 +0000    ,    박정태
+[server] azure-cli를 이용하여 azure 사용하기,"
+        대시보드를 사용하지 않고 azure-cli로 azure를 이용하기
+      ",2017-04-22 13:19:05 +0000    ,    박정태
+[tools] ssh-keygen을 이용한 ssh 키 파일 생성,"
+        여러가지 인증 방법 중 ssh를 이용하기 위한 키 파일 생성방법
+      ",2017-04-21 04:14:05 +0000    ,    박정태
+[programming] 제너레이터(generator)를 활용한 효율적인 코드작성,"
+        효율적인 코드 작성을 위한 generator 사용방법 입니다.
+      ",2017-04-19 13:58:05 +0000    ,    박정태
+[node.js] Jade Template Engine을 활용한 효율적 관리,"
+",2017-04-15 01:39:05 +0000    ,    박정태
+[tools] vim 각종 설정들로 부터 귀차니즘을 벗어나자,"
+",2017-04-12 23:26:05 +0000    ,    박정태
+[node.js] sequelize - Migrations[번역],"
+",2017-04-09 07:43:05 +0000    ,    박정태
+[node.js] sequelize - Usage[번역],"
+",2017-04-09 07:41:05 +0000    ,    박정태
+[node.js] sequelize - Hooks[번역],"
+",2017-04-09 07:38:05 +0000    ,    박정태
+[node.js] sequelize - Querying[번역],"
+",2017-04-09 07:37:05 +0000    ,    박정태
+[node.js] sequelize - Working With Legacy Tables[번역],"
+",2017-04-09 07:36:05 +0000    ,    박정태
+[node.js] sequelize - Getting Started[번역],"
+",2017-04-09 07:28:05 +0000    ,    박정태
+[node.js] sequelize - Home[번역],"
+",2017-04-09 07:00:05 +0000    ,    박정태
+[machine-learning] Classification using Naive Bayes,"
+",2017-04-08 01:55:05 +0000    ,    박정태
+[framework] Structure aiohttp Of python,"
+        python 경량 서버 프레임 워크인 apihttp에 대한 boilerplate작성 및 설명입니다.
+      ",2017-04-08 01:30:05 +0000    ,    박정태
+[framework] Structure Express Of Node,"
+",2017-04-08 01:22:05 +0000    ,    박정태
+"[programming] Javascript Asynchronous, synchronous and Promise","
+",2017-04-08 01:08:05 +0000    ,    박정태
+[database] RDBMS vs NoSQL vs InMemory,"
+        Database에 대한 설명입니다.
+      ",2017-04-06 10:03:05 +0000    ,    박정태
+[news] Django 1.11 Release,"
+        Django1.11 버전 release note입니다
+      ",2017-04-05 23:03:05 +0000    ,    박정태
+[programming] javascript arrow function과 array.prototype의 조합,"
+        javascript의 화살표 함수에 대한 글입니다.
+      ",2017-04-04 13:40:05 +0000    ,    박정태
+[intro] Welcome to mung,"
+",2017-04-04 13:10:05 +0000    ,    박정태
