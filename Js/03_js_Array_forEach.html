@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Array forEach문</title>
+<script>
+    //배열(Array) 메소드 forEach
+    var arr = ["사당", "교대", "방배", "강남"];
+    document.write("arr : " + arr, "<br>");
+    
+    //array.forEach(콜백함수);
+    //              콜백함수  값(필수) 인덱스 배열객체
+    //array.forEach(function(value, index, arr){ });
+    //------------------------------
+    //배열값 사용하기
+    arr.forEach(function(value){
+        document.write(value, "<br>");
+    });
+    
+    //배열 데이터와 인덱스 사용
+    //["사당", "교대", "방배", "강남"]
+    arr.forEach(function(value, idx) {
+        arr[idx] = value + "~~";
+    });
+    document.write(">> arr : " + arr, "<br>");
+    document.write("<hr>");
+    
+    //배열 데이터, 인덱스, 객체 전달받아 사용
+    //                   데이터  인덱스  배열객체
+    arr.forEach(function(value, idx, arrObj){
+        arrObj[idx] = value + idx;
+    });
+    document.write(">> arr : " + arr, "<br>");
+</script>
+</head>
+<body>
+	
+    
+
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

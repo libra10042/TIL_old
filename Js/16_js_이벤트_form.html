@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS form 이벤트</title>
+<script>
+    window.onload = function(){
+        //첫번째 폼요소 이벤트 처리(submit 클릭) 
+        document.frm1.onsubmit = submitFrm1; //콜백함수 연결
+        
+        //두번째 폼요소 이벤트 처리(submit 클릭)
+        document.frm2.onsubmit = function(){
+            //alert(">> frm2 submit 클릭!!!");
+            //alert(document.getElementById("accept"));
+            let accept = document.frm2.accept;//동의 체크박스
+            //alert("accept.checked : " + accept.checked);
+            if (accept.checked == false) {
+                alert("약관에 동의해야 합니다\n약관에 동의체크 하세요");
+                return false; //서버전송 취소
+            }
+        };
+        
+        //전체선택에 대한 이벤트 처리
+        //체크상태 : 과목1,2,3 모두 체크 처리
+        //체크해제 : 과목1,2,3 모두 체크 해제 처리
+        document.frm2.allCheck.onclick = function(){
+            //이벤트발생 콜백함수 this : 이벤트 발생객체
+            console.log("allCheck.onclick 콜백함수 this.id : " + this.id);
+            if (this.checked) {//체크된 상태
+                document.frm2.subject1.checked = true;
+                document.frm2.subject2.checked = true;
+                document.frm2.subject3.checked = true;
+            } else {//체크 해제 상태
+                document.frm2.subject1.checked = false;
+                document.frm2.subject2.checked = false;
+                document.frm2.subject3.checked = false;
+            }
+        };
+    };
+    function submitFrm1(){
+        console.log(">> frm1 submit 클릭!!!");
+        //let pw1 = document.getElementById("user_pw1");
+        let pw1 = document.frm1.pw1;
+        console.log("pw1 : " + pw1 + ", pw1.value : " + pw1.value);
+        let pw2 = document.frm1.pw2;
+        console.log("pw2 : " + pw2);
+
+        pw2.value = pw1.value;
+        pw2.disabled = true; //수정할 수 없게 
+
+        return false; //서버쪽 전송 취소
+    }   
+</script>
+<style>
+    #terms {
+        width: 400px; height: 100px;
+        border: 1px solid gray;
+        overflow: auto;
+    }
+</style>    
+</head>
+<body>
+	<form name="frm1">
+        <fieldset>
+            <legend>폼요소1(비밀번호확인)</legend>
+            <p>
+                <label for="user_pw1">비밀번호</label>
+                <input type="password" name="pw1" id="user_pw1">
+            </p>
+            <p>
+                <label>확인된비밀번호</label>
+                <input type="text" name="pw2" id="user_pw2" value="1234">
+                <input type="submit" value="비밀번호 보기">
+            </p>
+        </fieldset>
+    </form>
+    <hr>
+    <form name="frm2">
+        <fieldset>
+        <legend>폼요소2(약관동의/선택)</legend>
+        <div id="terms" name="txt">
+            정보통신망법 규정에 따라 네이버에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
+            정보통신망법 규정에 따라 네이버에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다. 
+        </div>
+        <p>
+            <input type="checkbox" name="accept" id="accept">
+            <label for="accept">약관에 동의합니다.</label>
+        </p> 
+        <p>
+            <input type="checkbox" name="allCheck" id="id_allchk">
+            <label for="id_allchk">전체선택</label>
+            
+            <input type="checkbox" name="subject1" id="subject1">
+            <label for="subject1">과목1</label>
+            
+            <input type="checkbox" name="subject2" id="subject2">
+            <label for="subject2">과목2</label>
+            
+            <input type="checkbox" name="subject3" id="subject3">
+            <label for="subject3">과목3</label>
+        </p>
+        <p>
+            <input type="submit" value="등록">
+            <input type="reset" value="초기화">
+        </p>
+        </fieldset>
+    </form>
+
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>마우스 관련 이벤트</title>
+<script>
+    //마우스 이벤트
+    //onmouseover : 마우스가 해당영역으로 들어오면 발생(위에있으면)
+    //onmouseout : 마우스가 해당영역에서 벗어나면 발생(나가면)
+    window.onload = function(){
+        var imgbtn = document.getElementById("imgbtn");
+        imgbtn.onmouseover = function(){
+            imgbtn.firstElementChild.src = "images/btn2_yellow.png";
+        };
+        imgbtn.onmouseout = function(){
+            imgbtn.firstElementChild.src = "images/btn2_gray.png";
+        };
+    };
+</script>
+<style>
+    #btn1, #btn2 { background-color: lightgray; }
+    #btn2:hover { background-color: yellow; }
+</style>    
+</head>
+<body>
+	<button id="btn1">버튼1</button>
+    <button id="btn2">버튼2</button>
+    <hr>
+    <a href="#" id="imgbtn">
+        <img src="images/btn2_gray.png" alt="버튼">
+    </a>
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
