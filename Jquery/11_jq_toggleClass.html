@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>토글(toggle) 처리</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    //토글(toggle) : 특정 상태를 반복하는 것(설정/해제, 보이기/안보이기, ....)
+    // toggle() : 특정상태 설정, 해제
+    // toggleClass() : 클래스를 토글 처리(설정/해제)
+    $().ready(function(){
+        $("#btn_toggle").click(function(){
+            //$("#myDiv").toggle("hidden");
+            $("#myDiv").toggle(2000);
+        });
+        
+        //----------------------
+        // addClass(), removeClass() ---> toggleClass()
+        $("#btn_add").on("click", function(){
+            $("#myDiv").addClass("c_hidden");
+        });
+        $("#btn_remove").on("click", function(){
+            $("#myDiv").removeClass("c_hidden");
+        });
+        
+        //toggleClass()
+        $("#btn_toggleClass").on("click", function(){
+            $("#myDiv").toggleClass("c_hidden");
+        });
+        
+    });
+</script>
+<style>
+    .c_hidden { display: none; }
+</style>    
+</head>
+<body>
+	<h2>버튼 클릭시마다 div태그를 숨기기/보이기 토글(toggle)</h2>
+    <input type="button" id="btn_toggle" value="토글(toggle)">
+    <input type="button" id="btn_add" value="addClass">
+    <input type="button" id="btn_remove" value="removeClass">
+    <input type="button" id="btn_toggleClass" value="toggleClass">
+    <hr>
+    <div id="myDiv">
+        <img src="images/car1.jpg" alt="자동차사진">
+    </div>
+    
+
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>자동차 이동</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        var timer = null; 
+        var position = 0;
+        
+        $("#moveCar").click(function(){
+            console.log("> 자동차 이동 버튼 클릭");
+            if (timer == null) {
+                timer = setInterval(moveImage, 100);
+            }
+        });
+        function moveImage() {
+            position += 10;
+            $("#car").css("margin-left", position);
+        }
+        
+        $("#car").click(function(){
+            clearInterval(timer);
+            timer = null;
+        });
+    });
+</script>
+<style>
+    /* #car { margin-left: 10px; } */
+</style>
+</head>
+<body>
+	<button id="moveCar">자동차 이동</button>
+    <hr>
+    <img id="car" src="images/car.jpg" width="150" alt="자동차이미지">
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

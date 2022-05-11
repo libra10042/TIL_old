@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style>
+    .c_red { color: red; }
+    .c_orange { color: orange; }
+    .c_silver { color: silver; }
+    .c_purple { color: purple; }
+    .c_blue { color: blue; }
+    
+    .bg_red { background-color: red; }
+    .bg_green { background-color: green; }
+    
+    .sizeup { font-size: 1.5rem; }
+</style>
+<script>
+    $(function(){
+/*        
+        //:first - 첫번째 요소 찾기
+        $("ul>li").addClass("c_red");
+        $("div:first").addClass("c_red");
+
+        $("li:first").addClass("bg_green"); 
+        
+        //:last - 마지막 요소 찾기
+        $("div:last").addClass("c_purple");
+        
+        //:odd - 홀수요소
+        //:even - 짝수요소
+        //주의 : 요소들의 번호 0부터 시작(배열의 인덱스)
+        $("div:odd").addClass("bg_red");
+        $("div:even").css("border", "2px solid black");
+        $("div:even").css("width", "300px");
+        
+        //(실습) -----
+        //li 태그 홀수 요소 : 글자색-회색(gray)
+        $("li:odd").css("color", "gray");
+        
+        //li 태그 짝수 요소 : 테두리선-2px 점선, 검정
+        $("li:even").css("border", "2px dotted black");
+        
+        //---------------------------------
+        //자녀태그(>)
+        $("ul>li").css("background-color", "aqua");
+        $('body>ul>li').css("background-color", "yellow");
+        
+        //자녀태그, 자손태그
+        $("body>ul ul>li").css("font-size", "1.5rem");
+       
+        //==========================================
+        //CSS 다중 설정
+        //방법1 : 매번 객체를 찾아서 스타일 적용
+        //객체를 찾는 행위를 3번 실행
+//        $("#txt").css("background-color", "yellow");
+//        $("#txt").css("font-size", "1.5em");
+//        $("#txt").css("border", "2px solid black");
+       
+        //객체를 찾는 행위 1번 실행
+        let $txt = $("#txt"); //제이쿼리 객체를 변수에 저장
+        $txt.css("background-color", "yellow");
+        $txt.css("font-size", "1.5em");
+        $txt.css("border", "2px solid black");
+        
+        //방법2 : 체이닝 기법
+        $("#txt").css("background-color", "yellow")
+                 .css("font-size", "1.5em")
+                 .css("border", "2px solid black");
+        $txt.css("background-color", "yellow")
+                 .css("font-size", "1.5em")
+                 .css("border", "2px solid black");
+*/         
+        //방법3 : CSS 값으로 전달
+        $("#txt").css({
+            "background-color": "yellow",
+            "font-size": "2em",
+            "border": "2px solid black"
+        });
+    });
+</script> 
+</head>
+<body>
+	<div class="red">
+        <h3>div-h3 영역1</h3>
+    </div>
+    <div>div-영역2</div>
+    <div>div-영역3</div>
+    <div>div-영역4</div>
+    
+    <span id="txt">span 텍스트영역</span>
+
+    <ul>
+        <li>Java</li>
+        <li>Servlet JSP
+            <ul>
+                <li>Servlet</li>
+                <li>JSP
+                    <ul>
+                        <li>EL</li>
+                        <li>JSTL</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Spring</li>
+    </ul>
+    <div>div 마지막 /body 직전</div>
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>click, change</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        //select 이벤트 확인 : click, change
+        $("#mySelect").click(function(){
+            console.log("> select clicked!!!");
+        });
+        $("#mySelect").change(function(){
+            console.log("> select changed~~~~~");
+            let sValue = $("#mySelect>option:selected").val();
+            $("#inputStr").val(sValue); //val(값) : 값을 설정
+        });
+        
+        //-----------------------
+        // radio 버튼에 대한 이벤트 확인 : click, change
+        $(".gender").click(function(){
+            console.log("- radio 클릭!!!");
+        });
+        $(".gender").change(function(){
+            console.log("- radio change 이벤트 발생~~");
+            let rValue = $(".gender:checked").val();
+            $("#inputStr2").val(rValue);
+        });
+        
+        //-----------------------------
+        // checkbox 이벤트 확인 : click, change
+        $(".chk").click(function(){
+            console.log(">> checkbox 클릭");
+        });
+        $(".chk").change(function(){
+            console.log(">> checkbox change(값 변경)");
+            let cValue = "";
+            $(".chk:checked").each(function(){
+                //this : 현재 처리중인 JavaScript 객체
+                //cValue += this.value + ","; // JavaScript
+                cValue += $(this).val() + " "; // $(this) : jQuery 객체
+            });
+            $("#inputStr3").val(cValue);
+        });
+    });
+</script>
+</head>
+<body>
+<form>
+	<select id="mySelect" name="select">
+        <option selected disabled>::선택</option>
+        <option value="Java">Java</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="jQuery">jQuery</option>
+    </select>
+    <input type="text" name="str" id="inputStr">
+    <hr>
+    
+    <input type="radio" name="gender" id="gender1" class="gender" value="남">
+    <label for="gender1">남자</label>
+    <input type="radio" name="gender" id="gender2" class="gender" value="여">
+    <label for="gender2">여자</label>
+    <input type="text" name="str2" id="inputStr2">
+    <hr>
+    
+    좋아하는 운동은?<br>
+    <input type="checkbox" name="hobby" class="chk" value="축구">축구
+    <input type="checkbox" name="hobby" class="chk" value="야구">야구
+    <input type="checkbox" name="hobby" class="chk" value="배구">배구
+    <input type="checkbox" name="hobby" class="chk" value="농구">농구
+    <input type="text" name="str3" id="inputStr3">
+    <hr>
+    
+    <input type="submit" value="서버로전송">
+</form>
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

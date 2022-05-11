@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>요소추가</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(function(){
+        // prepend() : 자녀태그 추가 - 맨 앞에
+        $("#myDiv").prepend("<p>(앞1)반갑습니다(prepend)</p>");
+        $("#myDiv").prepend("<p>(앞2)반갑습니다(prepend)</p>");
+        
+        // append() : 자녀태그 추가 - 맨 뒤쪽에
+        $("#myDiv").append("<p>(뒤1)반갑습니다(append)</p>");
+        $("#myDiv").append("<p>(뒤2)반갑습니다(append)</p>");
+        
+        // before(), after() : 전과 후에 태그 추가
+        $("#myDiv").before("<p>1반갑습니다(before)");
+        $("#myDiv").before("<p>2반갑습니다(before)");
+        
+        $("#myDiv").after("<p>1반갑습니다(after)");
+        $("#myDiv").after("<p>2반갑습니다(after)");
+        
+        //H2 앞에 H1 태그 추가하고, 뒤쪽에 P태그 추가
+        $("h2").before("<h1>개발자 과정</h1>");
+        $("h2").after("<p>(웹프로그래밍 양성 과정)</p>");
+        
+        //----------------------------
+        // wrap() : 바깥쪽에 감싸는 태그 추가
+        $("h2").wrap("<em>");
+        
+        //<a> 태그를 목록(li)로 감싸기, ul에 넣기
+        $("a").wrap("<li>");
+        $("li:first").before("<ul id='menu'>");
+        $("#menu").html($("li")); //모든 li태그를 ul태그에 넣기
+    });
+</script>
+<style>
+    h2 { border: 2px solid orange; }
+    #myDiv { border: 3px solid blue; }
+</style>    
+</head>
+<body>
+	<h2>Java Web 프로그래밍 관련</h2>
+    <a href="#">Java</a>
+    <a href="#">JavaScript</a>
+    <a href="#">JSP</a>
+    <a href="#">Spring</a>
+    <hr>
+    <p class="myClass">1장 ~~</p>
+    <div>내용...</div>
+    
+    <p class="myClass">2장 ~~</p>
+    <div>내용...</div>
+    
+    <p class="myClass">3장 ~~</p>
+    <div>내용...</div>
+    
+    <hr>
+    <div id="myDiv">
+        <p>안녕하세요</p>
+        <p>반갑습니다</p>
+        <p>또 만나요</p>
+    </div>
+    
+    
+        
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

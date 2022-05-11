@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery: 직접/인접관계 선택자</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 10px;
+        }
+        /*body { width: 80%; margin: auto;} */
+        section {
+            width: 30%;
+            float: left;
+        }
+        #divHtml {
+            height: 100%;
+        }
+        button {
+            height: 2.5em;
+            margin: 5px 10px;
+        }
+        button>b {
+            background-color: yellow;
+            color: darkblue;
+            font-size: 1.5em;
+        }
+        ul, ol {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        ul>h3, ol>h3 {
+            display: inline-block;
+        }
+        li { 
+            margin: 5px 10px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        };
+    </style>
+    <script>
+        var $btnId, $btnClass, $btnElement, $btnGroupElement, $btnElementSection, $btnDivHtml;
+        var $btnParent, $btnParents, $btnSub, $btnChild, $btnChildren, $btnDivHtmlChildren;
+        var $btnPrev, $btnPrevAll, $btnNext, $btnNextPlus, $btnNextAll;
+        var $btnPrevUntil, $btnNextUntil, $btnSiblings;
+        
+		var $divHtml;
+        var $all, $liAll, $li, $li1, $li2, $ul_ol, $section, $htmlDiv;
+        var $parent, $parents, $sub, $child, $children, $divHtmlChildren;
+        var $prev, $prevAll, $next, $nextPlus, $nextAll;
+        var $prevUntil, $nextuntil, $siblings;
+        
+        
+        $(function() {
+            //직접 선택자
+            $btnId = $("#btnId");
+            $btnClass = $("#btnClass");
+            $btnElement = $("#btnElement");
+            $btnGroupElement = $("#btnGroupElement");
+			$btnElementSection = $("#btnElementSection");
+			$btnDivHtml = $("#btnDivHtml");
+            
+            //인접관계 선택자
+            $btnParent = $("#btnParent");
+            $btnParents = $("#btnParents");
+            $btnSub = $("#btnSub");
+            $btnChild = $("#btnChild");
+            $btnChildren = $("#btnChildren");
+			$btnDivHtmlChildren = $("#btnDivHtmlChildren");
+			
+            $btnPrev = $("#btnPrev");
+            $btnPrevAll = $("#btnPrevAll");
+            $btnNext = $("#btnNext");
+            $btnNextPlus = $("#btnNextPlus");
+            $btnNextAll = $("#btnNextAll");
+            
+            $btnPrevUntil = $("#btnPrevUntil");
+            $btnNextUntil = $("#btnNextUntil");
+            $btnSiblings = $("#btnSiblings");
+            
+            //=======================================
+			//직접관계 선택자
+            $all = $("*");
+            $liAll = $("*").filter("li");
+            $li1 = $("#li1");
+            $li2 = $(".li2");
+            $li = $("li");
+			$h2_ul_ol = $("h2, ul, ol");
+			$section = $("section");
+			$divHtml = $("#divHtml");
+            
+            //인접관계 선택자
+            $parent = $("#li1").parent();
+            $parents = $("#li1").parents();
+            
+            $sub = $("section h3");
+            
+            $child = $("ol>li"); //자식요소 선택자
+            $children = $("ol").children(); //자식들 선택
+			$divHtmlChildren = $("#divHtml").children();
+            
+            $prev = $("#li1").prev();
+            $prevAll = $(".li2").prevAll();
+            
+            $next = $("#idUl").next();
+            $nextPlus = $("ul+ol");
+            $nextAll = $("ul").nextAll();
+            
+            $prevUntil = $("p").prevUntil("#idUl");
+            $nextUntil = $("#idUl").nextUntil("p");
+            $siblings = $("ul").siblings();
+            
+            
+            $btnPrevUntil.on("click", function() {
+                //$("ul").prevUtil("p").css("background-color", "gray");
+                $prevUntil.css("background-color", "gray");
+            });
+            
+            $btnNextUntil.on("click", function() {
+                //$("#idUl").nextUntil("p").css("background-color", "yellow");
+                $nextUntil.css("background-color", "yellow");
+            });
+            
+            $btnSiblings.on("click", function() {
+                //$("ul").siblings().css("background-color", "Tomato");
+                $siblings.css("background-color", "Tomato");
+            });
+            
+            
+            
+        });
+        
+        //적용효과 초기화
+        $(document).on("click", "#btnClear", function() {
+            $all.not("hr").not("button").not("button b").each(function() {
+                $(this).css("background-color", "white");
+                $(this).css("border", "none");
+            });
+            
+        });
+        
+        //////////////////////////////////////////////////////////////
+        // 직접선택자 적용 효과
+        /////////////////////////////////////////////////////////////
+        //전체선택(모든 요소)
+        $(document).on("click", "#btnAll", function() {
+            $all.css("border", "1px solid gray");
+        });
+        
+        //id 선택자 선택
+        $(document).on("click", "#btnId", function() {
+            $li1.css("background-color", "yellow");
+        });
+        
+        //class 선택자 선택
+        $(document).on("click", "#btnClass", function() {
+            $li2.css("background-color", "aqua");
+        });
+        
+        //태그 선택
+        $(document).on("click", "#btnElement", function() {
+            $li.css("background-color", "lightgray");
+            
+        });
+		
+        //그룹 선택(여러 태그 일괄 선택)
+        $(document).on("click", "#btnGroupElement", function() {
+            $h2_ul_ol.each(function(index) {
+                $(this).css("background-color", "orange");
+            });
+        });
+		
+		//태그 section 선택
+        $(document).on("click", "#btnElementSection", function() {
+            $section.css("border", "1px solid green");
+            
+        });
+		
+		//태그 #divHtml 선택
+        $(document).on("click", "#btnDivHtml", function() {
+            $divHtml.css("border", "1px solid blue");
+            
+        });
+        
+        //////////////////////////////////////////////////////////////
+        // 인접관계 선택자 적용 효과
+        /////////////////////////////////////////////////////////////
+        //부모요소 선택자
+        $(document).on("click", "#btnParent", function() {
+            $parent.each(function(index) {
+                $(this).css("background-color", "red");
+            });
+        });
+        
+        //상위요소 선택자
+        $(document).on("click", "#btnParents", function() {
+            $parents.each(function(index) {
+                $(this).css("border", "2px solid green");
+            });
+        });
+        
+        //하위요소 선택자
+        $(document).on("click", "#btnSub", function() {
+            $sub.each(function(index) {
+                $(this).css("border", "2px solid magenta");
+            });
+        });
+        
+        //자식요소 선택자(ol>li)
+        $(document).on("click", "#btnChild", function() {
+            $child.each(function(index) {
+                $(this).css("background-color", "Peru");
+            });
+        });
+        
+        //자식요소들 선택자(ol.children - ol 자식요소 전체)
+        $(document).on("click", "#btnChildren", function() {
+            $children.css("background-color", "Tomato");
+        });
+		
+		//자식요소들 선택자(divHtml.children - divHtml 자식요소 전체)
+        $(document).on("click", "#btnDivHtmlChildren", function() {
+			alert("btnDivHtmlChildren clicked!");
+            $divHtmlChildren.css("border", "2px dotted green");
+        });
+        
+        //형(이전) 선택자
+        $(document).on("click", "#btnPrev", function() {
+            $prev.css("background-color", "Sienna");
+        });
+        
+        //형(이전) 요소들 선택자
+        $(document).on("click", "#btnPrevAll", function() {
+            $prevAll.css("background-color", "YellowGreen");
+        });
+        
+        
+        //동생(다음) 요소 선택자
+        $(document).on("click", "#btnNext", function() {
+            $next.css("background-color", "SeaGreen");
+        });
+        
+        //동생(다음) 요소 선택자2(plus)
+        $(document).on("click", "#btnNextPlus", function() {
+            $nextPlus.css("background-color", "PeachPuff");
+        });
+        
+        //동생(다음) 요소들 선택자
+        $(document).on("click", "#btnNextAll", function() {
+            $nextAll.css("background-color", "SpringGreen");
+        });
+        
+        /* 
+        //지정 동생 요소들 선택자
+        $(document).on("click", "#btnPrevUntil", function() {
+            $prevUntil.css("background-color", "PowerBlue");
+        });
+        
+        //형제 요소들 선택자
+        $(document).on("click", "#btnSiblings", function() {
+            $siblings.css("background-color", "PowerBlue");
+        });
+        */
+    </script>
+</head>
+
+<body title="body">
+<header>
+    <h2>jQuery 선택자 정리(h2)</h2>
+</header>
+<section>
+    <div id="divHtml" title="div">
+        <ul id="idUl" title="body&gt;div&gt;ul">
+            <h3>UL: 순서없는 목록(h3)</h3>
+            <li id="li1">목록1(li, <b>id="li1"</b>)</li>
+            <li class="li2">목록2(li, <b>class="li2</b>)</li>
+            <li>목록3(li)</li>
+            <li>목록4(li)</li>
+            <li>목록5(li)</li>
+        </ul>
+        <ol id="idOl" title="body&gt;div&gt;ol">
+            <h3>OL 순서목록(h3)</h3>
+            <li>순서목록1(li)</li>
+            <li class="li2">순서목록2(li, <b>class="li2</b>)</li>
+            <li>순서목록3(li)</li>
+            <li>순서목록4(li)</li>
+            <li>순서목록5(li)</li>
+        </ol>
+        <p>.fist_P</p>
+        <p>.</p>
+        <p id="p3">.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p>
+        <p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.last_P</p>
+    </div>
+</section>
+<aside>
+    <div>
+        <h3>초기화</h3>
+        <button id="btnClear">적용 효과 초기화</button>
+    </div>
+    <hr>
+    <div>
+        <h3>직접 선택자</h3>
+        <button id="btnAll">전체 선택자: <b>$("*")</b></button>
+        <button id="btnId">id 선택자: <b>$("#li1")</b></button>
+        <button id="btnClass">class 선택자: <b>$(".li2")</b></button>
+        <button id="btnElement">요소 선택자: <b>$("li")</b></button>
+        <button id="btnGroupElement">그룹 선택자: <b>$("h2, ul, ol")</b></button>
+		<button id="btnElementSection">요소 선택자: <b>$("section")</b></button>
+		<button id="btnDivHtml">요소 선택자: <b>$("#divHtml")</b></button>
+    </div>
+    <hr>
+    <div>
+        <h3>인접 관계 선택자</h3>
+        <button id="btnParent">부모요소 선택자: <b>$(#li1).parent()</b></button>
+        <button id="btnParents">상위요소 선택자: <b>$(#li1).parents()</b></button>
+        <button id="btnSub">하위 선택자: <b>$("section h3")</b></button>
+        <button id="btnChild">자식 선택자: <b>$("ol>li")</b></button>
+        <button id="btnChildren">자식전체 선택자: <b>$("ol").children()</b></button>
+		<button id="btnDivHtmlChildren">자식전체 선택자: <b>$("#divHtml").children()</b></button>
+        <button id="btnPrev">형(이전) 선택자: <b>$("#li1").prev()</b></button>
+        <button id="btnPrevAll">형(이전)요소들 선택자: <b>$(".li2").prevAll()</b></button>
+        
+        <button id="btnNext">동생(다음) 선택자: <b>$("ul").next()</b></button>
+        <button id="btnNextPlus">동생(다음) 선택자2(+): <b>$("ul+ol")</b></button>
+        <button id="btnNextAll">동생(다음)요소들 선택자: <b>$("ul").nextAll()</b></button>
+        
+        <button id="btnPrevUntil">지정 형(이전)들 선택자: <b>$("p").prevUntil("ul")</b></button>
+        <button id="btnNextUntil">지정 동생(다음)들 선택자: <b>$("ul").nextUntil("p")</b></button>
+        <button id="btnSiblings">형제요소들 선택자: <b>$("ul").siblings()</b></button>
+    </div>
+</aside>
+</body>
+</html>
